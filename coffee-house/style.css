@@ -1,0 +1,252 @@
+/* NOTE: Fonts */
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/inter-v13-cyrillic_latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('./fonts/inter-v13-cyrillic_latin-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 600;
+  src: url('./fonts/inter_semi_bold_italic.woff2') format('woff2');
+}
+
+/* NOTE: Reset */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* NOTE: Color variables */
+:root {
+  --text-dark: #403F3D;
+  --text-accent: #B0907A;
+  --text-light: #E1D4C9;
+  --background-body: #E1D4C9;
+  --background-container: #665F55;
+  --background-backdrop: rgba(64, 63, 61, 0.80);
+  --border-light: #C1B6AD;
+  --border-dark: #665F55;
+}
+
+/* NOTE: Global params */
+body {
+  color: var(--text-dark);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  background: var(--background-body);
+  display: flex;
+  gap: 100px;
+  flex-direction: column;
+}
+
+.wrapper {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.em {
+  color: var(--text-accent);
+  font-size: 60px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* NOTE: Header */
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  height: 60px;
+}
+
+.header__nav-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__nav-item {
+  margin-right: 40px;
+  list-style-type: none;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+.header__nav-item:last-child {
+  margin-right: 0;
+}
+
+.header__link {
+  text-decoration: none;
+}
+
+.header__link:visited,
+.header__link:hover,
+.header__link:active {
+  color: var(--text-dark);
+}
+
+.header__hero {
+  background-image: url(img/img-hero.png);
+  border-radius: 40px;
+  padding: 100px;
+}
+
+.header__hero-wrapper {
+  max-width: 530px;
+}
+
+.header__offer {
+  color: var(--text-light);
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 105%;
+  margin-bottom: 40px;
+}
+
+.header_hero-em {
+  font-size: 72px;
+}
+
+.header__text {
+  color: var(--text-light);
+  font-weight: 400;
+  line-height: 150%;
+  margin-bottom: 40px;
+}
+
+.header__hero-button {
+  width: 200px;
+  height: 64px;
+  border-radius: 100px;
+  background: var(--background-body);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-dark);
+  font-weight: 600;
+  line-height: 150%;
+}
+
+/* NOTE: Favorite */
+.favorite__text {
+  text-align: center;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 125%;
+  margin-bottom: 40px;
+}
+
+.favorite__slider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorite__item {
+  max-width: 480px;
+}
+
+.favorite__coffee-img {
+  margin-bottom: 20px;
+}
+
+.favorite__coffee-name {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 125%;
+  margin-bottom: 16px;
+}
+
+.favorite__coffee-description {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.favorite__price {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 125%;
+  margin-bottom: 40px;
+}
+
+.favorite__slider-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.favorite__slider-control {
+  width: 40px;
+  height: 4px;
+  border-radius: 100px;
+  background: var(--border-light)
+}
+
+.favorite__slider-control.active {
+  background: var(--border-dark)
+}
+
+/* NOTE: About */
+.about__text {
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 125%;
+  margin-bottom: 40px;
+}
+
+.about__images {
+  width: 1360px;
+  height: 1060px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.about__image-wrap {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.about__image {
+  transition: 1s;
+}
+
+.about__image:hover {
+  transform: scale(1.2);
+}
+
+.about__image-small {
+  height: 430px;
+}
+
+.about__image-big {
+  height: 590px;
+}
