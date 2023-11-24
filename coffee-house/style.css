@@ -273,3 +273,61 @@ body {
 .about__image-big {
   height: 590px;
 }
+
+.mobile__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+}
+
+.mobile__offer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: -5px;
+}
+
+.mobile__heading {
+  color: var(--text-dark);
+  font-family: Inter;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 125%;
+}
+
+.mobile__buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.mobile__button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 200px;
+  height: 64px;
+  padding: 12px 20px;
+  border-radius: 100px;
+  border: 1px solid var(--border-dark);
+}
+
+.mobile__available-text {
+  color: var(--text-dark);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 140%;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.mobile__app-name {
+  color: var(--text-dark);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+.mobile__icon {
+  margin-top: 4px;
+}
