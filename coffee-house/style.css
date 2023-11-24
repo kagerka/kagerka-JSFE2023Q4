@@ -89,10 +89,12 @@ body {
 }
 
 .header__nav-item {
+  display: flex;
+  align-items: center;
   margin-right: 40px;
   list-style-type: none;
   font-weight: 600;
-  line-height: 150%;
+  line-height: 158%;
 }
 
 .header__nav-item:last-child {
@@ -101,16 +103,31 @@ body {
 
 .header__link {
   text-decoration: none;
+  line-height: 158%;
 }
 
+.header__link,
 .header__link:visited,
 .header__link:hover,
+.header__link:focus,
 .header__link:active {
   color: var(--text-dark);
 }
 
+.header__menu-item {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.header__menu-icon {
+  display: inline-block;
+  vertical-align: top;
+}
+
 .header__hero {
   background-image: url(img/img-hero.png);
+  background-position: center;
+  background-size: cover;
   border-radius: 40px;
   padding: 100px;
 }
@@ -165,6 +182,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 .favorite__item {
@@ -172,7 +190,7 @@ body {
 }
 
 .favorite__coffee-img {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .favorite__coffee-name {
@@ -193,7 +211,12 @@ body {
   font-size: 24px;
   font-weight: 600;
   line-height: 125%;
-  margin-bottom: 40px;
+}
+
+.favorite__button-arrow {
+  margin: 0 4px;
+  width: 60px;
+  height: 60px;
 }
 
 .favorite__slider-controls {
