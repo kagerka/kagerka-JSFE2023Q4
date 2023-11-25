@@ -49,6 +49,10 @@ html {
 }
 
 /* NOTE: Global params */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--text-dark);
   font-family: Inter;
@@ -98,6 +102,26 @@ body {
   list-style-type: none;
   font-weight: 600;
   line-height: 158%;
+  position: relative;
+  color: var(--text-dark);
+  cursor: default;
+}
+
+.header__nav-item::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--text-dark);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.header__nav-item:hover::before {
+  transform: scaleX(1);
 }
 
 .header__nav-item:last-child {
@@ -107,6 +131,7 @@ body {
 .header__link {
   text-decoration: none;
   line-height: 158%;
+  cursor: pointer;
 }
 
 .header__link,
@@ -144,7 +169,7 @@ body {
   font-size: 72px;
   font-weight: 600;
   line-height: 105%;
-  margin-bottom: 40px;
+  margin-bottom: 41px;
 }
 
 .header_hero-em {
@@ -170,6 +195,29 @@ body {
   color: var(--text-dark);
   font-weight: 600;
   line-height: 150%;
+  transition: 1s;
+}
+
+.header__menu-button {
+  display: inline-block;
+  transition: 1s;
+  transform: translateX(17px);
+}
+
+.header__menu-icon-button {
+  display: inline-block;
+  vertical-align: top;
+  opacity: 0;
+  margin-left: 8px;
+  transition: 0.5s;
+}
+
+.header__hero-button:hover .header__menu-icon-button {
+  opacity: 1;
+}
+
+.header__hero-button:hover .header__menu-button {
+  transform: translateX(0);
 }
 
 /* NOTE: Favorite */
@@ -193,7 +241,7 @@ body {
 }
 
 .favorite__coffee-img {
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
 .favorite__coffee-name {
@@ -220,6 +268,25 @@ body {
   margin: 0 4px;
   width: 60px;
   height: 60px;
+  cursor: pointer;
+}
+
+.favorite__button-arrow .arrow {
+  stroke: var(--text-dark);
+  transition: 0.5s;
+}
+
+.favorite__button-arrow:hover .arrow {
+  stroke: var(--text-light);
+}
+
+.favorite__button-arrow .arrow-bg {
+  fill: var(--text-light);
+  transition: 0.5s;
+}
+
+.favorite__button-arrow:hover .arrow-bg {
+  fill: var(--background-container);
 }
 
 .favorite__slider-controls {
@@ -314,21 +381,35 @@ body {
   padding: 12px 20px;
   border-radius: 100px;
   border: 1px solid var(--border-dark);
+  color: var(--text-dark);
+  font-weight: 600;
+  transition: 0.8s;
+}
+
+.mobile__button:hover {
+  background: var(--background-container);
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.mobile__button svg {
+  fill: var(--text-dark);
+  transition: 0.8s;
+}
+
+.mobile__button:hover svg {
+  fill: var(--text-light);
 }
 
 .mobile__available-text {
-  color: var(--text-dark);
   font-size: 10px;
-  font-weight: 600;
   line-height: 140%;
   display: block;
   margin-bottom: 2px;
 }
 
 .mobile__app-name {
-  color: var(--text-dark);
   font-size: 16px;
-  font-weight: 600;
   line-height: 150%;
 }
 
@@ -368,6 +449,30 @@ body {
 .contacts__socials {
   display: flex;
   gap: 12px;
+  cursor: pointer;
+}
+
+.contacts__socials svg rect,
+.contacts__socials svg path {
+  fill: transparent;
+  transition: 0.8s;
+}
+
+.contacts__socials rect {
+  stroke: var(--border-light);
+}
+
+.contacts__socials svg:hover rect {
+  fill: var(--background-body);
+  stroke: var(--background-body);
+}
+
+.contacts__socials path {
+  stroke: var(--text-light);
+}
+
+.contacts__socials svg:hover path {
+  stroke: var(--text-dark);
 }
 
 .contacts__contact-info {
@@ -406,4 +511,43 @@ body {
   align-items: center;
   display: block;
   margin-top: -2px;
+}
+
+.contacts__address,
+.phone-number {
+  position: relative;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.contacts__address {
+  cursor: pointer;
+}
+
+.contacts__address::before,
+.phone-number::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--text-light);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.contacts__address:hover::before,
+.phone-number:hover::before {
+  transform: scaleX(1);
+}
+
+.contacts__address:focus,
+.contacts__address:visited,
+.contacts__address:active {
+  text-decoration: none;
+  color: var(--text-light);
 }
