@@ -514,7 +514,8 @@ body {
 }
 
 .contacts__address,
-.phone-number {
+.phone-number,
+.contacts__time {
   position: relative;
   cursor: default;
   display: flex;
