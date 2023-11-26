@@ -17,9 +17,9 @@
           <img src="./img/logo.svg" alt="Coffee House Logotype">
           <div class="header__nav">
             <div class="header__nav-list">
-              <div class="header__nav-item"><a href="/coffee-house/" class="header__link">Favorite coffee</a></div>
-              <div class="header__nav-item"><a href="/coffee-house/" class="header__link">About</a></div>
-              <div class="header__nav-item"><a href="/coffee-house/" class="header__link">Mobile app</a></div>
+              <div class="header__nav-item"><a href="#favorite-coffee" class="header__link">Favorite coffee</a></div>
+              <div class="header__nav-item"><a href="#about" class="header__link">About</a></div>
+              <div class="header__nav-item"><a href="#mobile-app" class="header__link">Mobile app</a></div>
               <div class="header__nav-item"><a href="#contacts" class="header__link">Contact us</a></div>
             </div>
           </div>
@@ -45,7 +45,7 @@
       </div>
     </header>
 
-    <section class="favorite">
+    <div class="favorite" id="favorite-coffee">
       <div class="wrapper">
         <h2 class="favorite__text">Choose your <span class="em">favorite</span> coffee</h2>
         <div class="favorite__slider">
@@ -74,9 +74,9 @@
           <div class="favorite__slider-control"></div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="about">
+    <div class="about" id="about">
       <div class="wrapper">
         <p class="about__text">Resource is <span class="em">the perfect and cozy place</span> where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.</p>
         <div class="about__images">
@@ -94,9 +94,9 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="mobile">
+    <div class="mobile" id="mobile-app">
       <div class="wrapper">
         <div class="mobile__wrapper">
           <div class="mobile__offer">
@@ -133,7 +133,7 @@
           <div class="mobile__screens"><img src="img/mobile-screens.png" alt="mobile app"></div>
         </div>
       </div>
-    </section>
+    </div>
 
     <footer class="wrapper footer" id="contacts">
       <div class="contacts">
@@ -162,14 +162,13 @@
           <p class="contacts__info-heading">Contact us</p>
           <div class="contacts__info">
             <p class="contacts__info-text">
-              <a class="contacts__address" href="https://maps.app.goo.gl/MgQDwUAnVaSvLmjJA" target="_blank">
+              <a href="https://maps.app.goo.gl/MgQDwUAnVaSvLmjJA" target="_blank" class="contacts__address">
                 <img src="img/pin-alt.svg" alt="map pin" class="contacts__icon">8558 Green Rd.,&nbsp;&nbsp;LA</a>
-              </span>
             </p>
             <p class="contacts__info-text">
-              <span class="phone-number">
+              <a href="tel:+16035550123" class="contacts__phone-number">
                 <img src="img/phone.svg" alt="phone icon" class="contacts__icon">+1 (603) 555-0123
-              </span>
+              </a>
             </p>
             <p class="contacts__info-text contacts__time"><img src="img/clock.svg" alt="clock icon" class="contacts__icon">Mon-Sat: 9:00 AM – 23:00 PM</p>
           </div>

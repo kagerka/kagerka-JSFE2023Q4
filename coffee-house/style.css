@@ -128,6 +128,10 @@ body {
   transform: scaleX(1);
 }
 
+.header__nav-item.active .header__link {
+  cursor: default;
+}
+
 .header__nav-item.active::before {
   content: "";
   position: absolute;
@@ -530,7 +534,7 @@ body {
 }
 
 .contacts__address,
-.phone-number,
+.contacts__phone-number,
 .contacts__time {
   position: relative;
   cursor: default;
@@ -539,12 +543,13 @@ body {
   text-decoration: none;
 }
 
-.contacts__address {
+.contacts__address,
+.contacts__phone-number {
   cursor: pointer;
 }
 
 .contacts__address::before,
-.phone-number::before {
+.contacts__phone-number::before {
   content: "";
   position: absolute;
   display: block;
@@ -558,17 +563,23 @@ body {
 }
 
 .contacts__address:hover::before,
-.phone-number:hover::before {
+.contacts__phone-number:hover::before {
   transform: scaleX(1);
 }
 
+.contacts__address,
 .contacts__address:focus,
 .contacts__address:visited,
-.contacts__address:active {
+.contacts__address:active,
+.contacts__phone-number,
+.contacts__phone-number:focus,
+.contacts__phone-number:visited,
+.contacts__phone-number:active {
   text-decoration: none;
   color: var(--text-light);
 }
 
+/* NOTE: Menu page */
 .offer {
   margin-bottom: 40px;
 }
