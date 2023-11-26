@@ -341,19 +341,25 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   gap: 40px;
+  margin: 0 auto;
 }
 
 .about__image-wrap {
   overflow: hidden;
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 660px;
 }
 
 .about__image {
+  transform: scale(1);
   transition: 1s;
 }
 
 .about__image:hover {
-  transform: scale(1.2);
+  transform: scale(0.91);
 }
 
 .about__image-small {
