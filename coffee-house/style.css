@@ -606,7 +606,26 @@ body {
   gap: 14px;
 }
 
-.offer_button {
+.offer__icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  background: var(--border-light);
+  transition: 0.5s;
+}
+
+.offer__button:hover .offer__icon-wrapper {
+  background: var(--background-body);
+}
+
+.active .offer__icon-wrapper {
+  background: var(--background-body);
+}
+
+.offer__button {
   display: flex;
   padding: 8px 16px 8px 8px;
   justify-content: center;
@@ -623,13 +642,13 @@ body {
   transition: 0.5s;
 }
 
-.offer_button:hover {
+.offer__button:hover {
   border: 1px solid var(--background-container);
   background: var(--background-container);
   color: var(--text-light);
 }
 
-.offer_button.active {
+.offer__button.active {
   border: 1px solid var(--background-container);
   background: var(--background-container);
   color: var(--text-light);
