@@ -14,8 +14,8 @@
     <header class="header">
       <div class="wrapper">
         <div class="header__wrapper">
-          <img src="./img/logo.svg" alt="Coffee House Logotype">
-          <div class="header__nav">
+          <img src="./img/logo.svg" alt="Coffee House Logotype" class="header__logo">
+          <div class="header__nav header-links">
             <div class="header__nav-list">
               <div class="header__nav-item"><a href="#favorite-coffee" class="header__link">Favorite coffee</a></div>
               <div class="header__nav-item"><a href="#about" class="header__link">About</a></div>
@@ -24,22 +24,26 @@
             </div>
           </div>
 
-          <div class="header__nav">
+          <div class="header__nav menu-link">
             <div class="header__nav-list">
               <div class="header__nav-item"><a href="menu.html" class="header__link"><span class="header__menu-item">Menu</span><img src="img/coffee-cup.svg" alt="menu icon" class="header__menu-icon"></a></div>
             </div>
+          </div>
+
+          <div class="header__burger">
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
           </div>
         </div>
         <div class="header__hero">
           <div class="header__hero-wrapper">
             <h1 class="header__offer"><span class="header_hero-em em">Enjoy</span> premium coffee at our charming cafe</h1>
             <p class="header__text">With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.</p>
-            <div class="header__hero-button">
-              <a href="menu.html" class="header__link">
-                <span class="header__menu-button">Menu</span>
-                <img src="img/coffee-cup.svg" alt="menu icon" class="header__menu-icon-button">
-              </a>
-            </div>
+            <a class="header__hero-button header__link" href="menu.html">
+              <span class="header__menu-button">Menu</span>
+              <img src="img/coffee-cup.svg" alt="menu icon" class="header__menu-icon-button">
+
+            </a>
           </div>
         </div>
       </div>
@@ -96,6 +100,7 @@
       </div>
     </div>
 
+
     <div class="mobile" id="mobile-app">
       <div class="wrapper">
         <div class="mobile__wrapper">
@@ -134,6 +139,7 @@
         </div>
       </div>
     </div>
+
 
     <footer class="wrapper footer" id="contacts">
       <div class="contacts">
