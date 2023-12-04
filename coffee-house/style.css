@@ -238,6 +238,7 @@ body {
   margin-bottom: 40px;
 }
 
+
 .header__hero-button {
   width: 200px;
   height: 64px;
@@ -253,21 +254,30 @@ body {
   transition: 1s;
 }
 
-.header__menu-button {
-  display: inline-block;
-  transition: 1s;
-  transform: translateX(15px);
-}
-
 .header__menu-icon-button {
   display: inline-block;
   vertical-align: top;
-  opacity: 0;
+  opacity: 1;
   margin-left: 8px;
   transition: 0.5s;
 }
 
 @media (hover: hover) and (pointer: fine) {
+
+  .header__menu-button {
+    display: inline-block;
+    transition: 1s;
+    transform: translateX(15px);
+  }
+
+  .header__menu-icon-button {
+    display: inline-block;
+    vertical-align: top;
+    opacity: 0;
+    margin-left: 8px;
+    transition: 0.5s;
+  }
+
   .header__hero-button:hover .header__menu-icon-button {
     opacity: 1;
   }
@@ -818,12 +828,37 @@ body {
     padding: 100px 60px;
   }
 
-  .header__hero-button .header__menu-icon-button {
+  /* .header__hero-button .header__menu-icon-button {
     opacity: 1;
   }
 
   .header__hero-button .header__menu-button {
     transform: translateX(0);
+  } */
+
+  @media (hover: hover) and (pointer: fine) {
+
+    .header__menu-button {
+      display: inline-block;
+      transition: 1s;
+      transform: translateX(15px);
+    }
+
+    .header__menu-icon-button {
+      display: inline-block;
+      vertical-align: top;
+      opacity: 0;
+      margin-left: 8px;
+      transition: 0.5s;
+    }
+
+    .header__hero-button:hover .header__menu-icon-button {
+      opacity: 1;
+    }
+
+    .header__hero-button:hover .header__menu-button {
+      transform: translateX(0);
+    }
   }
 
   .favorite__button-arrow:first-child {
@@ -913,6 +948,12 @@ body {
 
   .menu {
     margin-bottom: 100px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .about__image:hover {
+      transform: scale(1.0);
+    }
   }
 }
 
@@ -1041,6 +1082,14 @@ body {
 
   .about__image {
     transform: scale(1.23);
+  }
+
+
+
+  @media (hover: hover) and (pointer: fine) {
+    .about__image:hover {
+      transform: scale(1.0);
+    }
   }
 
   .mobile__heading {
