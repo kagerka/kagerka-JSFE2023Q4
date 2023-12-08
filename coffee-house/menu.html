@@ -13,8 +13,8 @@
   <header class="header">
     <div class="wrapper">
       <div class="header__wrapper">
-        <a href="./" class="header__logo-link"><img src="./img/logo.svg" alt="Coffee House Logotype"></a>
-        <div class="header__nav">
+        <a href="./" class="header__logo-link"><img src="./img/logo.svg" alt="Coffee House Logotype" class="header__logo"></a>
+        <div class="header__nav header-links">
           <div class="header__nav-list">
             <div class="header__nav-item"><a href="./#favorite-coffee" class="header__link">Favorite coffee</a></div>
             <div class="header__nav-item"><a href="./#about" class="header__link">About</a></div>
@@ -23,17 +23,23 @@
           </div>
         </div>
 
-        <div class="header__nav">
-          <div class="header__nav-list">
-            <div class="header__nav-item active">
-              <div class="header__link"><span class="header__menu-item">Menu</span><img src="img/coffee-cup.svg" alt="menu icon" class="header__menu-icon"></div>
+        <div class="header__nav menu-link">
+          <div class="header__nav-list menu">
+            <div class="header__nav-item menu active">
+              <div class="header__link menu">
+                <span class="header__menu-item">Menu</span>
+                <img src="img/coffee-cup.svg" alt="menu icon" class="header__menu-icon">
+                <img src="img/coffee-cup-40x40.svg" alt="menu icon" class="header__menu-icon-40">
+              </div>
             </div>
           </div>
         </div>
+
         <div class="header__burger">
           <span class="header__burger-line"></span>
           <span class="header__burger-line"></span>
         </div>
+        <div class="burger__menu"></div>
       </div>
     </div>
   </header>
@@ -64,7 +70,7 @@
     </div>
   </div>
 
-  <div class="menu">
+  <div class="menu-section">
     <div class="wrapper">
       <div class="menu__list">
         <div class="menu__item">
@@ -192,6 +198,7 @@
       </div>
     </div>
   </footer>
+  <script src="script.js"></script>
 </body>
 
 </html>
