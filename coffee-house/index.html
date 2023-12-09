@@ -60,19 +60,33 @@
       <div class="wrapper">
         <h2 class="favorite__text">Choose your <span class="em">favorite</span> coffee</h2>
         <div class="favorite__slider">
-          <div class="favorite__button-arrow">
+          <div class="favorite__button-arrow left">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect class="arrow-bg" x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#665F55" />
               <path class="arrow" d="M36.5 30H24M24 30L30 24M24 30L30 36" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
-          <div class="favorite__item">
-            <div class="favorite__coffee-img"><img src="img/coffee-slider-1.png" alt="coffee cup"></div>
-            <p class="favorite__coffee-name">S’mores Frappuccino</p>
-            <p class="favorite__coffee-description">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
-            <p class="favorite__price">$5.50</p>
+          <div class="favorite__slider-items">
+            <div class="favorite__item active slide1">
+              <div class="favorite__coffee-img"><img src="img/coffee-slider-1.png" alt="coffee cup"></div>
+              <p class="favorite__coffee-name">S’mores Frappuccino</p>
+              <p class="favorite__coffee-description">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
+              <p class="favorite__price">$5.50</p>
+            </div>
+            <div class="favorite__item hidden slide2">
+              <div class="favorite__coffee-img"><img src="img/coffee-slider-2.png" alt="coffee cup"></div>
+              <p class="favorite__coffee-name">Caramel Macchiato</p>
+              <p class="favorite__coffee-description">Fragrant and unique classic espresso with rich caramel-peanut syrup, with cream under whipped thick foam.</p>
+              <p class="favorite__price">$5.00</p>
+            </div>
+            <div class="favorite__item hidden slide2">
+              <div class="favorite__coffee-img"><img src="img/coffee-slider-3.png" alt="coffee cup"></div>
+              <p class="favorite__coffee-name">Ice coffee</p>
+              <p class="favorite__coffee-description">A popular summer drink that tones and invigorates. Prepared from coffee, milk and ice.</p>
+              <p class="favorite__price">$4.50</p>
+            </div>
           </div>
-          <div class="favorite__button-arrow">
+          <div class="favorite__button-arrow right">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect class="arrow-bg" x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#665F55" />
               <path class="arrow" d="M24 30H36.5M36.5 30L30.5 24M36.5 30L30.5 36" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round" />

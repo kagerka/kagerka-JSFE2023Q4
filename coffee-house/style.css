@@ -219,31 +219,28 @@ body.active {
   border-radius: 10px;
 }
 
+.header__burger .header__burger-line:first-child {
+  /* position: absolute; */
+  transform: rotate(0deg);
+  transition: 0.5s;
+}
+
+.header__burger .header__burger-line:last-child {
+  /* position: absolute; */
+  transform: rotate(0deg);
+  transition: 0.5s;
+}
+
 .header__burger.active .header__burger-line:first-child {
   position: absolute;
   transform: rotate(45deg);
+  transition: 0.5s;
 }
 
 .header__burger.active .header__burger-line:last-child {
   position: absolute;
-  transform: rotate(135deg);
-}
-
-.burger__menu {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  padding-top: 20px;
-  flex-direction: column;
-  align-items: center;
-  gap: 100px;
-  background: var(--background-body);
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  transition: 1s;
-  transform: translateX(100vw);
+  transform: rotate(-45deg);
+  transition: 0.5s;
 }
 
 .header__menu-icon-40 {
@@ -345,11 +342,36 @@ body.active {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
+  position: relative;
+}
+
+.favorite__slider-items {
+  position: relative;
+  display: flex;
+  max-width: 480px;
+  max-height: 640px;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
 .favorite__item {
-  max-width: 480px;
+  width: 100%;
+  height: auto;
+  transition: 1s;
+  position: relative;
 }
+
+.favorite__item.hidden {
+  display: none;
+}
+
+.favorite__item.slide1.active,
+.favorite__item.slide2.active,
+.favorite__item.slide3.active {
+  display: block;
+  left: 0;
+}
+
 
 .favorite__coffee-img {
   margin-bottom: 15px;
@@ -1036,9 +1058,11 @@ body.active {
   }
 } */
 
+/* NOTE: Mobile => 768px */
 @media screen and (max-width: 768px) {
 
-  .menu-page {
+  .menu-page,
+  .main {
     overflow: hidden;
   }
 
@@ -1092,7 +1116,25 @@ body.active {
     display: flex;
   }
 
+  .burger__menu {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+    background: var(--background-body);
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    transition: 1s;
+    transform: translateX(100vw);
+  }
+
   .burger__menu.active {
+    position: fixed;
     display: flex;
     left: 0;
     transition: 1s;
