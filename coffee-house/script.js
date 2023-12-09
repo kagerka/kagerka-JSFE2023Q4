@@ -103,5 +103,3 @@ leftArrow?.addEventListener('click', e => {
 setInterval(() => {
   sliderAnimation('right');
 }, 5000);
-
-
