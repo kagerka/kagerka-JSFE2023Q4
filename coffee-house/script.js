@@ -1,3 +1,5 @@
+import products from './products.json' assert { type: "json" };
+
 // Burger menu
 
 let burger = document.querySelector('.header__burger');
@@ -103,3 +105,87 @@ leftArrow?.addEventListener('click', e => {
 setInterval(() => {
   sliderAnimation('right');
 }, 5000);
+
+
+// Modal
+// fetch("products.json")
+//   .then(response => response.json())
+//   .then(json => console.log(json));
+
+let menuList = document.querySelector('.menu__list');
+let menuItem = document.querySelectorAll('.menu__item');
+let modalWrapper = document.querySelector('.modal-wrapper');
+
+menuItem.forEach(i => i.addEventListener('click', function () {
+  i.classList.contains('menu__item') ? modalWrapper?.classList.add('active') : null;
+  const id = this.id;
+  console.log(id);
+}))
+
+modalWrapper?.addEventListener('click', e => {
+  if (e.target?.classList.value.includes('active')) {
+    modalWrapper?.classList.remove('active');
+  }
+})
+
+
+// json
+
+console.log(products);
+const array = products.filter(item => item.category === 'coffee');
+console.log(array[0].description);
+
+let modalHeading = document.getElementById("modal__heading");
+modalHeading?.addEventListener('click', function () {
+  const id = this.id;
+  console.log(id);
+});
+
+
+let func = (array) => {
+  menuList.innerHTML = '';
+  array.map(i => {
+    menuList.insertAdjacentHTML("beforeend", `
+    <div class="menu__item" id="Irish coffee">
+      <div class="menu__image">
+        <img src="${i.image}" alt="Irish coffee">
+      </div>
+      <div class="menu__info">
+        <div class="menu__text">
+          <h2 class="menu__name">${i.name}</h2>
+          <p class="menu__description">${i.description}</p>
+        </div>
+        <p class="menu__price">$${i.price}</p>
+      </div>
+    </div>
+  `);
+  })
+
+}
+
+let coffeeButton = document.querySelector('.offer__button.coffee');
+let teaButton = document.querySelector('.offer__button.tea');
+let dessertButton = document.querySelector('.offer__button.dessert');
+coffeeButton?.addEventListener('click', e => {
+  teaButton?.classList.remove('active');
+  coffeeButton?.classList.add('active');
+  dessertButton?.classList.remove('active');
+  const coffeeItems = products.filter(item => item.category === 'coffee');
+  func(coffeeItems);
+})
+
+teaButton?.addEventListener('click', e => {
+  teaButton?.classList.add('active');
+  coffeeButton?.classList.remove('active');
+  dessertButton?.classList.remove('active');
+  const teaItems = products.filter(item => item.category === 'tea');
+  func(teaItems);
+})
+
+dessertButton?.addEventListener('click', e => {
+  teaButton?.classList.remove('active');
+  coffeeButton?.classList.remove('active');
+  dessertButton?.classList.add('active');
+  const dessertItems = products.filter(item => item.category === 'dessert');
+  func(dessertItems);
+})
