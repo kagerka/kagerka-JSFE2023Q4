@@ -935,6 +935,8 @@ body.active {
   border-radius: 40px;
 }
 
+
+
 .modal__img {
   width: 310px;
   height: 310px;
@@ -954,7 +956,7 @@ body.active {
 .modal__info {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 19px;
   color: var(--text-dark);
   font-family: Inter;
   font-size: 16px;
@@ -993,6 +995,7 @@ body.active {
 
 .modal__size-button,
 .modal__additive-button {
+  position: relative;
   display: flex;
   align-items: center;
   border-radius: 100px;
@@ -1005,6 +1008,11 @@ body.active {
   line-height: 100%;
   border-radius: 100px;
   border: 1px solid var(--border-light);
+}
+
+.modal__size-button:hover,
+.modal__additive-button:hover {
+  cursor: pointer;
 }
 
 .modal__size-button.active,
@@ -1080,6 +1088,52 @@ body.active {
   font-style: normal;
   font-weight: 600;
   line-height: 150%;
+  cursor: pointer;
+}
+
+.modal__fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: none;
+}
+
+.modal__size-button>input[type=radio] {
+  display: none;
+}
+
+.modal__size-button {
+  padding: 0;
+  display: flex;
+}
+
+.modal__size-letter {
+  margin: 8px;
+}
+
+.modal__size-value {
+  margin: 8px 16px 8px 0;
+}
+
+.modal__additive-button>input[type=checkbox] {
+  display: none;
+}
+
+body.modal-mode {
+  overflow-y: hidden;
+}
+
+.modal__additive-button {
+  padding: 0;
+  display: flex;
+}
+
+.modal__additive-number {
+  margin: 8px;
+}
+
+.modal__additive-value {
+  margin: 8px 16px 8px 0;
 }
 
 /* NOTE: Tablet => from 768px to 1440px */

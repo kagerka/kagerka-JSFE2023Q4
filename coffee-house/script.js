@@ -116,7 +116,7 @@ let modalWrapper = document.querySelector('.modal-wrapper');
 let coffeeButton = document.querySelector('.offer__button.coffee');
 let teaButton = document.querySelector('.offer__button.tea');
 let dessertButton = document.querySelector('.offer__button.dessert');
-let modalHeading = document.getElementById("modal__heading");
+
 
 const array = products.filter(item => item);
 
@@ -144,9 +144,27 @@ let menuMenuItems = (array) => {
 // Modal window
 
 modalWrapper?.addEventListener('click', e => {
-  if (e.target?.classList.value.includes('active')) {
+  if (e.target?.classList.value.includes('modal-wrapper active')) {
     modalWrapper?.classList.remove('active');
+    body.classList.remove('modal-mode');
   }
+})
+
+
+modalWrapper?.addEventListener('change', e => {
+  let sizeForm = document.getElementById('size');
+  let additiveForm = document.getElementById('additive');
+  let totalPrice = document.querySelector('.modal__total-price');
+  let modalHeading = document.getElementById("modal__heading");
+  const sizeData = new FormData(sizeForm);
+  const additiveData = new FormData(additiveForm);
+  const size = sizeData.get('sizes');
+  const additive1 = additiveData.get('additive1');
+  const additive2 = additiveData.get('additive2');
+  const additive3 = additiveData.get('additive3');
+  let itemPrice = modalHeading?.dataset.price;
+  let result = (+itemPrice + +size + +additive1 + +additive2 + +additive3).toFixed(2);
+  totalPrice.innerHTML = `$${result}`;
 })
 
 let addModalHTML = (product) => {
@@ -160,49 +178,61 @@ let addModalHTML = (product) => {
     <div class="modal__info">
 
       <div class="modal__item-text">
-        <h3 class="modal__heading" id="modal__heading">${product.name}</h3>
+        <h3 class="modal__heading" id="modal__heading" data-price="${product.price}">${product.name}</h3>
         <p class="modal__description" id="modal__description">${product.description}</p>
       </div>
 
-      <div class="modal__item-size">
-        <p>Size</p>
-        <div class="modal__size-buttons">
-          <div class="modal__size-button active">
-            <div class="modal__size-letter">S</div>
-            <div>200 ml</div>
-          </div>
-          <div class="modal__size-button">
-            <div class="modal__size-letter">M</div>
-            <div>300 ml</div>
-          </div>
-          <div class="modal__size-button">
-            <div class="modal__size-letter">L</div>
-            <div>400 ml</div>
-          </div>
-        </div>
-      </div>
+      <fieldset class="modal__fieldset">
+        <div class="modal__item-size">
+          <p>Size</p>
+          <form class="modal__size-buttons" id="size">
+            
+            <label for="${product.sizes.s.size}" class="modal__size-button active">
+              <div class="modal__size-letter">S</div>
+              <input class="modal__size-input" type="radio" id="${product.sizes.s.size}" name="sizes" value="${product.sizes.s['add-price']}" checked />
+              <div class="modal__size-value">${product.sizes.s.size}</div>
+            </label>
+            
+            <label for="${product.sizes.m.size}" class="modal__size-button">
+              <div class="modal__size-letter">M</div>
+              <input class="modal__size-input" type="radio" id="${product.sizes.m.size}" name="sizes" value="${product.sizes.m['add-price']}" />
+              <div class="modal__size-value">${product.sizes.m.size}</div>
+            </label>
 
-      <div class="modal__item-additives">
-        <p>Additives</p>
-        <div class="modal__additive-buttons">
-          <div class="modal__additive-button">
-            <div class="modal__additive-number">1</div>
-            <div>Sugar</div>
-          </div>
-          <div class="modal__additive-button">
-            <div class="modal__additive-number">2</div>
-            <div>Cinnamon</div>
-          </div>
-          <div class="modal__additive-button">
-            <div class="modal__additive-number">3</div>
-            <div>Syrup</div>
-          </div>
+            <label for="${product.sizes.l.size}" class="modal__size-button">
+              <div class="modal__size-letter">L</div>
+              <input class="modal__size-input" type="radio" id="${product.sizes.l.size}" name="sizes" value="${product.sizes.l['add-price']}" />
+              <div class="modal__size-value">${product.sizes.l.size}</div>
+            </label>
+
+          </form>
         </div>
-      </div>
+  
+        <div class="modal__item-additives">
+          <p>Additives</p>
+          <form class="modal__additive-buttons" id="additive">
+            <label for="${product.additives[0].name}" class="modal__additive-button">
+              <div class="modal__additive-number">1</div>
+              <input class="modal__additive-input" type="checkbox" id="${product.additives[0].name}" name="additive1" value="${product.additives[0]['add-price']}" />
+              <div class="modal__additive-value">${product.additives[0].name}</div>
+            </label>
+            <label for="${product.additives[1].name}" class="modal__additive-button">
+              <div class="modal__additive-number">2</div>
+              <input class="modal__additive-input" type="checkbox" id="${product.additives[1].name}" name="additive2" value="${product.additives[1]['add-price']}" />
+              <div class="modal__additive-value">${product.additives[1].name}</div>
+            </label>
+            <label for="${product.additives[2].name}" class="modal__additive-button">
+              <div class="modal__additive-number">3</div>
+              <input class="modal__additive-input" type="checkbox" id="${product.additives[2].name}" name="additive3" value="${product.additives[2]['add-price']}" />
+              <div class="modal__additive-value">${product.additives[2].name}</div>
+            </label>
+          </form>
+        </div>
+      </fieldset>
 
       <div class="modal__total">
         <div class="modal__total-heading">Total:</div>
-        <div class="modal__total-price">$7.00</div>
+        <div class="modal__total-price">$${product.price}</div>
       </div>
       <div class="modal__information">
         <div class="modal__information-icon">
@@ -228,22 +258,49 @@ let addModalHTML = (product) => {
     </div>
   </div>
 `);
+
+  let closeButton = document.querySelector('.modal__button');
+  closeButton?.addEventListener('click', e => {
+    console.log('close button');
+    if (modalWrapper?.classList.value.includes('modal-wrapper active')) {
+      modalWrapper?.classList.remove('active');
+      body.classList.remove('modal-mode');
+    }
+  })
+
+  let sizeButtons = document.querySelectorAll('.modal__size-input');
+  sizeButtons.forEach(item => {
+    item.addEventListener('click', e => {
+      e.stopPropagation();
+      document.querySelector('.modal__size-button.active')?.classList.remove('active');
+      item.closest('label').classList.add('active');
+    })
+  })
+
+  let additiveButtons = document.querySelectorAll('.modal__additive-input');
+  additiveButtons.forEach(item => {
+    item.addEventListener('click', e => {
+      e.stopPropagation();
+      item.closest('label').classList.toggle('active');
+    })
+  })
 }
 
 let showModalWindow = () => {
   let menuItems = document.querySelectorAll('.menu__item');
   menuItems.forEach(item => {
     item.addEventListener('click', e => {
-      // if (e.currentTarget.id === array.name)
       array.forEach(product => {
         if (e.currentTarget?.id === product.name) {
           modalWrapper?.classList.add('active');
+          body.classList.add('modal-mode');
           addModalHTML(product);
         }
       })
     })
   })
 };
+
 
 
 // COFFEE window.onload
@@ -308,7 +365,6 @@ dessertButton?.addEventListener('click', e => {
       showModalWindow();
     })
 });
-
 
 
 
