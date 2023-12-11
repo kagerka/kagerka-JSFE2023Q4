@@ -933,6 +933,7 @@ body.active {
   gap: 20px;
   background: var(--background-body);
   border-radius: 40px;
+  margin: 40px;
 }
 
 
@@ -955,6 +956,7 @@ body.active {
 
 .modal__info {
   display: flex;
+
   flex-direction: column;
   gap: 19px;
   color: var(--text-dark);
@@ -990,6 +992,7 @@ body.active {
 .modal__size-buttons,
 .modal__additive-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
 }
 
@@ -1740,6 +1743,15 @@ body.modal-mode {
     display: inline-block;
     margin-top: -4px;
     margin-left: 8px;
+  }
+
+  .modal__img {
+    display: none;
+  }
+
+  .modal {
+    margin: 20px;
+    gap: 0;
   }
 }
 
