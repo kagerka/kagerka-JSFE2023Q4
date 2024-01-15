@@ -1,12 +1,45 @@
-import { answerField } from "./answer.js";
+import { addAnswerLetters, answerField } from "./answer.js";
 import { svg } from "./gallows.js";
-import { currentAnswer } from './game.js';
+import { currentAnswer, currentQuestion, currentTask } from './game.js';
 import { header } from "./header.js";
-import { hint } from "./hint.js";
+import { hint, hintQuestion } from "./hint.js";
 import { keyboard } from "./keyboard.js";
 import { modalText, modalWrapper } from "./modal.js";
 export { incorrectCount };
 
+addAnswerLetters();
+// Modal
+document.body.append(modalWrapper);
+
+modalWrapper.addEventListener('click', e => {
+  if (e.target.classList.value === 'play-again-btn') {
+    modalWrapper.classList.add('hidden')
+    incorrectCount = 0;
+    guesses.innerHTML = `Incorrect guesses: <span class="incorrect-count">${incorrectCount} / 6</span>`;
+    head?.classList.remove('visible');
+    body?.classList.remove('visible');
+    leftHand?.classList.remove('visible');
+    rightHand?.classList.remove('visible');
+    leftLeg?.classList.remove('visible');
+    rightLeg?.classList.remove('visible');
+
+    let active = keyboard.querySelectorAll('.active');
+    for (let el of active) {
+      el.classList.remove('active');
+    }
+
+    // let userAnswerLetters = document.querySelectorAll('.answer-letter');
+    // for (let el of userAnswerLetters) {
+    //   el.innerHTML = '';
+    // }
+
+    currentTask();
+    hintQuestion.textContent = `${currentQuestion}`;
+    let answerWord = document.querySelector('.answer-word');
+    answerWord?.remove();
+    addAnswerLetters();
+  }
+})
 
 let wrapper = document.createElement('div');
 wrapper.className = "wrapper";
@@ -43,7 +76,7 @@ pictureField.append(svg);
 pictureField.append(header);
 
 // Answer
-let answerLetters = document.querySelectorAll('.answer-letter');
+
 
 let head = document.getElementById('head');
 let body = document.getElementById('body');
@@ -53,6 +86,7 @@ let leftLeg = document.getElementById('leftLeg');
 let rightLeg = document.getElementById('rightLeg');
 
 keyboard.addEventListener('click', e => {
+  let answerLetters = document.querySelectorAll('.answer-letter');
   if (e.target.tagName === 'BUTTON') {
     e.target.classList.add('active')
     for (let i = 0; i < currentAnswer.length; i++) {
@@ -86,6 +120,7 @@ keyboard.addEventListener('click', e => {
     if (incorrectCount === 6) {
       modalWrapper.classList.remove('hidden');
       incorrectCount = 0;
+      modalText.innerHTML = `<div class='modal-heading'>You lose!</div><div>The secret word is <span class='modal-word'>${currentAnswer}</span></div>`;
     }
     let userAnswer = [];
     for (let letter of answerLetters) {
@@ -102,27 +137,3 @@ keyboard.addEventListener('click', e => {
 })
 
 
-// Modal
-document.body.append(modalWrapper);
-
-modalWrapper.addEventListener('click', e => {
-  if (e.target.classList.value === 'play-again-btn') {
-    modalWrapper.classList.add('hidden')
-    incorrectCount = 0;
-    guesses.innerHTML = `Incorrect guesses: <span class="incorrect-count">${incorrectCount} / 6</span>`;
-    head?.classList.remove('visible');
-    body?.classList.remove('visible');
-    leftHand?.classList.remove('visible');
-    rightHand?.classList.remove('visible');
-    leftLeg?.classList.remove('visible');
-    rightLeg?.classList.remove('visible');
-    let active = keyboard.querySelectorAll('.active');
-    for (let el of active) {
-      el.classList.remove('active');
-    }
-    let userAnswerLetters = document.querySelectorAll('.answer-letter');
-    for (let el of userAnswerLetters) {
-      el.innerHTML = '';
-    }
-  }
-})

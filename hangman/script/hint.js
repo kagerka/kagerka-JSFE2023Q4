@@ -1,6 +1,6 @@
 import { currentQuestion } from './game.js';
 
-export { hint };
+export { hint, hintQuestion };
 
 let hint = document.createElement('div');
 hint.className = 'hint';
