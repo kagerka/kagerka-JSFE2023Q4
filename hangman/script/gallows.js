@@ -7,6 +7,7 @@ svg.setAttributeNS(null, "viewBox", "0 0 353 581");
 svg.setAttributeNS(null, "width", '453');
 svg.setAttributeNS(null, "height", '581');
 svg.setAttributeNS(null, "fill", 'none');
+svg.setAttributeNS(null, 'id', 'svg');
 
 const rect1 = document.createElementNS(xmlns, "rect");
 rect1.setAttributeNS(null, 'x', '176.337');
