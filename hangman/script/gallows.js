@@ -52,7 +52,7 @@ svg.append(rect4)
 
 let head = document.createElementNS(xmlns, "circle");
 head.setAttributeNS(null, 'id', 'head');
-head.setAttributeNS(null, 'class', 'visible');
+head.setAttributeNS(null, 'class', 'invisible');
 head.setAttributeNS(null, 'cx', '302');
 head.setAttributeNS(null, 'cy', '190');
 head.setAttributeNS(null, 'r', '48');
@@ -63,7 +63,7 @@ svg.append(head)
 
 const leftHand = document.createElementNS(xmlns, "rect");
 leftHand.setAttributeNS(null, 'id', 'leftHand');
-leftHand.setAttributeNS(null, 'class', 'visible');
+leftHand.setAttributeNS(null, 'class', 'invisible');
 leftHand.setAttributeNS(null, 'x', '398');
 leftHand.setAttributeNS(null, 'y', '30');
 leftHand.setAttributeNS(null, 'width', '5');
@@ -74,7 +74,7 @@ svg.append(leftHand)
 
 const rightHand = document.createElementNS(xmlns, "rect");
 rightHand.setAttributeNS(null, 'id', 'rightHand');
-rightHand.setAttributeNS(null, 'class', 'visible');
+rightHand.setAttributeNS(null, 'class', 'invisible');
 rightHand.setAttributeNS(null, 'y', '376');
 rightHand.setAttributeNS(null, 'x', '80');
 rightHand.setAttributeNS(null, 'width', '5');
@@ -85,7 +85,7 @@ svg.append(rightHand)
 
 const body = document.createElementNS(xmlns, "rect");
 body.setAttributeNS(null, 'id', 'body');
-body.setAttributeNS(null, 'class', 'visible');
+body.setAttributeNS(null, 'class', 'invisible');
 body.setAttributeNS(null, 'x', '300');
 body.setAttributeNS(null, 'y', '240');
 body.setAttributeNS(null, 'width', '5');
@@ -95,7 +95,7 @@ svg.append(body)
 
 const leftLeg = document.createElementNS(xmlns, "rect");
 leftLeg.setAttributeNS(null, 'id', 'leftLeg');
-leftLeg.setAttributeNS(null, 'class', 'visible');
+leftLeg.setAttributeNS(null, 'class', 'invisible');
 leftLeg.setAttributeNS(null, 'x', '480');
 leftLeg.setAttributeNS(null, 'y', '130');
 leftLeg.setAttributeNS(null, 'width', '5');
@@ -106,7 +106,7 @@ svg.append(leftLeg)
 
 const rightLeg = document.createElementNS(xmlns, "rect");
 rightLeg.setAttributeNS(null, 'id', 'rightLeg');
-rightLeg.setAttributeNS(null, 'class', 'visible');
+rightLeg.setAttributeNS(null, 'class', 'invisible');
 rightLeg.setAttributeNS(null, 'y', '476');
 rightLeg.setAttributeNS(null, 'x', '-2');
 rightLeg.setAttributeNS(null, 'width', '5');
