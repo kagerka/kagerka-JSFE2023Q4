@@ -137,3 +137,60 @@ keyboard.addEventListener('click', e => {
 })
 
 
+
+document.addEventListener('keypress', e => {
+  console.log(e.key);
+  let answerLetters = document.querySelectorAll('.answer-letter');
+  let keyboardLetters = document.querySelectorAll('.letter');
+  for (let key of keyboardLetters) {
+    if (e.key === key.dataset.key) {
+      key.classList.add('active')
+    }
+  }
+
+  for (let i = 0; i < currentAnswer.length; i++) {
+    if (currentAnswer[i] === e.key) {
+      answerLetters[i].innerHTML = e.key;
+    }
+  }
+
+  if (currentAnswer.indexOf(e.key) === -1 && incorrectCount < 6) {
+    incorrectCount++;
+    guesses.innerHTML = `Incorrect guesses: <span class="incorrect-count">${incorrectCount} / 6</span>`;
+    if (incorrectCount === 1) {
+      head?.classList.add('visible');
+    }
+    if (incorrectCount === 2) {
+      body?.classList.add('visible');
+    }
+    if (incorrectCount === 3) {
+      leftHand?.classList.add('visible');
+    }
+    if (incorrectCount === 4) {
+      rightHand?.classList.add('visible');
+    }
+    if (incorrectCount === 5) {
+      leftLeg?.classList.add('visible');
+    }
+    if (incorrectCount === 6) {
+      rightLeg?.classList.add('visible');
+    }
+  }
+  if (incorrectCount === 6) {
+    modalWrapper.classList.remove('hidden');
+    incorrectCount = 0;
+    modalText.innerHTML = `<div class='modal-heading'>You lose!</div><div>The secret word is <span class='modal-word'>${currentAnswer}</span></div>`;
+  }
+  let userAnswer = [];
+  for (let letter of answerLetters) {
+    userAnswer.push(letter.innerHTML);
+  }
+  if (userAnswer.join('') === currentAnswer) {
+    modalWrapper.classList.remove('hidden');
+    userAnswer = [];
+    modalText.innerHTML = `<div class='modal-heading'>You win!</div><div>The secret word is <span class='modal-word'>${currentAnswer}</span></div>`;
+  }
+
+
+})
+
