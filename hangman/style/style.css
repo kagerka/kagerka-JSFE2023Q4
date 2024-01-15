@@ -256,9 +256,21 @@
   }
 }
 
-@media screen and (min-width: 1170px) {
+@media screen and (min-width: 1170px) and (max-width: 1439px) {
   .wrapper {
     flex-direction: row;
   }
 
+  .keyboard-field {
+    max-width: 100%;
+  }
+
+  .answer-word {
+    max-width: 100%;
+  }
+
+  .answer-letter {
+    width: 100%;
+    max-width: 60px;
+  }
 }
