@@ -139,7 +139,6 @@ keyboard.addEventListener('click', e => {
 
 
 document.addEventListener('keypress', e => {
-  console.log(e.key);
   let answerLetters = document.querySelectorAll('.answer-letter');
   let keyboardLetters = document.querySelectorAll('.letter');
   for (let key of keyboardLetters) {
