@@ -186,6 +186,12 @@
   gap: 40px;
 }
 
+.modal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
 .modal-heading {
   font-size: 40px;
   font-weight: bold;

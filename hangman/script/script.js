@@ -4,7 +4,7 @@ import { currentAnswer } from './game.js';
 import { header } from "./header.js";
 import { hint } from "./hint.js";
 import { keyboard } from "./keyboard.js";
-import { modalWrapper } from "./modal.js";
+import { modalText, modalWrapper } from "./modal.js";
 export { incorrectCount };
 
 
@@ -44,20 +44,57 @@ pictureField.append(header);
 
 // Answer
 let answerLetters = document.querySelectorAll('.answer-letter');
-console.log(answerLetters);
+
+let head = document.getElementById('head');
+let body = document.getElementById('body');
+let leftHand = document.getElementById('leftHand');
+let rightHand = document.getElementById('rightHand');
+let leftLeg = document.getElementById('leftLeg');
+let rightLeg = document.getElementById('rightLeg');
 
 keyboard.addEventListener('click', e => {
   if (e.target.tagName === 'BUTTON') {
-    if (currentAnswer.indexOf(e.target.dataset.key) !== -1) {
-      console.log(e.target.dataset.key);
-      answerLetters[currentAnswer.indexOf(e.target.dataset.key)].innerText = e.target.dataset.key;
+    e.target.classList.add('active')
+    for (let i = 0; i < currentAnswer.length; i++) {
+      if (currentAnswer[i] === e.target.dataset.key) {
+        answerLetters[i].innerHTML = e.target.dataset.key;
+      }
     }
+
     if (currentAnswer.indexOf(e.target.dataset.key) === -1 && incorrectCount < 6) {
       incorrectCount++;
       guesses.innerHTML = `Incorrect guesses: <span class="incorrect-count">${incorrectCount} / 6</span>`;
-    } else {
+      if (incorrectCount === 1) {
+        head?.classList.add('visible');
+      }
+      if (incorrectCount === 2) {
+        body?.classList.add('visible');
+      }
+      if (incorrectCount === 3) {
+        leftHand?.classList.add('visible');
+      }
+      if (incorrectCount === 4) {
+        rightHand?.classList.add('visible');
+      }
+      if (incorrectCount === 5) {
+        leftLeg?.classList.add('visible');
+      }
+      if (incorrectCount === 6) {
+        rightLeg?.classList.add('visible');
+      }
+    }
+    if (incorrectCount === 6) {
       modalWrapper.classList.remove('hidden');
       incorrectCount = 0;
+    }
+    let userAnswer = [];
+    for (let letter of answerLetters) {
+      userAnswer.push(letter.innerHTML);
+    }
+    if (userAnswer.join('') === currentAnswer) {
+      modalWrapper.classList.remove('hidden');
+      userAnswer = [];
+      modalText.innerHTML = `<div class='modal-heading'>You win!</div><div>The secret word is <span class='modal-word'>${currentAnswer}</span></div>`;
     }
 
   }
@@ -73,5 +110,19 @@ modalWrapper.addEventListener('click', e => {
     modalWrapper.classList.add('hidden')
     incorrectCount = 0;
     guesses.innerHTML = `Incorrect guesses: <span class="incorrect-count">${incorrectCount} / 6</span>`;
+    head?.classList.remove('visible');
+    body?.classList.remove('visible');
+    leftHand?.classList.remove('visible');
+    rightHand?.classList.remove('visible');
+    leftLeg?.classList.remove('visible');
+    rightLeg?.classList.remove('visible');
+    let active = keyboard.querySelectorAll('.active');
+    for (let el of active) {
+      el.classList.remove('active');
+    }
+    let userAnswerLetters = document.querySelectorAll('.answer-letter');
+    for (let el of userAnswerLetters) {
+      el.innerHTML = '';
+    }
   }
 })
