@@ -1,0 +1,64 @@
+:root {
+  --black: #202020;
+  --gray: #808080;
+  --lightgray: #b9b9b9;
+  --darkgray: #707070;
+  --white: #ffffff;
+  /* --size: 5; */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+
+.body {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(235, 235, 235);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(var(--size, 5), min-content);
+  grid-template-columns: repeat(var(--size, 5), min-content);
+  border: 2px solid var(--gray);
+  width: fit-content;
+}
+
+.cell {
+  outline: 0.5px solid var(--gray);
+  background-color: var(--white);
+}
+
+.cell.fifth-col {
+  border-right: 2px solid var(--gray);
+}
+
+.cell.fifth-row {
+  border-bottom: 2px solid var(--gray);
+}
+
+.inner-cell {
+  width: 30px;
+  height: 30px;
+}
+
+.cell.checked .inner-cell {
+  background-color: var(--black);
+}
+
+.cell.crossed .inner-cell {
+  width: 100%;
+  height: 100%;
+  background-color: var(--darkgray);
+  clip-path: polygon(17.75% 12.75%, 12.75% 17.75%, 45% 50%, 12.75% 82.25%, 17.75% 87.25%, 50% 55%, 82.25% 87.25%, 87.25% 82.25%, 55% 50%, 87.25% 17.75%, 82.25% 12.75%, 50% 45%);
+}
