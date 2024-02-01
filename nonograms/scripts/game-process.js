@@ -2,6 +2,7 @@ import { game10x10, game15x15, game5x5 } from './nonograms.js';
 export { currentGame, currentHint, currentTemplate, getRandomGame, leftCluesData, topCluesData };
 
 let games = [game5x5, game10x10, game15x15];
+// let games = [game5x5]; // для проверки
 let currentGame;
 let currentGameData;
 let currentHint;
@@ -15,6 +16,7 @@ const getRandomGame = () => {
   topCluesData = [];
   currentGame = games[Math.floor(Math.random() * games.length)];
   currentGameData = currentGame[Math.floor(Math.random() * currentGame.length)];
+  // currentGameData = currentGame[7]; // для проверки
   currentHint = Object.keys(currentGameData).toString();
   currentTemplate = currentGameData[currentHint];
 
@@ -82,6 +84,6 @@ const getRandomGame = () => {
 getRandomGame();
 
 // currentGame = game5x5;
-// currentGameData = currentGame[0];
+// currentGameData = currentGame[7];
 // currentHint = Object.keys(currentGameData).toString();
 // currentTemplate = currentGameData[currentHint];

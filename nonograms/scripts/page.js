@@ -92,7 +92,7 @@ const updateGameField = () => {
   gameField.append(gameCells);
   gameCells.style.setProperty('--size', currentTemplate.length);
 
-  for (let i = 1; i <= currentTemplate.length ** 2; i++) {
+  for (let i = 1, j = 0; i <= currentTemplate.length ** 2; i++) {
     let cell = document.createElement('div');
     cell.className = 'cell';
     cell.id = `cell-${i}`;
