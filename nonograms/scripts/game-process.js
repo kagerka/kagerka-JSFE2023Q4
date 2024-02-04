@@ -9,6 +9,7 @@ export {
   loadGame,
   loadGameOnChange,
   loadOnStart,
+  minutes,
   playAudio,
   resetTimer,
   seconds,

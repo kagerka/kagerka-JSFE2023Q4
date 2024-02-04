@@ -1,4 +1,12 @@
-import { currentTemplate, getRandomGame, loadGameOnChange, playAudio, resetTimer, seconds } from './game-process.js';
+import {
+  currentTemplate,
+  getRandomGame,
+  loadGameOnChange,
+  minutes,
+  playAudio,
+  resetTimer,
+  seconds,
+} from './game-process.js';
 import { gameField, modalText, modalWrapper, updateGameField } from './page.js';
 
 const clickCells = () => {
@@ -57,7 +65,9 @@ const checkCells = (cells) => {
       playAudio('winner');
       console.log('you are winner');
       console.log('seconds', seconds);
-      modalText.innerHTML = `<div class='modal-heading'>Great!</div><div>You have solved the nonogram in <span class='modal-time'>${seconds}</span> seconds!</div>`;
+      modalText.innerHTML = `<div class='modal-heading'>Great!</div><div>You have solved the nonogram in <span class='modal-time'>${
+        minutes * 60 + seconds
+      }</span> seconds!</div>`;
       resetTimer();
       modalWrapper.classList.remove('hidden');
     }, 1000);
