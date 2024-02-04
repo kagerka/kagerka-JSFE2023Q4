@@ -1,6 +1,13 @@
-import { currentHint, currentTemplate, leftCluesData, topCluesData } from './game-process.js';
+import {
+  currentHint,
+  currentTemplate,
+  gameList,
+  leftCluesData,
+  loadGameOnChange,
+  topCluesData,
+} from './game-process.js';
 
-export { updateGameField };
+export { gameLevel, gameTemplateList, modalText, modalWrapper, timerWrapper, updateGameField, gameField };
 
 document.body.className = 'body';
 
@@ -23,12 +30,89 @@ randomGameBtn.innerText = 'Random Game';
 randomGameBtn.id = 'random-game-btn';
 gameWrapper.append(randomGameBtn);
 
+let gameLevelWrapper = document.createElement('div');
+gameLevelWrapper.className = 'game-level-wrapper';
+gameWrapper.append(gameLevelWrapper);
+
+let gameLevel = document.createElement('select');
+gameLevel.className = 'game-level-list';
+gameLevel.id = 'game-level-list';
+gameLevelWrapper.append(gameLevel);
+
+let gameLevelEasy = document.createElement('option');
+gameLevelEasy.setAttribute('value', 'easy');
+gameLevelEasy.className = 'game-level easy';
+gameLevelEasy.innerText = 'Easy';
+gameLevel.append(gameLevelEasy);
+
+let gameLevelMedium = document.createElement('option');
+gameLevelMedium.setAttribute('value', 'medium');
+gameLevelMedium.className = 'game-level medium';
+gameLevelMedium.innerText = 'Medium';
+gameLevel.append(gameLevelMedium);
+
+let gameLevelHard = document.createElement('option');
+gameLevelHard.setAttribute('value', 'hard');
+gameLevelHard.className = 'game-level hard';
+gameLevelHard.innerText = 'Hard';
+gameLevel.append(gameLevelHard);
+
+let gameTemplateList = document.createElement('select');
+gameTemplateList.className = 'game-template-list';
+gameTemplateList.id = 'game-template-list';
+gameLevelWrapper.append(gameTemplateList);
+
+let timerWrapper = document.createElement('div');
+timerWrapper.className = 'timer-wrapper';
+timerWrapper.id = 'timer-wrapper';
+timerWrapper.innerText = '00:00';
+gameWrapper.append(timerWrapper);
+
 let gameField = document.createElement('div');
 gameField.className = 'game-field';
 gameWrapper.append(gameField);
 
 const updateGameField = () => {
+  loadGameOnChange();
+
   gameField.innerHTML = '';
+  window.addEventListener('load', () => {
+    gameTemplateList.innerHTML = '';
+    let gameTemplateItem = document.createElement('option');
+    gameTemplateItem.className = 'game-template-item';
+    gameTemplateItem.setAttribute('disabled', 'disabled');
+    gameTemplateItem.setAttribute('selected', 'selected');
+    gameTemplateItem.innerText = '----------';
+    gameTemplateList.append(gameTemplateItem);
+
+    for (let i = 0; i < gameList.length; i++) {
+      let gameTemplateItem = document.createElement('option');
+      gameTemplateItem.className = 'game-template-item';
+      gameTemplateItem.setAttribute('value', `${gameList[i]}`);
+      gameTemplateItem.innerText = `${gameList[i]}`;
+      gameTemplateList.append(gameTemplateItem);
+    }
+  });
+
+  gameLevel.addEventListener('change', () => {
+    // console.log(gameList);
+    gameTemplateList.innerHTML = '';
+
+    let gameTemplateItem = document.createElement('option');
+    gameTemplateItem.className = 'game-template-item';
+    gameTemplateItem.setAttribute('disabled', 'disabled');
+    gameTemplateItem.setAttribute('selected', 'selected');
+    gameTemplateItem.innerText = '----------';
+    gameTemplateList.append(gameTemplateItem);
+
+    for (let i = 0; i < gameList.length; i++) {
+      let gameTemplateItem = document.createElement('option');
+      gameTemplateItem.className = 'game-template-item';
+      gameTemplateItem.setAttribute('value', `${gameList[i]}`);
+      gameTemplateItem.innerText = `${gameList[i]}`;
+      gameTemplateList.append(gameTemplateItem);
+    }
+  });
 
   let topClues = document.createElement('div');
   topClues.className = 'top-clues';
@@ -120,3 +204,15 @@ const updateGameField = () => {
 };
 
 updateGameField();
+
+let modalWrapper = document.createElement('div');
+modalWrapper.className = 'modal-wrapper hidden';
+document.body.append(modalWrapper);
+
+let modal = document.createElement('div');
+modal.className = 'modal';
+modalWrapper.append(modal);
+
+let modalText = document.createElement('div');
+modalText.className = 'modal-text';
+modal.append(modalText);

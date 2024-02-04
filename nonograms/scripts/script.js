@@ -1,5 +1,5 @@
-import { currentTemplate, getRandomGame } from './game-process.js';
-import { updateGameField } from './page.js';
+import { currentTemplate, getRandomGame, loadGameOnChange, resetTimer, seconds } from './game-process.js';
+import { gameField, modalText, modalWrapper, updateGameField } from './page.js';
 
 const clickCells = () => {
   const cells = document.querySelectorAll('.cell');
@@ -25,6 +25,7 @@ randomButton?.addEventListener('click', () => {
   getRandomGame();
   updateGameField();
   clickCells();
+  gameField.classList.remove('disabled');
 });
 
 const checkCells = (cells) => {
@@ -48,6 +49,24 @@ const checkCells = (cells) => {
         cell.classList.remove('crossed');
       });
       console.log('you are winner');
+      console.log('seconds', seconds);
+      modalText.innerHTML = `<div class='modal-heading'>Great!</div><div>You have solved the nonogram in <span class='modal-time'>${seconds}</span> seconds!</div>`;
+      resetTimer();
+      modalWrapper.classList.remove('hidden');
     }, 2000);
   }
 };
+
+modalWrapper.addEventListener('click', (e) => {
+  if (e.target.classList.value === 'modal-wrapper') {
+    modalWrapper.classList.add('hidden');
+    gameField.classList.add('disabled');
+  }
+});
+
+window.addEventListener('change', () => {
+  loadGameOnChange();
+  updateGameField();
+  clickCells();
+  gameField.classList.remove('disabled');
+});
