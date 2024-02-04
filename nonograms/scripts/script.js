@@ -1,12 +1,17 @@
-import { currentTemplate, getRandomGame, loadGameOnChange, resetTimer, seconds } from './game-process.js';
+import { currentTemplate, getRandomGame, loadGameOnChange, playAudio, resetTimer, seconds } from './game-process.js';
 import { gameField, modalText, modalWrapper, updateGameField } from './page.js';
 
 const clickCells = () => {
   const cells = document.querySelectorAll('.cell');
   cells.forEach((cell) => {
     cell.addEventListener('click', () => {
-      if (!cell.className.includes('crossed')) {
-        cell.classList.toggle('checked');
+      if (!cell.className.includes('crossed') && !cell.className.includes('checked')) {
+        cell.classList.add('checked');
+        playAudio('checked');
+        checkCells(cells);
+      } else if (!cell.className.includes('crossed') && cell.className.includes('checked')) {
+        cell.classList.remove('checked');
+        playAudio('unchecked');
         checkCells(cells);
       }
     });
@@ -14,6 +19,7 @@ const clickCells = () => {
       e.preventDefault();
       if (!cell.className.includes('checked')) {
         cell.classList.toggle('crossed');
+        playAudio('crossed');
       }
     });
   });
@@ -48,12 +54,13 @@ const checkCells = (cells) => {
       crossed.forEach((cell) => {
         cell.classList.remove('crossed');
       });
+      playAudio('winner');
       console.log('you are winner');
       console.log('seconds', seconds);
       modalText.innerHTML = `<div class='modal-heading'>Great!</div><div>You have solved the nonogram in <span class='modal-time'>${seconds}</span> seconds!</div>`;
       resetTimer();
       modalWrapper.classList.remove('hidden');
-    }, 2000);
+    }, 1000);
   }
 };
 

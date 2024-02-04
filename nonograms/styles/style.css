@@ -5,6 +5,7 @@
   --darkgray: #707070;
   --white: #ffffff;
   --size: 5;
+  --bg-color: #ebebeb;
 }
 
 * {
@@ -13,9 +14,7 @@
 }
 
 .body {
-  /* width: 100vw;
-  height: 100vh; */
-  background-color: #ebebeb;
+  background-color: var(--bg-color);
   margin: 0 auto;
 }
 

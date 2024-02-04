@@ -9,6 +9,7 @@ export {
   loadGame,
   loadGameOnChange,
   loadOnStart,
+  playAudio,
   resetTimer,
   seconds,
   startTimer,
@@ -226,4 +227,10 @@ const getRandomGame = () => {
   loadGame();
 
   return [gameList, currentGameData, currentHint, currentTemplate, leftCluesData, topCluesData, seconds];
+};
+
+const playAudio = (name) => {
+  let audio = new Audio();
+  audio.src = `./assets/${name}.mp3`;
+  audio.autoplay = true;
 };
