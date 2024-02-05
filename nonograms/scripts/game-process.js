@@ -34,7 +34,7 @@ const updateTime = () => {
     seconds = 0;
   }
 
-  console.log(seconds);
+  // console.log(seconds);
   timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   return [seconds, minutes, timer];
 };

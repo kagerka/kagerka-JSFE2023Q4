@@ -1,4 +1,5 @@
 import {
+  currentHint,
   currentTemplate,
   getRandomGame,
   loadGameOnChange,
@@ -14,12 +15,16 @@ import {
 import {
   audioBtn,
   gameField,
+  highScoreTableBtn,
   modalText,
   modalWrapper,
   randomGameBtn,
   resetGameBtn,
+  scoreWrapper,
+  solutionBtn,
   themeBtn,
   updateGameField,
+  updateScore,
 } from './page.js';
 
 const clickCells = () => {
@@ -94,7 +99,7 @@ resetGameBtn.addEventListener('click', () => {
   checked.forEach((cell) => {
     cell.classList.remove('checked');
   });
-
+  gameField.classList.remove('disabled');
   resetTimer();
   updateTimer();
   startTimer();
@@ -121,7 +126,7 @@ const checkCells = (cells) => {
         cell.classList.remove('crossed');
       });
       playAudio('winner');
-      console.log('you are winner');
+      localStorageUpdate();
       modalText.innerHTML = `<div class='modal-heading'>Great!</div><div>You have solved the nonogram in <span class='modal-time'>${
         minutes * 60 + seconds
       }</span> seconds!</div>`;
@@ -131,6 +136,23 @@ const checkCells = (cells) => {
   }
 };
 
+solutionBtn.addEventListener('click', () => {
+  let cellNum = 0;
+  let cells = document.querySelectorAll('.cell');
+  for (let i = 0; i < currentTemplate.length; i++) {
+    for (let j = 0; j < currentTemplate[i].length; j++) {
+      if (currentTemplate[i][j] === 1) {
+        cells[cellNum].classList.add('checked');
+      }
+      if (currentTemplate[i][j] === 0) {
+        cells[cellNum].classList.remove('checked');
+      }
+      cells[cellNum].classList.remove('crossed');
+      cellNum++;
+    }
+  }
+});
+
 modalWrapper.addEventListener('click', (e) => {
   if (e.target.classList.value === 'modal-wrapper') {
     modalWrapper.classList.add('hidden');
@@ -138,9 +160,42 @@ modalWrapper.addEventListener('click', (e) => {
   }
 });
 
+highScoreTableBtn.addEventListener('click', (e) => {
+  scoreWrapper.classList.remove('hidden');
+  updateScore();
+});
+scoreWrapper.addEventListener('click', (e) => {
+  if (e.target.classList.value === 'score-wrapper') {
+    scoreWrapper.classList.add('hidden');
+  }
+});
 window.addEventListener('change', () => {
   loadGameOnChange();
   updateGameField();
   clickCells();
   gameField.classList.remove('disabled');
 });
+
+const localStorageUpdate = () => {
+  let level = '';
+
+  if (currentTemplate.length === 5) level = 'easy';
+  if (currentTemplate.length === 10) level = 'medium';
+  if (currentTemplate.length === 15) level = 'hard';
+
+  let data = [];
+
+  const scoreData = {
+    level: level,
+    hint: currentHint,
+    timer: minutes * 60 + seconds,
+    update: new Date() / 1000,
+  };
+
+  if (localStorage.getItem('games')) {
+    data = JSON.parse(localStorage.getItem('games'));
+  }
+  data.push(scoreData);
+
+  localStorage.setItem('games', JSON.stringify(data));
+};
