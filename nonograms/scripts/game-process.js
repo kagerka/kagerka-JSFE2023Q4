@@ -1,4 +1,5 @@
 import { game10x10, game15x15, game5x5 } from './nonograms.js';
+
 export {
   currentGame,
   currentHint,
@@ -10,11 +11,14 @@ export {
   loadGameOnChange,
   loadOnStart,
   minutes,
+  pauseAudio,
   playAudio,
   resetTimer,
   seconds,
+  setAudio,
   startTimer,
   topCluesData,
+  updateTimer,
 };
 
 let interval;
@@ -44,7 +48,6 @@ const startTimer = () => {
         if (!clicked) {
           clicked = true;
           interval = setInterval(updateTime, 1000);
-          console.log('sss');
         }
       });
       cell.addEventListener('contextmenu', (e) => {
@@ -55,7 +58,8 @@ const startTimer = () => {
       });
     });
   });
-  return [interval, clicked, seconds, minutes, timer];
+
+  return [interval, clicked, seconds, minutes];
 };
 
 const resetTimer = () => {
@@ -63,13 +67,10 @@ const resetTimer = () => {
   seconds = 0;
   minutes = 0;
   clicked = false;
-  // console.log(seconds);
-  return [seconds, minutes, timer, clicked];
+  return [seconds, minutes, clicked];
 };
 const updateTimer = () => {
-  timer = document.getElementById('timer-wrapper');
-  timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
+  timer.textContent = `00:00`;
   return [timer];
 };
 
@@ -88,8 +89,6 @@ const loadGame = () => {
   startTimer();
 
   currentGameData = currentGame[Math.floor(Math.random() * currentGame.length)];
-  // currentHint = Object.keys(currentGameData).toString();
-  // currentTemplate = currentGameData[currentHint];
 
   if (currentGameData === tempGameData) {
     loadGame();
@@ -151,8 +150,6 @@ const loadGame = () => {
 };
 
 const loadGameOnChange = () => {
-  resetTimer();
-  startTimer();
   leftCluesData = [];
   topCluesData = [];
 
@@ -185,6 +182,9 @@ const loadGameOnChange = () => {
           currentTemplate = currentGameData[currentHint];
         }
       }
+      resetTimer();
+      updateTimer();
+      startTimer();
       return [currentHint, currentGameData, currentTemplate];
     });
 
@@ -230,8 +230,19 @@ const getRandomGame = () => {
   return [gameList, currentGameData, currentHint, currentTemplate, leftCluesData, topCluesData, seconds];
 };
 
-const playAudio = (name) => {
-  let audio = new Audio();
+let audio = new Audio();
+
+const setAudio = (name) => {
   audio.src = `./assets/${name}.mp3`;
   audio.autoplay = true;
+};
+
+const pauseAudio = () => {
+  audio.muted = true;
+  audio.pause();
+};
+
+const playAudio = () => {
+  audio.muted = false;
+  audio.play();
 };

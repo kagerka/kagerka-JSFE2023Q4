@@ -3,11 +3,24 @@ import {
   getRandomGame,
   loadGameOnChange,
   minutes,
+  pauseAudio,
   playAudio,
   resetTimer,
   seconds,
+  setAudio,
+  startTimer,
+  updateTimer,
 } from './game-process.js';
-import { gameField, modalText, modalWrapper, updateGameField } from './page.js';
+import {
+  audioBtn,
+  gameField,
+  modalText,
+  modalWrapper,
+  randomGameBtn,
+  resetGameBtn,
+  themeBtn,
+  updateGameField,
+} from './page.js';
 
 const clickCells = () => {
   const cells = document.querySelectorAll('.cell');
@@ -15,11 +28,11 @@ const clickCells = () => {
     cell.addEventListener('click', () => {
       if (!cell.className.includes('crossed') && !cell.className.includes('checked')) {
         cell.classList.add('checked');
-        playAudio('checked');
+        setAudio('checked');
         checkCells(cells);
       } else if (!cell.className.includes('crossed') && cell.className.includes('checked')) {
         cell.classList.remove('checked');
-        playAudio('unchecked');
+        setAudio('unchecked');
         checkCells(cells);
       }
     });
@@ -27,19 +40,64 @@ const clickCells = () => {
       e.preventDefault();
       if (!cell.className.includes('checked')) {
         cell.classList.toggle('crossed');
-        playAudio('crossed');
+        setAudio('crossed');
       }
     });
   });
 };
 clickCells();
 
-const randomButton = document.getElementById('random-game-btn');
-randomButton?.addEventListener('click', () => {
+const page = document.getElementById('page');
+
+const changeTheme = (theme) => {
+  page.dataset.theme = theme;
+};
+
+themeBtn.addEventListener('click', () => {
+  if (!themeBtn.classList.contains('dark')) {
+    themeBtn.classList.add('dark');
+    changeTheme('dark');
+    themeBtn.innerHTML = `<span class="material-symbols-outlined">light_mode</span>`;
+  } else {
+    themeBtn.classList.remove('dark');
+    changeTheme('light');
+    themeBtn.innerHTML = `<span class="material-symbols-outlined">dark_mode</span>`;
+  }
+});
+
+audioBtn.addEventListener('click', () => {
+  if (!audioBtn.classList.contains('muted')) {
+    pauseAudio();
+    audioBtn.classList.add('muted');
+    audioBtn.innerHTML = `<span class="material-symbols-outlined">volume_off</span>`;
+  } else {
+    playAudio();
+    audioBtn.classList.remove('muted');
+    audioBtn.innerHTML = `<span class="material-symbols-outlined">volume_up</span>`;
+  }
+});
+
+randomGameBtn.addEventListener('click', () => {
   getRandomGame();
   updateGameField();
   clickCells();
   gameField.classList.remove('disabled');
+});
+
+resetGameBtn.addEventListener('click', () => {
+  const crossed = document.querySelectorAll('.crossed');
+  crossed.forEach((cell) => {
+    cell.classList.remove('crossed');
+  });
+
+  const checked = document.querySelectorAll('.checked');
+  checked.forEach((cell) => {
+    cell.classList.remove('checked');
+  });
+
+  resetTimer();
+  updateTimer();
+  startTimer();
 });
 
 const checkCells = (cells) => {
@@ -64,7 +122,6 @@ const checkCells = (cells) => {
       });
       playAudio('winner');
       console.log('you are winner');
-      console.log('seconds', seconds);
       modalText.innerHTML = `<div class='modal-heading'>Great!</div><div>You have solved the nonogram in <span class='modal-time'>${
         minutes * 60 + seconds
       }</span> seconds!</div>`;

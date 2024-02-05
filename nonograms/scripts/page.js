@@ -7,7 +7,19 @@ import {
   topCluesData,
 } from './game-process.js';
 
-export { gameLevel, gameTemplateList, modalText, modalWrapper, timerWrapper, updateGameField, gameField };
+export {
+  audioBtn,
+  gameField,
+  gameLevel,
+  gameTemplateList,
+  modalText,
+  modalWrapper,
+  randomGameBtn,
+  resetGameBtn,
+  themeBtn,
+  timerWrapper,
+  updateGameField,
+};
 
 document.body.className = 'body';
 
@@ -20,15 +32,24 @@ heading.className = 'heading';
 heading.innerText = 'Nonograms';
 pageWrapper.append(heading);
 
+let audioBtnWrapper = document.createElement('div');
+audioBtnWrapper.className = 'audio-btn-wrapper';
+pageWrapper.append(audioBtnWrapper);
+
+let audioBtn = document.createElement('div');
+audioBtn.className = 'audio-btn';
+audioBtn.innerHTML = `<span class="material-symbols-outlined">volume_up</span>`;
+audioBtnWrapper.append(audioBtn);
+
+let themeBtn = document.createElement('div');
+themeBtn.className = 'theme-btn';
+themeBtn.id = 'toggle-theme';
+themeBtn.innerHTML = `<span class="material-symbols-outlined">dark_mode</span>`;
+audioBtnWrapper.append(themeBtn);
+
 let gameWrapper = document.createElement('div');
 gameWrapper.className = 'game-wrapper';
 pageWrapper.append(gameWrapper);
-
-let randomGameBtn = document.createElement('button');
-randomGameBtn.className = 'random-game-btn';
-randomGameBtn.innerText = 'Random Game';
-randomGameBtn.id = 'random-game-btn';
-gameWrapper.append(randomGameBtn);
 
 let gameLevelWrapper = document.createElement('div');
 gameLevelWrapper.className = 'game-level-wrapper';
@@ -68,6 +89,22 @@ timerWrapper.id = 'timer-wrapper';
 timerWrapper.innerText = '00:00';
 gameWrapper.append(timerWrapper);
 
+let btnWrapper = document.createElement('div');
+btnWrapper.className = 'btn-wrapper';
+gameWrapper.append(btnWrapper);
+
+let randomGameBtn = document.createElement('button');
+randomGameBtn.className = 'random-game-btn';
+randomGameBtn.innerText = 'Random game';
+randomGameBtn.id = 'random-game-btn';
+btnWrapper.append(randomGameBtn);
+
+let resetGameBtn = document.createElement('button');
+resetGameBtn.className = 'reset-game-btn';
+resetGameBtn.innerText = 'Reset game';
+resetGameBtn.id = 'reset-game-btn';
+btnWrapper.append(resetGameBtn);
+
 let gameField = document.createElement('div');
 gameField.className = 'game-field';
 gameWrapper.append(gameField);
@@ -76,6 +113,7 @@ const updateGameField = () => {
   loadGameOnChange();
 
   gameField.innerHTML = '';
+
   window.addEventListener('load', () => {
     gameTemplateList.innerHTML = '';
     let gameTemplateItem = document.createElement('option');
@@ -95,7 +133,6 @@ const updateGameField = () => {
   });
 
   gameLevel.addEventListener('change', () => {
-    // console.log(gameList);
     gameTemplateList.innerHTML = '';
 
     let gameTemplateItem = document.createElement('option');
