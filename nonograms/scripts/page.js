@@ -12,13 +12,17 @@ export {
   gameField,
   gameLevel,
   gameTemplateList,
+  highScoreTableBtn,
   modalText,
   modalWrapper,
   randomGameBtn,
   resetGameBtn,
+  scoreWrapper,
+  solutionBtn,
   themeBtn,
   timerWrapper,
   updateGameField,
+  updateScore,
 };
 
 document.body.className = 'body';
@@ -51,9 +55,13 @@ let gameWrapper = document.createElement('div');
 gameWrapper.className = 'game-wrapper';
 pageWrapper.append(gameWrapper);
 
+let settingsWrapper = document.createElement('div');
+settingsWrapper.className = 'settings-wrapper';
+gameWrapper.append(settingsWrapper);
+
 let gameLevelWrapper = document.createElement('div');
 gameLevelWrapper.className = 'game-level-wrapper';
-gameWrapper.append(gameLevelWrapper);
+settingsWrapper.append(gameLevelWrapper);
 
 let gameLevel = document.createElement('select');
 gameLevel.className = 'game-level-list';
@@ -83,15 +91,9 @@ gameTemplateList.className = 'game-template-list';
 gameTemplateList.id = 'game-template-list';
 gameLevelWrapper.append(gameTemplateList);
 
-let timerWrapper = document.createElement('div');
-timerWrapper.className = 'timer-wrapper';
-timerWrapper.id = 'timer-wrapper';
-timerWrapper.innerText = '00:00';
-gameWrapper.append(timerWrapper);
-
 let btnWrapper = document.createElement('div');
 btnWrapper.className = 'btn-wrapper';
-gameWrapper.append(btnWrapper);
+settingsWrapper.append(btnWrapper);
 
 let randomGameBtn = document.createElement('button');
 randomGameBtn.className = 'random-game-btn';
@@ -104,6 +106,30 @@ resetGameBtn.className = 'reset-game-btn';
 resetGameBtn.innerText = 'Reset game';
 resetGameBtn.id = 'reset-game-btn';
 btnWrapper.append(resetGameBtn);
+
+let solutionBtn = document.createElement('button');
+solutionBtn.className = 'solution-btn';
+solutionBtn.innerText = 'Solution';
+solutionBtn.id = 'solution-btn';
+btnWrapper.append(solutionBtn);
+
+let highScoreTableBtn = document.createElement('button');
+highScoreTableBtn.className = 'high-score-table-btn';
+highScoreTableBtn.innerText = 'High score';
+highScoreTableBtn.id = 'high-score-table-btn';
+btnWrapper.append(highScoreTableBtn);
+
+let saveGameBtn = document.createElement('button');
+saveGameBtn.className = 'save-game-btn';
+saveGameBtn.innerText = 'Save game';
+saveGameBtn.id = 'save-game-btn';
+btnWrapper.append(saveGameBtn);
+
+let timerWrapper = document.createElement('div');
+timerWrapper.className = 'timer-wrapper';
+timerWrapper.id = 'timer-wrapper';
+timerWrapper.innerText = '00:00';
+settingsWrapper.append(timerWrapper);
 
 let gameField = document.createElement('div');
 gameField.className = 'game-field';
@@ -151,9 +177,13 @@ const updateGameField = () => {
     }
   });
 
+  let gameGrid = document.createElement('div');
+  gameGrid.className = 'game-grid';
+  gameField.append(gameGrid);
+
   let topClues = document.createElement('div');
   topClues.className = 'top-clues';
-  gameField.append(topClues);
+  gameGrid.append(topClues);
 
   for (let i = 0; i < topCluesData.length; i++) {
     let topClueColumn = document.createElement('div');
@@ -178,7 +208,7 @@ const updateGameField = () => {
 
   let leftClues = document.createElement('div');
   leftClues.className = 'left-clues';
-  gameField.append(leftClues);
+  gameGrid.append(leftClues);
 
   for (let i = 0; i < leftCluesData.length; i++) {
     let leftClueRow = document.createElement('div');
@@ -206,11 +236,11 @@ const updateGameField = () => {
 
   let emptyField = document.createElement('div');
   emptyField.className = 'empty-field';
-  gameField.append(emptyField);
+  gameGrid.append(emptyField);
 
   let gameCells = document.createElement('div');
   gameCells.className = 'game-cells';
-  gameField.append(gameCells);
+  gameGrid.append(gameCells);
   gameCells.style.setProperty('--size', currentTemplate.length);
 
   for (let i = 1, j = 0; i <= currentTemplate.length ** 2; i++) {
@@ -253,3 +283,50 @@ modalWrapper.append(modal);
 let modalText = document.createElement('div');
 modalText.className = 'modal-text';
 modal.append(modalText);
+
+let scoreWrapper = document.createElement('div');
+scoreWrapper.className = 'score-wrapper hidden';
+document.body.append(scoreWrapper);
+
+let scoreModal = document.createElement('div');
+scoreModal.className = 'score-modal';
+scoreWrapper.append(scoreModal);
+
+let scoreTable = document.createElement('table');
+scoreTable.className = 'score-table';
+scoreModal.append(scoreTable);
+
+const updateScore = () => {
+  scoreTable.innerText = '';
+
+  let trHeader = document.createElement('thead');
+  scoreTable.append(trHeader);
+
+  let thLevel = document.createElement('th');
+  thLevel.innerText = `Level`;
+  trHeader.append(thLevel);
+
+  let thHint = document.createElement('th');
+  thHint.innerText = `Game`;
+  trHeader.append(thHint);
+
+  let thTime = document.createElement('th');
+  thTime.innerText = `Time`;
+  trHeader.append(thTime);
+  const data = JSON.parse(localStorage.getItem('games'));
+  if (data) {
+    for (let i = data.length - 1; data.length >= 5 ? i >= data.length - 5 : i >= 0; i--) {
+      let tr = document.createElement('tr');
+      scoreTable.append(tr);
+      let tdLevel = document.createElement('td');
+      tdLevel.innerText = `${data[i].level}`;
+      tr.append(tdLevel);
+      let tdHint = document.createElement('td');
+      tdHint.innerText = `${data[i].hint}`;
+      tr.append(tdHint);
+      let tdTime = document.createElement('td');
+      tdTime.innerText = `${data[i].timer} sec.`;
+      tr.append(tdTime);
+    }
+  }
+};
