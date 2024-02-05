@@ -119,13 +119,14 @@ const checkCells = (cells) => {
       cellNum++;
     }
   }
+
   if (errors.length === 0) {
     setTimeout(() => {
       const crossed = document.querySelectorAll('.crossed');
       crossed.forEach((cell) => {
         cell.classList.remove('crossed');
       });
-      playAudio('winner');
+      setAudio('winner');
       localStorageUpdate();
       modalText.innerHTML = `<div class='modal-heading'>Great!</div><div>You have solved the nonogram in <span class='modal-time'>${
         minutes * 60 + seconds
@@ -143,6 +144,7 @@ solutionBtn.addEventListener('click', () => {
     for (let j = 0; j < currentTemplate[i].length; j++) {
       if (currentTemplate[i][j] === 1) {
         cells[cellNum].classList.add('checked');
+        cells[cellNum].classList.add('solution');
       }
       if (currentTemplate[i][j] === 0) {
         cells[cellNum].classList.remove('checked');
@@ -151,6 +153,7 @@ solutionBtn.addEventListener('click', () => {
       cellNum++;
     }
   }
+  gameField.classList.add('disabled');
 });
 
 modalWrapper.addEventListener('click', (e) => {
