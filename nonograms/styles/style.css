@@ -1,0 +1,362 @@
+:root {
+  --black: #202020;
+  --gray: #808080;
+  --lightgray: #f7f7f7;
+  --darkgray: #707070;
+  --white: #ffffff;
+  --size: 5;
+  --bg-color: #ebebeb;
+}
+
+#page[data-theme='dark'] {
+  filter: invert(0.85);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.body {
+  background-color: var(--bg-color);
+  margin: 0 auto;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+.heading {
+  margin-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+  text-transform: uppercase;
+}
+
+.btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.random-game-btn,
+.reset-game-btn {
+  font-size: 16px;
+  background-color: var(--lightgray);
+  padding-block: 0px;
+  padding-inline: 0px;
+  padding: 10px;
+  border-width: 0px;
+  border-style: none;
+  border-image: none;
+  border: 1px solid var(--gray);
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.audio-btn-wrapper {
+  position: absolute;
+  display: flex;
+  gap: 20px;
+  top: 20px;
+  right: 20px;
+}
+
+.audio-btn,
+.theme-btn {
+  font-size: 16px;
+  background-color: var(--lightgray);
+  padding-block: 0px;
+  padding-inline: 0px;
+  /* padding: 10px; */
+  border-width: 0px;
+  border-style: none;
+  border-image: none;
+  border: 1px solid var(--gray);
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-symbols-outlined {
+  transform: scale(1.2);
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.game-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.game-field {
+  display: grid;
+  grid-template-areas:
+    'empty-field top-clues '
+    'left-clues game-cells '
+    'hint-word hint-word ';
+}
+
+.empty-field {
+  grid-area: empty-field;
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid var(--gray);
+  border-left: 2px solid var(--gray);
+
+}
+
+.hint-word {
+  grid-area: hint-word;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+  margin: 20px 0;
+}
+
+.game-cells {
+  grid-area: game-cells;
+  display: grid;
+  grid-template-rows: repeat(var(--size), min-content);
+  grid-template-columns: repeat(var(--size), min-content);
+  border: 2px solid var(--gray);
+  width: fit-content;
+}
+
+.top-clues {
+  display: flex;
+  flex-direction: row;
+  grid-area: top-clues;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: var(--black);
+  border: 2px solid var(--gray);
+  border-bottom: 0px;
+  background-color: var(--lightgray);
+}
+
+.top-clue-column {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.top-clue-cell {
+  outline: 0.5px solid var(--gray);
+  background-color: var(--white);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lightgray);
+  cursor: default;
+}
+
+.left-clues {
+  grid-area: left-clues;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: var(--black);
+  border: 2px solid var(--gray);
+  border-right: 0px;
+  background-color: var(--lightgray);
+}
+
+.left-clue-row {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.left-clue-cell {
+  outline: 0.5px solid var(--gray);
+  background-color: var(--white);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lightgray);
+  cursor: default;
+}
+
+.cell {
+  outline: 0.5px solid var(--gray);
+  background-color: var(--white);
+}
+
+.fifth-col {
+  border-right: 2px solid var(--gray);
+}
+
+.fifth-row {
+  border-bottom: 2px solid var(--gray);
+}
+
+.inner-cell {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.cell.checked .inner-cell {
+  background-color: var(--black);
+}
+
+.cell.crossed .inner-cell {
+  width: 100%;
+  height: 100%;
+  background-color: var(--darkgray);
+  clip-path: polygon(17.75% 12.75%, 12.75% 17.75%, 45% 50%, 12.75% 82.25%, 17.75% 87.25%, 50% 55%, 82.25% 87.25%, 87.25% 82.25%, 55% 50%, 87.25% 17.75%, 82.25% 12.75%, 50% 45%);
+}
+
+.modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #00000080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-wrapper.hidden {
+  display: none;
+}
+
+.modal {
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  padding: 40px;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.modal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.modal-heading {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.modal-time {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.game-level-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  border: 1px solid var(--darkgray);
+}
+
+.game-level-list {
+  padding: 4px;
+  font-size: 16px;
+}
+
+.game-template-list {
+  padding: 4px;
+  font-size: 16px;
+}
+
+
+.timer-wrapper {
+  padding: 20px;
+  border: 1px solid var(--darkgray);
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+@media screen and (max-width: 700px) {
+
+  .inner-cell,
+  .left-clue-cell,
+  .top-clue-cell {
+    width: 28px;
+    height: 28px;
+  }
+
+}
+
+@media screen and (max-width: 650px) {
+
+  .inner-cell,
+  .left-clue-cell,
+  .top-clue-cell {
+    width: 26px;
+    height: 26px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .inner-cell,
+  .left-clue-cell,
+  .top-clue-cell {
+    width: 24px;
+    height: 24px;
+  }
+
+}
+
+@media screen and (max-width: 550px) {
+
+  .inner-cell,
+  .left-clue-cell,
+  .top-clue-cell {
+    width: 22px;
+    height: 22px;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+
+  .inner-cell,
+  .left-clue-cell,
+  .top-clue-cell {
+    width: 20px;
+    height: 20px;
+  }
+
+}
