@@ -1,4 +1,6 @@
-https://youtu.be/wooj99A5NuM
+# Self-introduction
+
+[Link to the Self-introduction video](https://youtu.be/wooj99A5NuM)
 
 Hello! My name is Ekaterina and I want to be a front-end developer. I don't have a computer science education, so I have to search and read a lot to do tasks in time. It is really hard for me, and it's a challenge at the same time. When I heard about RS School for the first time I said to myself, that I will finish this JS course and will get a job as a front-end developer. I hope it comes true.
 
