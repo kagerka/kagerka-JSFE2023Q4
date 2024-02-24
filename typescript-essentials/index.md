@@ -19,7 +19,7 @@ Here is a collection of badges I earned from completing Microsoft Learn's TypeSc
 
 2. **Declare Variable Types in TypeScript**: In this module I learned about types in TypeScript, how to add them to the project. Most interesting and useful parts about union types and collection types, I think.
 
-3. **Implement Interfaces in TypeScript**: In this module I learned about interfaces, how to declare it, the ability to extend an it. Now I know, that interfaces have differences from type aliases.
+3. **Implement Interfaces in TypeScript**: In this module I learned about interfaces, how to declare it, the ability to extend it. Now I know, that interfaces have differences from type aliases.
 
 4. **Develop Typed Functions in TypeScript**: In this module I learned how to write functions with required, optional, default, and rest parameters. It's interesting, that I can define not only primitives, but even function types using type aliases or interfaces.
 
