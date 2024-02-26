@@ -3,7 +3,7 @@ import { SourceItem } from '../../../types/types';
 import './sources.css';
 
 class Sources {
-  draw(data: SourceItem[]) {
+  public draw(data: SourceItem[]) {
     const fragment: DocumentFragment = document.createDocumentFragment();
     const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
     assertIsDefined(sourceItemTemp);

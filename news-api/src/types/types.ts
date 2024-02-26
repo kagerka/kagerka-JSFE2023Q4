@@ -1,5 +1,10 @@
+enum Status {
+  ok = 'ok',
+  error = 'error',
+}
+
 export interface SourceAPI {
-  status: 'ok' | 'error';
+  status: Status.ok | Status.error;
   sources: SourceItem[];
 }
 
@@ -14,7 +19,7 @@ export interface SourceItem {
 }
 
 export interface NewsAPI {
-  status: 'ok' | 'error';
+  status: Status.ok | Status.error;
   totalResults: number;
   articles: Article[];
 }

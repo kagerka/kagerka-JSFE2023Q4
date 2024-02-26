@@ -1,15 +1,15 @@
 import { Callback, Options } from '../../types/types';
 
 class Loader {
-  baseLink: string;
-  options: Options;
+  private baseLink: string;
+  private options: Options;
 
   constructor(baseLink: string, options: Options) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
-  getResp<Type>(
+  public getResp<Type>(
     { endpoint, options = {} }: { endpoint: string; options?: Options },
     callback: Callback<Type> = () => {
       console.error('No callback for GET response');
@@ -18,7 +18,7 @@ class Loader {
     this.load<Type>('GET', endpoint, callback, options);
   }
 
-  errorHandler(res: Response) {
+  private errorHandler(res: Response) {
     if (!res.ok) {
       if (res.status === 401 || res.status === 404)
         console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -28,7 +28,7 @@ class Loader {
     return res;
   }
 
-  makeUrl(options: Options, endpoint: string) {
+  private makeUrl(options: Options, endpoint: string) {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 

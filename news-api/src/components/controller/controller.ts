@@ -3,11 +3,11 @@ import { Callback } from './../../types/types';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-  getSources<Type>(callback: Callback<Type>) {
+  public getSources<Type>(callback: Callback<Type>) {
     super.getResp({ endpoint: 'sources' }, callback);
   }
 
-  getNews<Type>(e: Event, callback: Callback<Type>) {
+  public getNews<Type>(e: Event, callback: Callback<Type>) {
     let target: EventTarget | null = e.target;
 
     const newsContainer: EventTarget | null = e.currentTarget;

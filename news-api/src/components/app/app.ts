@@ -6,15 +6,15 @@ import filter from '../view/filter/filter';
 import { categories } from './../view/filter/filter';
 
 class App {
-  controller: AppController;
-  view: AppView;
+  private controller: AppController;
+  private view: AppView;
 
   constructor() {
     this.controller = new AppController();
     this.view = new AppView();
   }
 
-  start() {
+  public start() {
     filter(categories);
     const filterItem = document.querySelectorAll('.filter__item');
     filterItem.forEach((item) => {
