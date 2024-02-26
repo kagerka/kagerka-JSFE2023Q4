@@ -34,3 +34,9 @@ export interface ArticleSource {
   id: string | null;
   name: string;
 }
+
+export interface Options {
+  [key: string]: string;
+}
+
+export type Callback<Type> = (data: Type) => void;
