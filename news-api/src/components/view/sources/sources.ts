@@ -21,6 +21,7 @@ class Sources {
       const sourceItem = sourceClone.querySelector('.source__item');
       assertIsDefined(sourceItem);
       sourceItem.setAttribute('data-source-id', item.id);
+      sourceItem.setAttribute('data-category', item.category);
 
       fragment.append(sourceClone);
     });

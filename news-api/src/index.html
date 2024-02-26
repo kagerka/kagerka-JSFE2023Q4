@@ -12,6 +12,7 @@
       <h1>News Portal</h1>
     </header>
     <main>
+      <div class="filter buttons"></div>
       <div class="sources buttons"></div>
       <div class="news"></div>
     </main>
@@ -22,6 +23,12 @@
       </div>
       <div class="github"><a href="https://github.com/kagerka">kagerka</a>, 2024</div>
     </footer>
+
+    <template id="filterItemTemp">
+      <div class="filter__item">
+        <span class="filter__item-name"></span>
+      </div>
+    </template>
 
     <template id="sourceItemTemp">
       <div class="source__item">

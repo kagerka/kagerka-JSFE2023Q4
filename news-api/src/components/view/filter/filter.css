@@ -1,0 +1,25 @@
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter__item {
+  background: none;
+  border: 2px solid #f5aa79;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  color: #f5aa79;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.filter__item:hover,
+.filter__item:focus {
+  border-color: #3fcc59;
+  color: #69db7e;
+  box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+  transform: translateY(-0.25em);
+}
