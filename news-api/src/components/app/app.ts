@@ -23,8 +23,6 @@ class App {
         if (!(target instanceof HTMLElement)) {
           throw new Error();
         }
-        console.log(target.dataset);
-        console.log(target.dataset.category);
         const newsButtons = document.querySelectorAll('.source__item');
         newsButtons.forEach((el) => {
           if (!(el instanceof HTMLElement)) {
