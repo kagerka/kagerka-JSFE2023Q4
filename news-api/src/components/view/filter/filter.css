@@ -5,8 +5,9 @@
 }
 
 .filter__item {
-  background: none;
+  background: #35373f;
   border: 2px solid #f5aa79;
+  border-radius: 10px;
   font: inherit;
   line-height: 1;
   margin: 0.5em;

@@ -22,7 +22,7 @@ class News {
 
       const newsMetaPhoto: HTMLElement | null = newsClone.querySelector('.news__meta-photo');
       assertIsDefined(newsMetaPhoto);
-      newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+      newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || './../../../assets/news_placeholder.jpg'})`;
 
       const newsMetaAuthor = newsClone.querySelector('.news__meta-author');
       assertIsDefined(newsMetaAuthor);
