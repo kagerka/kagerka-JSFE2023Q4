@@ -1,0 +1,49 @@
+@import '../../styles/variables.scss';
+
+.btn {
+  padding: 20px;
+  border: 3px solid $green;
+  border-radius: 10px;
+  background: $green;
+  color: $white;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: $green-dark;
+  color: $white;
+}
+
+.btn:active {
+  opacity: 0.5;
+}
+
+.login-btn {
+  width: 200px;
+  padding: 20px;
+  border: 3px solid $green;
+  border-radius: 10px;
+  background: $green;
+  color: $white;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.login-btn:hover,
+.login-btn:active {
+  border: 3px solid $green-dark;
+  background-color: $green-dark;
+  color: $white;
+}
+.login-btn:disabled,
+.login-btn:disabled:hover {
+  opacity: 0.5;
+  border: 3px solid $green;
+  background-color: $green;
+  color: $white;
+  cursor: default;
+}
