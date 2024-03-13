@@ -14,6 +14,7 @@ export const Input = ({ placeholder, type, className, id, name, required }: Prop
   tag.id = id;
   tag.setAttribute('type', type);
   tag.setAttribute('required', required);
+  tag.setAttribute('autocomplete', 'off');
   tag.setAttribute('name', name);
   tag.classList.add(...['input', className]);
   return tag;
