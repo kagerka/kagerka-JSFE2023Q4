@@ -95,9 +95,15 @@ export const LoginForm = () => {
   validateError.textContent = ' ';
 
   const loginButton = Button(loginButtonData);
+
   form.append(heading, inputName, inputSurname, validateError, loginButton);
 
   loginButton.disabled = true;
 
   form.addEventListener('input', () => validateForm(inputName, inputSurname, loginButton, validateError));
+
+  loginButton.addEventListener('click', () => {
+    localStorage.setItem('Name', inputName.value);
+    localStorage.setItem('Surname', inputSurname.value);
+  });
 };
