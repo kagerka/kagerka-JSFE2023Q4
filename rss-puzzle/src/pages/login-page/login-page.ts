@@ -1,6 +1,6 @@
 import { Button } from '../../module/button/button';
 import { Input } from '../../module/input/input';
-import { PageWrapper } from '../../module/page-wrapper/page-wrapper';
+import { validateForm } from '../../module/validate/validate';
 import './login-page.scss';
 
 const inputNameData = {
@@ -28,62 +28,14 @@ const loginButtonData = {
   id: 'loginButton',
 };
 
-const validateForm = (
-  inputName: HTMLInputElement,
-  inputSurname: HTMLInputElement,
-  loginButton: HTMLButtonElement,
-  validateError: HTMLParagraphElement,
-) => {
-  const regexpName = /^[A-Z][a-zA-Z\s-]{2,}$/g;
-  const regexpSurname = /^[A-Z][a-zA-Z\s-]{3,}$/g;
-
-  let isValidName;
-  let isValidSurname;
-  if (inputName.value) {
-    isValidName = inputName.value.match(regexpName);
-  }
-  if (inputSurname.value) {
-    isValidSurname = inputSurname.value.match(regexpSurname);
-  }
-  if (isValidName) {
-    inputName.classList.remove('validate-error');
-  }
-  if (isValidSurname) {
-    inputSurname.classList.remove('validate-error');
-  }
-  if (!isValidName || !isValidSurname) {
-    validateError.textContent =
-      'First letter should be capitalized. Use only latin letters and dash sign (-). Minimum name length is 3 characters, surname is 4 characters.';
-    validateError.classList.add('active');
-    if (!isValidName) {
-      inputName.classList.add('validate-error');
-    }
-    if (!isValidSurname) {
-      inputSurname.classList.add('validate-error');
-    }
-    loginButton.disabled = true;
-  }
-  if (isValidName && isValidSurname) {
-    loginButton.disabled = false;
-    inputName.classList.remove('validate-error');
-    inputSurname.classList.remove('validate-error');
-    validateError.classList.remove('active');
-    validateError.textContent = '';
-  }
-
-  return validateError;
-};
-
-export const LoginForm = () => {
-  const pageWrapper = PageWrapper();
-  document.body.append(pageWrapper);
-
+export const LoginPage = (pageWrapper: HTMLElement) => {
+  pageWrapper.textContent = '';
   const form = document.createElement('form');
   form.classList.add('form');
   pageWrapper.append(form);
 
   const heading = document.createElement('h1');
-  heading.textContent = 'RSS Puzzle';
+  heading.textContent = 'Login';
   heading.classList.add('heading');
 
   const inputName = Input(inputNameData);

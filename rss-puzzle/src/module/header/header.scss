@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+.header {
+  background-color: $white50;
+  width: 100%;
+  min-height: 70px;
+  padding: 10px 20px;
+  border-bottom: 2px solid $white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  height: 40px;
+  margin-right: 20px;
+}
+
+.app-name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: $white;
+}

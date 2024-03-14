@@ -1,12 +1,12 @@
 import './button.scss';
-interface Props {
+export interface BtnProps {
   buttonName: string;
   type: string;
   className: string;
   id: string;
 }
 
-export const Button = ({ buttonName, type, className, id }: Props) => {
+export const Button = ({ buttonName, type, className, id }: BtnProps) => {
   const tag = document.createElement('button');
   tag.textContent = buttonName;
   tag.id = id;
