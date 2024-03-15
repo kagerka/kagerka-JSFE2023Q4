@@ -2,6 +2,8 @@ import './start-page.scss';
 import icon from '../../assets/logo.svg';
 import { Button } from '../../module/button/button';
 import { Greeting } from '../../module/greeting/greeting';
+import { GamePage } from '../game-page/game-page';
+import { Spinner } from '../../module/spinner/spinner';
 
 const startButtonData = {
   buttonName: 'Start',
@@ -41,6 +43,15 @@ export const StartPage = (pageWrapper: HTMLElement) => {
   pageWrapper.append(contentWrapper);
 
   const startButton = Button(startButtonData);
+
+  startButton.addEventListener('click', () => {
+    const spinner = Spinner();
+    pageWrapper.append(spinner);
+
+    setTimeout(() => {
+      GamePage(pageWrapper);
+    }, 1000);
+  });
 
   contentWrapper.append(heading, descriptionIcon, description, startButton);
 };
