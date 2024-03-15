@@ -1,6 +1,7 @@
 import './start-page.scss';
 import icon from '../../assets/logo.svg';
 import { Button } from '../../module/button/button';
+import { Greeting } from '../../module/greeting/greeting';
 
 const startButtonData = {
   buttonName: 'Start',
@@ -11,6 +12,15 @@ const startButtonData = {
 
 export const StartPage = (pageWrapper: HTMLElement) => {
   pageWrapper.textContent = '';
+
+  const greeting = new Greeting();
+  greeting.showGreeting();
+  setTimeout(() => {
+    greeting.greetingWrapper.classList.add('visible');
+  }, 500);
+  setTimeout(() => {
+    greeting.greetingWrapper.classList.remove('visible');
+  }, 4000);
 
   const contentWrapper = document.createElement('div');
   contentWrapper.classList.add('content-wrapper');
