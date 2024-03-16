@@ -36,7 +36,9 @@ export const Modal = ({ text, yesBtnData, noBtnData }: ModalProps) => {
   confirmBtn.addEventListener('click', () => {
     modalWrapper.classList.remove('visible');
     modalWrapper.classList.add('hidden');
-    localStorage.clear();
+    localStorage.removeItem('Name');
+    localStorage.removeItem('Surname');
+    localStorage.setItem('isLogin', 'false');
     const logoutButton = document.getElementById('logoutButton') as HTMLButtonElement;
     if (logoutButton) disableBtn(logoutButton);
     const pageWrapper: HTMLElement | null = document.getElementById('page-wrapper');
@@ -45,6 +47,7 @@ export const Modal = ({ text, yesBtnData, noBtnData }: ModalProps) => {
       pageWrapper.append(spinner);
 
       setTimeout(() => {
+        localStorage.setItem('isGame', 'false');
         LoginPage(pageWrapper);
       }, 1000);
     }

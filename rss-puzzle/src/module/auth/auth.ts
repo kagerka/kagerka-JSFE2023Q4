@@ -1,16 +1,19 @@
-export const checkLogin = () => {
-  let isLogin;
+export const checkIsLogin = () => {
   if (localStorage.getItem('Name') && localStorage.getItem('Surname')) {
-    isLogin = true;
+    localStorage.setItem('isLogin', 'true');
   } else {
-    isLogin = false;
+    localStorage.setItem('isLogin', 'false');
   }
-  return isLogin;
+  return localStorage.getItem('isLogin');
+};
+
+export const checkIsGame = () => {
+  return localStorage.getItem('isGame');
 };
 
 export const disableBtn = (button: HTMLButtonElement) => {
-  const auth = checkLogin();
-  if (!auth) {
+  const auth = checkIsLogin();
+  if (auth === 'false') {
     button.disabled = true;
   } else {
     button.disabled = false;

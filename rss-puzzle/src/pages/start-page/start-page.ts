@@ -12,11 +12,16 @@ const startButtonData = {
   id: 'startButton',
 };
 
+const startPageDescription =
+  'Learn English language in our puzzle game. Click on words, collect phrases and you will see beautiful pictures of famous artists. Words in the task can be drag and drop. You can use hints through the game, if the task too difficult for you now.';
+const isGame = false;
+
 export const StartPage = (pageWrapper: HTMLElement) => {
   pageWrapper.textContent = '';
 
   const greeting = new Greeting();
   greeting.showGreeting();
+
   setTimeout(() => {
     greeting.greetingWrapper.classList.add('visible');
   }, 500);
@@ -37,8 +42,7 @@ export const StartPage = (pageWrapper: HTMLElement) => {
   descriptionIcon.classList.add('description-icon');
 
   const description = document.createElement('p');
-  description.innerText =
-    'Learn English language in our puzzle game. Click on words, collect phrases and you will see beautiful pictures of famous artists. Words in the task can be drag and drop. You can use hints through the game, if the task too difficult for you now.';
+  description.innerText = startPageDescription;
   description.classList.add('description');
   pageWrapper.append(contentWrapper);
 
@@ -50,7 +54,11 @@ export const StartPage = (pageWrapper: HTMLElement) => {
 
     setTimeout(() => {
       GamePage(pageWrapper);
+      greeting.removeGreeting();
+      localStorage.setItem('isGame', 'true');
     }, 1000);
+
+    return isGame;
   });
 
   contentWrapper.append(heading, descriptionIcon, description, startButton);

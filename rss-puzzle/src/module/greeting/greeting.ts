@@ -20,4 +20,8 @@ export class Greeting {
     this.greeting = `Welcome, ${this.userName} ${this.userSurname}`;
     this.greetingWrapper.append(this.greeting);
   }
+
+  removeGreeting() {
+    this.greetingWrapper.remove();
+  }
 }
