@@ -17,19 +17,20 @@
 }
 .answer-field {
   position: relative;
-  min-height: 446px;
+  min-height: 404px;
   border: 1px solid $green;
-  padding: 4px 4px 0px 4px;
+  padding: 2px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .sentence-wrapper {
   display: flex;
-  gap: 5px;
+  justify-content: left;
+  gap: 2px;
 }
 
 .sentence-wrapper.inactive {
@@ -39,23 +40,27 @@
 .words-field {
   position: relative;
   border: 1px solid $red;
-  padding: 4px;
+  padding: 2px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
-  gap: 5px;
-  min-height: 50px;
+  gap: 2px;
+  min-height: 44px;
 }
 
 .word-wrapper {
-  padding: 10px;
+  padding: 10px 5px;
   border: 1px solid $white;
   cursor: pointer;
   background-color: $white80;
   transition: all 1s ease;
   opacity: 1;
   transform: translateX(0);
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
+
 .word-wrapper:hover {
   background-color: $white;
 }

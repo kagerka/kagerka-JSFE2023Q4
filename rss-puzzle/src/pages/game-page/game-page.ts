@@ -15,6 +15,9 @@ const renderCurrentSentence = (answerField: HTMLElement, wordsField: HTMLElement
   });
   const sentences = data.rounds[gameData.round - 1 || 0].words;
   const currentSentence = sentences[gameData.sentenceNumber - 1].textExample;
+  // eslint-disable-next-line no-console
+  console.log(currentSentence);
+
   const words = currentSentence.split(' ');
   words.sort(() => Math.random() - 0.5);
 
@@ -32,9 +35,16 @@ const renderCurrentSentence = (answerField: HTMLElement, wordsField: HTMLElement
 
   let currentSentenceWrapper = document.getElementById('current-sentence');
 
+  const wordWrapper = Array.from(document.querySelectorAll('.word-wrapper')) as HTMLElement[];
+  wordWrapper.forEach((el: HTMLElement) => {
+    const width = window.getComputedStyle(el).width;
+    el.style.width = width;
+  });
+
   wordsField.addEventListener('click', (e: Event) => {
     currentSentenceWrapper = document.getElementById('current-sentence');
     const item = e.target as HTMLElement;
+
     if (item.className === 'word-wrapper') {
       item.classList.add('hidden');
       const ansItem = currentSentenceWrapper?.children[currentSentenceWrapper.children.length] as HTMLElement;
@@ -82,7 +92,6 @@ const renderCurrentSentence = (answerField: HTMLElement, wordsField: HTMLElement
         currentSentenceWrapper.classList.add('inactive');
         currentSentenceWrapper.removeAttribute('id');
       }
-
       renderCurrentSentence(answerField, wordsField, gameData);
     }
   });
