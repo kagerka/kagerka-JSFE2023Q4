@@ -1,9 +1,10 @@
 import { Button } from '../../module/button/button';
 import { Input } from '../../module/input/input';
+import { ButtonData, InputData } from '../../module/types/types';
 import { validateForm } from '../../module/validate/validate';
 import './login-page.scss';
 
-const inputNameData = {
+const inputNameData: InputData = {
   placeholder: 'First name',
   type: 'text',
   className: 'login-input',
@@ -12,7 +13,7 @@ const inputNameData = {
   required: 'required',
 };
 
-const inputSurnameData = {
+const inputSurnameData: InputData = {
   placeholder: 'Surname',
   type: 'text',
   className: 'login-input',
@@ -21,7 +22,7 @@ const inputSurnameData = {
   required: 'required',
 };
 
-const loginButtonData = {
+const loginButtonData: ButtonData = {
   buttonName: 'Login',
   type: 'submit',
   className: 'login-btn',
@@ -30,23 +31,23 @@ const loginButtonData = {
 
 export const LoginPage = (pageWrapper: HTMLElement) => {
   pageWrapper.textContent = '';
-  const form = document.createElement('form');
+  const form: HTMLFormElement = document.createElement('form');
   form.classList.add('form');
   pageWrapper.append(form);
 
-  const heading = document.createElement('h1');
+  const heading: HTMLHeadingElement = document.createElement('h1');
   heading.textContent = 'Login';
   heading.classList.add('heading');
 
-  const inputName = Input(inputNameData);
+  const inputName: HTMLInputElement = Input(inputNameData);
 
-  const inputSurname = Input(inputSurnameData);
+  const inputSurname: HTMLInputElement = Input(inputSurnameData);
 
-  const validateError = document.createElement('p');
+  const validateError: HTMLParagraphElement = document.createElement('p');
   validateError.classList.add('validate-error-text');
   validateError.textContent = ' ';
 
-  const loginButton = Button(loginButtonData);
+  const loginButton: HTMLButtonElement = Button(loginButtonData);
 
   form.append(heading, inputName, inputSurname, validateError, loginButton);
 

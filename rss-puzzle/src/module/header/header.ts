@@ -3,15 +3,16 @@ import icon from '../../assets/logo.svg';
 import { Button } from '../button/button';
 import { disableBtn } from '../auth/auth';
 import { Modal } from '../modal/modal';
+import { ButtonData, ModalData } from '../types/types';
 
-const logoutButtonData = {
+const logoutButtonData: ButtonData = {
   buttonName: 'Logout',
   type: 'submit',
   className: 'logout-btn',
   id: 'logoutButton',
 };
 
-const modalData = {
+const modalData: ModalData = {
   text: 'Are you sure you want to logout? All your data will be deleted.',
   yesBtnData: {
     buttonName: 'Yes',
@@ -26,26 +27,26 @@ const modalData = {
     id: 'noModalButton',
   },
 };
-export const Header = () => {
-  const header = document.createElement('div');
+export const Header = (): HTMLDivElement => {
+  const header: HTMLDivElement = document.createElement('div');
   header.classList.add('header');
 
-  const myIcon = new Image();
-  myIcon.src = icon;
-  myIcon.alt = 'logo';
-  myIcon.classList.add('logo');
+  const headerIcon: HTMLImageElement = new Image();
+  headerIcon.src = icon;
+  headerIcon.alt = 'logo';
+  headerIcon.classList.add('logo');
 
-  const appName = document.createElement('div');
+  const appName: HTMLDivElement = document.createElement('div');
   appName.textContent = 'RSS Puzzle';
   appName.classList.add('app-name');
 
-  const headerWrapper = document.createElement('div');
+  const headerWrapper: HTMLDivElement = document.createElement('div');
   headerWrapper.classList.add('header-wrapper');
   header.append(headerWrapper);
 
-  headerWrapper.append(myIcon, appName);
+  headerWrapper.append(headerIcon, appName);
 
-  const logoutButton = Button(logoutButtonData);
+  const logoutButton: HTMLButtonElement = Button(logoutButtonData);
   header.append(logoutButton);
   disableBtn(logoutButton);
 

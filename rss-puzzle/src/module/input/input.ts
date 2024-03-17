@@ -8,8 +8,8 @@ interface Props {
   required: string;
 }
 
-export const Input = ({ placeholder, type, className, id, name, required }: Props) => {
-  const tag = document.createElement('input');
+export const Input = ({ placeholder, type, className, id, name, required }: Props): HTMLInputElement => {
+  const tag: HTMLInputElement = document.createElement('input');
   tag.placeholder = placeholder;
   tag.id = id;
   tag.setAttribute('type', type);

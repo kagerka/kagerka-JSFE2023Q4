@@ -1,4 +1,4 @@
-export const checkIsLogin = () => {
+export const checkIsLogin = (): string | null => {
   if (localStorage.getItem('Name') && localStorage.getItem('Surname')) {
     localStorage.setItem('isLogin', 'true');
   } else {
@@ -7,12 +7,12 @@ export const checkIsLogin = () => {
   return localStorage.getItem('isLogin');
 };
 
-export const checkIsGame = () => {
+export const checkIsGame = (): string | null => {
   return localStorage.getItem('isGame');
 };
 
 export const disableBtn = (button: HTMLButtonElement) => {
-  const auth = checkIsLogin();
+  const auth: string | null = checkIsLogin();
   if (auth === 'false') {
     button.disabled = true;
   } else {

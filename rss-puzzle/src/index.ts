@@ -6,14 +6,14 @@ import { LoginPage } from './pages/login-page/login-page';
 import { StartPage } from './pages/start-page/start-page';
 import './styles.scss';
 
-const header = Header();
+const header: HTMLDivElement = Header();
 document.body.append(header);
 
-const pageWrapper = PageWrapper();
+const pageWrapper: HTMLDivElement = PageWrapper();
 document.body.append(pageWrapper);
 
-const auth = checkIsLogin();
-const isGame = checkIsGame();
+const auth: string | null = checkIsLogin();
+const isGame: string | null = checkIsGame();
 if (auth === 'true') {
   if (isGame === 'true') {
     GamePage(pageWrapper);
