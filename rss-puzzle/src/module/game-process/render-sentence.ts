@@ -3,7 +3,12 @@ import { GameData, Words } from '../types/types';
 import { checkAnswers } from './check-answers';
 import { moveWordCards } from './move-word-cards';
 
-export const renderCurrentSentence = (answerField: HTMLElement, wordsField: HTMLElement, gameData: GameData) => {
+export const renderCurrentSentence = (
+  answerField: HTMLElement,
+  wordsField: HTMLElement,
+  gameData: GameData,
+  continueBtn: HTMLButtonElement,
+) => {
   document.addEventListener('DOMContentLoaded', () => {
     gameData.sentenceNumber = 1;
     localStorage.setItem('gameData', JSON.stringify(gameData));
@@ -38,5 +43,5 @@ export const renderCurrentSentence = (answerField: HTMLElement, wordsField: HTML
   });
 
   moveWordCards(wordsField, currentSentenceWrapper);
-  checkAnswers(answerField, currentSentenceWrapper, sentences, gameData, wordsField);
+  checkAnswers(answerField, currentSentenceWrapper, sentences, gameData, wordsField, continueBtn);
 };

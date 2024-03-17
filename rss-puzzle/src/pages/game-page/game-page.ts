@@ -1,5 +1,14 @@
 import './game-page.scss';
 import { gameProcess } from '../../module/game-process/game-process';
+import { Button } from '../../module/button/button';
+import { ButtonData } from '../../module/types/types';
+
+const continueBtnData: ButtonData = {
+  buttonName: 'Continue',
+  type: 'submit',
+  className: 'continue-btn',
+  id: 'continueButton',
+};
 
 export const GamePage = (pageWrapper: HTMLElement) => {
   pageWrapper.textContent = '';
@@ -12,5 +21,12 @@ export const GamePage = (pageWrapper: HTMLElement) => {
 
   pageWrapper.append(answerField, wordsField);
 
-  gameProcess(answerField, wordsField);
+  const buttonWrapper = document.createElement('div');
+  buttonWrapper.classList.add('game-button-wrapper');
+  const continueBtn = Button(continueBtnData);
+  continueBtn.disabled = true;
+  pageWrapper.append(buttonWrapper);
+  buttonWrapper.append(continueBtn);
+
+  gameProcess(answerField, wordsField, continueBtn);
 };

@@ -7,6 +7,7 @@ export const checkAnswers = (
   sentences: [Words],
   gameData: GameData,
   wordsField: HTMLElement,
+  continueBtn: HTMLButtonElement,
 ) => {
   answerField.addEventListener('DOMSubtreeModified', () => {
     currentSentenceWrapper = document.getElementById('current-sentence');
@@ -21,7 +22,6 @@ export const checkAnswers = (
       } else if (gameData.round < gameData.roundsCount) {
         gameData.round += 1;
         gameData.sentenceNumber = 1;
-        answerField.textContent = '';
       } else {
         gameData.level += 1;
         gameData.round = 1;
@@ -33,7 +33,17 @@ export const checkAnswers = (
         currentSentenceWrapper.classList.add('inactive');
         currentSentenceWrapper.removeAttribute('id');
       }
-      renderCurrentSentence(answerField, wordsField, gameData);
+      continueBtn.disabled = false;
+
+      const renderSentence = () => {
+        if (gameData.sentenceNumber === 1) answerField.textContent = '';
+
+        renderCurrentSentence(answerField, wordsField, gameData, continueBtn);
+        continueBtn.disabled = true;
+        continueBtn.removeEventListener('click', renderSentence);
+      };
+
+      continueBtn.addEventListener('click', renderSentence);
     }
   });
 };

@@ -37,6 +37,11 @@
   pointer-events: none;
 }
 
+.sentence-wrapper.inactive .word-wrapper {
+  background-color: $green30;
+  border: 1px solid $green;
+}
+
 .words-field {
   position: relative;
   border: 1px solid $red;
@@ -70,4 +75,27 @@
   position: absolute;
   transition: all 1s ease;
   transform: translateX(200px);
+}
+.game-button-wrapper {
+  display: flex;
+  gap: 20px;
+}
+.continue-btn {
+  width: 120px;
+  padding: 10px 16px;
+  font-size: 16px;
+}
+.continue-btn:hover,
+.continue-btn:active {
+  border: 2px solid $green-dark;
+  background-color: $green-dark;
+  color: $white;
+}
+.continue-btn:disabled,
+.continue-btn:disabled:hover {
+  opacity: 0.5;
+  border: 2px solid $green;
+  background-color: $green;
+  color: $white;
+  cursor: default;
 }
