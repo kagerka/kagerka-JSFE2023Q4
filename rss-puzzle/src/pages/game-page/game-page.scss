@@ -16,7 +16,7 @@
   text-shadow: $green 0px 2px 5px;
 }
 .hint-field {
-  min-height: 40px;
+  min-height: 50px;
   border: 1px solid $blue;
   padding: 5px;
   font-family: Arial, Helvetica, sans-serif;
@@ -56,6 +56,7 @@
   width: 40px;
   min-width: 40px;
   height: 40px;
+  min-height: 40px;
   background-color: $blue;
   border: 1px solid $blue;
   border-radius: 10px;
@@ -210,4 +211,46 @@
   border: 2px solid $red-dark;
   background-color: $red-dark;
   color: $white;
+}
+
+.material-symbols-outlined {
+  font-size: 26px;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 0,
+    'GRAD' 0,
+    'opsz' NaN;
+}
+
+.button-hint-field {
+  display: flex;
+  justify-content: right;
+}
+.translate-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid $blue;
+  background-color: $blue;
+  color: $white;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.translate-btn-wrapper:hover,
+.translate-btn-wrapper:active {
+  background-color: $blue-dark;
+  border: 1px solid $blue-dark;
+}
+.translate-btn-wrapper:active {
+  opacity: 0.5;
+}
+.translate-btn-wrapper.active {
+  border: 2px solid $white;
+  background-color: $white50;
+  color: $blue;
+  cursor: pointer;
+  transition: all 0.5s ease;
 }

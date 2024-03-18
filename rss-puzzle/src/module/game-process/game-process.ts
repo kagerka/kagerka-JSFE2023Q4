@@ -8,6 +8,7 @@ export const gameProcess = (
   wordsField: HTMLElement,
   checkBtn: HTMLButtonElement,
   autoCompleteBtn: HTMLButtonElement,
+  translateBtnWrapper: HTMLDivElement,
 ) => {
   let gameData: GameData = { level: 1, round: 1, sentenceNumber: 1, roundsCount: data.roundsCount };
 
@@ -17,5 +18,5 @@ export const gameProcess = (
     localStorage.setItem('gameData', JSON.stringify(gameData));
   }
 
-  renderCurrentSentence(hintField, answerField, wordsField, gameData, checkBtn, autoCompleteBtn);
+  renderCurrentSentence(hintField, answerField, wordsField, gameData, checkBtn, autoCompleteBtn, translateBtnWrapper);
 };

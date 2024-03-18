@@ -20,6 +20,18 @@ const autoCompleteBtnData: ButtonData = {
 export const GamePage = (pageWrapper: HTMLElement) => {
   pageWrapper.textContent = '';
 
+  const buttonHintField = document.createElement('div');
+  buttonHintField.classList.add('button-hint-field');
+
+  const translateBtnWrapper = document.createElement('div');
+  translateBtnWrapper.classList.add('translate-btn-wrapper');
+  buttonHintField.append(translateBtnWrapper);
+
+  const translateBtn = document.createElement('div');
+  translateBtn.classList.add('material-symbols-outlined');
+  translateBtn.textContent = 'translate';
+  translateBtnWrapper.append(translateBtn);
+
   const hintField: HTMLDivElement = document.createElement('div');
   hintField.classList.add('hint-field');
 
@@ -29,7 +41,7 @@ export const GamePage = (pageWrapper: HTMLElement) => {
   const wordsField: HTMLDivElement = document.createElement('div');
   wordsField.classList.add('words-field');
 
-  pageWrapper.append(hintField, answerField, wordsField);
+  pageWrapper.append(buttonHintField, hintField, answerField, wordsField);
 
   const buttonWrapper = document.createElement('div');
   buttonWrapper.classList.add('game-button-wrapper');
@@ -42,5 +54,5 @@ export const GamePage = (pageWrapper: HTMLElement) => {
   const autoCompleteBtn = Button(autoCompleteBtnData);
   buttonWrapper.append(autoCompleteBtn);
 
-  gameProcess(hintField, answerField, wordsField, checkBtn, autoCompleteBtn);
+  gameProcess(hintField, answerField, wordsField, checkBtn, autoCompleteBtn, translateBtnWrapper);
 };
