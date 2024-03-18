@@ -9,17 +9,14 @@ export const validateForm = (
 ): HTMLParagraphElement => {
   const regexpName: RegExp = /^[A-Z][a-zA-Z\s-]{2,}$/g;
   const regexpSurname: RegExp = /^[A-Z][a-zA-Z\s-]{3,}$/g;
-
   let isValidName: RegExpMatchArray | null = [''];
   let isValidSurname: RegExpMatchArray | null = [''];
-
   if (inputName.value) {
     isValidName = inputName.value.match(regexpName);
   }
   if (inputSurname.value) {
     isValidSurname = inputSurname.value.match(regexpSurname);
   }
-
   if (isValidName?.toString() === inputName.value.toString() && inputName.value.length >= 3) {
     inputName.classList.remove('validate-error');
   } else {
@@ -28,7 +25,6 @@ export const validateForm = (
     validateError.textContent = errorMessage;
     validateError.classList.add('active');
   }
-
   if (isValidSurname?.toString() === inputSurname.value.toString() && inputSurname.value.length >= 4) {
     inputSurname.classList.remove('validate-error');
   } else {
@@ -37,7 +33,6 @@ export const validateForm = (
     validateError.textContent = errorMessage;
     validateError.classList.add('active');
   }
-
   if (
     isValidName?.toString() === inputName.value.toString() &&
     isValidSurname?.toString() === inputSurname.value.toString() &&
@@ -50,6 +45,5 @@ export const validateForm = (
     validateError.classList.remove('active');
     validateError.textContent = '';
   }
-
   return validateError;
 };
