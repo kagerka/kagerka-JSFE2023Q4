@@ -7,6 +7,7 @@ export type GameData = {
 
 export type Words = {
   textExample: string;
+  textExampleTranslate: string;
 };
 
 export type ButtonData = {

@@ -3,6 +3,7 @@ import { renderCurrentSentence } from './render-sentence';
 import data from '../../assets/data/words/wordCollectionLevel1.json';
 
 export const gameProcess = (
+  hintField: HTMLElement,
   answerField: HTMLElement,
   wordsField: HTMLElement,
   checkBtn: HTMLButtonElement,
@@ -16,5 +17,5 @@ export const gameProcess = (
     localStorage.setItem('gameData', JSON.stringify(gameData));
   }
 
-  renderCurrentSentence(answerField, wordsField, gameData, checkBtn, autoCompleteBtn);
+  renderCurrentSentence(hintField, answerField, wordsField, gameData, checkBtn, autoCompleteBtn);
 };

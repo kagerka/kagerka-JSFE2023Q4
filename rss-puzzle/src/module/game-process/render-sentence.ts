@@ -5,6 +5,7 @@ import { checkAnswers } from './check-answers';
 import { moveWordCards } from './move-word-cards';
 
 export const renderCurrentSentence = (
+  hintField: HTMLElement,
   answerField: HTMLElement,
   wordsField: HTMLElement,
   gameData: GameData,
@@ -18,9 +19,25 @@ export const renderCurrentSentence = (
   document.addEventListener('DOMContentLoaded', checkReloadData);
 
   const sentences: [Words] = data.rounds[gameData.round - 1 || 0].words;
+
   const currentSentence: string = sentences[gameData.sentenceNumber - 1].textExample;
-  // eslint-disable-next-line no-console
-  console.log(currentSentence);
+  const currentTranslate: string = sentences[gameData.sentenceNumber - 1].textExampleTranslate;
+
+  hintField.textContent = '';
+  const showTranslateIcon: HTMLDivElement = document.createElement('div');
+  showTranslateIcon.classList.add('translate-icon');
+  showTranslateIcon.textContent = '?';
+  hintField.append(showTranslateIcon);
+
+  const hintWrapper: HTMLDivElement = document.createElement('div');
+  hintWrapper.classList.add('hint-wrapper');
+  hintField.append(hintWrapper);
+
+  showTranslateIcon.addEventListener('click', () => {
+    hintWrapper.textContent = '';
+    hintWrapper.append(currentTranslate);
+    hintWrapper.classList.toggle('active');
+  });
 
   const words: string[] = currentSentence.split(' ');
   words.sort(() => Math.random() - 0.5);
@@ -56,5 +73,14 @@ export const renderCurrentSentence = (
   });
 
   moveWordCards(wordsField, currentSentenceWrapper);
-  checkAnswers(answerField, currentSentenceWrapper, sentences, gameData, wordsField, checkBtn, autoCompleteBtn);
+  checkAnswers(
+    hintField,
+    answerField,
+    currentSentenceWrapper,
+    sentences,
+    gameData,
+    wordsField,
+    checkBtn,
+    autoCompleteBtn,
+  );
 };

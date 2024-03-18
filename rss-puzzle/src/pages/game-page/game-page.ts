@@ -20,13 +20,16 @@ const autoCompleteBtnData: ButtonData = {
 export const GamePage = (pageWrapper: HTMLElement) => {
   pageWrapper.textContent = '';
 
+  const hintField: HTMLDivElement = document.createElement('div');
+  hintField.classList.add('hint-field');
+
   const answerField: HTMLDivElement = document.createElement('div');
   answerField.classList.add('answer-field');
 
   const wordsField: HTMLDivElement = document.createElement('div');
   wordsField.classList.add('words-field');
 
-  pageWrapper.append(answerField, wordsField);
+  pageWrapper.append(hintField, answerField, wordsField);
 
   const buttonWrapper = document.createElement('div');
   buttonWrapper.classList.add('game-button-wrapper');
@@ -39,5 +42,5 @@ export const GamePage = (pageWrapper: HTMLElement) => {
   const autoCompleteBtn = Button(autoCompleteBtnData);
   buttonWrapper.append(autoCompleteBtn);
 
-  gameProcess(answerField, wordsField, checkBtn, autoCompleteBtn);
+  gameProcess(hintField, answerField, wordsField, checkBtn, autoCompleteBtn);
 };

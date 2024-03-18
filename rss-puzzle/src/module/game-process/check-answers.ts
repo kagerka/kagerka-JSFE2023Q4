@@ -2,6 +2,7 @@ import { GameData, Words } from '../types/types';
 import { renderCurrentSentence } from './render-sentence';
 
 export const checkAnswers = (
+  hintField: HTMLElement,
   answerField: HTMLElement,
   currentSentenceWrapper: HTMLElement | null,
   sentences: [Words],
@@ -54,7 +55,7 @@ export const checkAnswers = (
 
             answerField.removeEventListener('DOMSubtreeModified', checking);
             checkBtn.removeEventListener('click', renderSentence);
-            renderCurrentSentence(answerField, wordsField, gameData, checkBtn, autoCompleteBtn);
+            renderCurrentSentence(hintField, answerField, wordsField, gameData, checkBtn, autoCompleteBtn);
             checkBtn.disabled = true;
             checkBtn.classList.remove('continue');
             checkBtn.textContent = 'Check';
