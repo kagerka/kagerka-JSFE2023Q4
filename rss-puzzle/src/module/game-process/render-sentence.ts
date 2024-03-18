@@ -1,5 +1,6 @@
 import data from '../../assets/data/words/wordCollectionLevel1.json';
 import { GameData, Words } from '../types/types';
+import { autoComplete } from './auto-complete';
 import { checkAnswers } from './check-answers';
 import { moveWordCards } from './move-word-cards';
 
@@ -8,6 +9,7 @@ export const renderCurrentSentence = (
   wordsField: HTMLElement,
   gameData: GameData,
   checkBtn: HTMLButtonElement,
+  autoCompleteBtn: HTMLButtonElement,
 ) => {
   const checkReloadData = () => {
     gameData.sentenceNumber = 1;
@@ -45,6 +47,14 @@ export const renderCurrentSentence = (
     el.style.width = width;
   });
 
+  autoCompleteBtn.addEventListener('click', () => {
+    const currentSentenceWrap: HTMLElement | null = document.getElementById('current-sentence');
+
+    if (currentSentenceWrap) currentSentenceWrap.innerText = '';
+    wordsField.innerText = '';
+    autoComplete(answerField, wordsField, currentSentence);
+  });
+
   moveWordCards(wordsField, currentSentenceWrapper);
-  checkAnswers(answerField, currentSentenceWrapper, sentences, gameData, wordsField, checkBtn);
+  checkAnswers(answerField, currentSentenceWrapper, sentences, gameData, wordsField, checkBtn, autoCompleteBtn);
 };

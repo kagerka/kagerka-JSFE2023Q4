@@ -90,25 +90,28 @@
   justify-content: center;
   gap: 20px;
 }
-.continue-btn,
-.check-btn {
-  width: 120px;
+
+.check-btn,
+.auto-complete-btn {
+  width: 140px;
   padding: 10px 16px;
   font-size: 16px;
   transition: all 0.5s ease;
 }
-.continue-btn:hover,
-.continue-btn:active,
+
 .check-btn:hover,
-.check-btn:active {
+.check-btn:active,
+.auto-complete-btn:hover,
+.auto-complete-btn:active {
   border: 2px solid $green-dark;
   background-color: $green-dark;
   color: $white;
 }
-.continue-btn:disabled,
-.continue-btn:disabled:hover,
+
 .check-btn:disabled,
-.check-btn:disabled:hover {
+.check-btn:disabled:hover,
+.auto-complete-btn:disabled,
+.auto-complete-btn:disabled:hover {
   opacity: 0.5;
   border: 2px solid $green;
   background-color: $green;
@@ -134,4 +137,15 @@
   background-color: $blue;
   color: $white;
   cursor: default;
+}
+.auto-complete-btn {
+  background-color: $red-light;
+  border: 2px solid $red-light;
+}
+
+.auto-complete-btn:hover,
+.auto-complete-btn:active {
+  border: 2px solid $red-dark;
+  background-color: $red-dark;
+  color: $white;
 }

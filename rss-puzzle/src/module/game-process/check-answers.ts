@@ -8,6 +8,7 @@ export const checkAnswers = (
   gameData: GameData,
   wordsField: HTMLElement,
   checkBtn: HTMLButtonElement,
+  autoCompleteBtn: HTMLButtonElement,
 ) => {
   const checking = () => {
     setTimeout(() => {
@@ -53,7 +54,7 @@ export const checkAnswers = (
 
             answerField.removeEventListener('DOMSubtreeModified', checking);
             checkBtn.removeEventListener('click', renderSentence);
-            renderCurrentSentence(answerField, wordsField, gameData, checkBtn);
+            renderCurrentSentence(answerField, wordsField, gameData, checkBtn, autoCompleteBtn);
             checkBtn.disabled = true;
             checkBtn.classList.remove('continue');
             checkBtn.textContent = 'Check';

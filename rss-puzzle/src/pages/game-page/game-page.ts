@@ -10,6 +10,13 @@ const checkBtnData: ButtonData = {
   id: 'checkButton',
 };
 
+const autoCompleteBtnData: ButtonData = {
+  buttonName: "I don't know",
+  type: 'submit',
+  className: 'auto-complete-btn',
+  id: 'autoCompleteButton',
+};
+
 export const GamePage = (pageWrapper: HTMLElement) => {
   pageWrapper.textContent = '';
 
@@ -29,5 +36,8 @@ export const GamePage = (pageWrapper: HTMLElement) => {
   checkBtn.disabled = true;
   buttonWrapper.append(checkBtn);
 
-  gameProcess(answerField, wordsField, checkBtn);
+  const autoCompleteBtn = Button(autoCompleteBtnData);
+  buttonWrapper.append(autoCompleteBtn);
+
+  gameProcess(answerField, wordsField, checkBtn, autoCompleteBtn);
 };
