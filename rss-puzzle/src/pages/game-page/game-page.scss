@@ -42,6 +42,15 @@
   border: 1px solid $green;
 }
 
+.sentence-wrapper .word-wrapper.correct {
+  background-color: $green30;
+  border: 1px solid $green;
+}
+.sentence-wrapper .word-wrapper.incorrect {
+  background-color: $red30;
+  border: 1px solid $red;
+}
+
 .words-field {
   position: relative;
   border: 1px solid $red;
@@ -80,19 +89,24 @@
   display: flex;
   gap: 20px;
 }
-.continue-btn {
+.continue-btn,
+.check-btn {
   width: 120px;
   padding: 10px 16px;
   font-size: 16px;
 }
 .continue-btn:hover,
-.continue-btn:active {
+.continue-btn:active,
+.check-btn:hover,
+.check-btn:active {
   border: 2px solid $green-dark;
   background-color: $green-dark;
   color: $white;
 }
 .continue-btn:disabled,
-.continue-btn:disabled:hover {
+.continue-btn:disabled:hover,
+.check-btn:disabled,
+.check-btn:disabled:hover {
   opacity: 0.5;
   border: 2px solid $green;
   background-color: $green;

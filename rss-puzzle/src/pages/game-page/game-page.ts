@@ -10,6 +10,13 @@ const continueBtnData: ButtonData = {
   id: 'continueButton',
 };
 
+const checkBtnData: ButtonData = {
+  buttonName: 'Check',
+  type: 'submit',
+  className: 'check-btn',
+  id: 'checkButton',
+};
+
 export const GamePage = (pageWrapper: HTMLElement) => {
   pageWrapper.textContent = '';
 
@@ -23,10 +30,15 @@ export const GamePage = (pageWrapper: HTMLElement) => {
 
   const buttonWrapper = document.createElement('div');
   buttonWrapper.classList.add('game-button-wrapper');
+  pageWrapper.append(buttonWrapper);
+
   const continueBtn = Button(continueBtnData);
   continueBtn.disabled = true;
-  pageWrapper.append(buttonWrapper);
   buttonWrapper.append(continueBtn);
 
-  gameProcess(answerField, wordsField, continueBtn);
+  const checkBtn = Button(checkBtnData);
+  checkBtn.disabled = true;
+  buttonWrapper.append(checkBtn);
+
+  gameProcess(answerField, wordsField, continueBtn, checkBtn);
 };

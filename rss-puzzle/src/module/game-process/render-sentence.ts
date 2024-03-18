@@ -8,11 +8,13 @@ export const renderCurrentSentence = (
   wordsField: HTMLElement,
   gameData: GameData,
   continueBtn: HTMLButtonElement,
+  checkBtn: HTMLButtonElement,
 ) => {
-  document.addEventListener('DOMContentLoaded', () => {
+  const checkReloadData = () => {
     gameData.sentenceNumber = 1;
     localStorage.setItem('gameData', JSON.stringify(gameData));
-  });
+  };
+  document.addEventListener('DOMContentLoaded', checkReloadData);
 
   const sentences: [Words] = data.rounds[gameData.round - 1 || 0].words;
   const currentSentence: string = sentences[gameData.sentenceNumber - 1].textExample;
@@ -22,11 +24,13 @@ export const renderCurrentSentence = (
   const words: string[] = currentSentence.split(' ');
   words.sort(() => Math.random() - 0.5);
 
-  for (let i = 0; i < words.length; i++) {
-    const wordWrapper: HTMLDivElement = document.createElement('div');
-    wordWrapper.classList.add('word-wrapper');
-    wordsField.append(wordWrapper);
-    wordWrapper.append(words[i]);
+  if (wordsField.children.length === 0) {
+    for (let i = 0; i < words.length; i++) {
+      const wordWrapper: HTMLDivElement = document.createElement('div');
+      wordWrapper.classList.add('word-wrapper');
+      wordsField.append(wordWrapper);
+      wordWrapper.append(words[i]);
+    }
   }
 
   const sentenceWrapper: HTMLDivElement = document.createElement('div');
@@ -43,5 +47,5 @@ export const renderCurrentSentence = (
   });
 
   moveWordCards(wordsField, currentSentenceWrapper);
-  checkAnswers(answerField, currentSentenceWrapper, sentences, gameData, wordsField, continueBtn);
+  checkAnswers(answerField, currentSentenceWrapper, sentences, gameData, wordsField, continueBtn, checkBtn);
 };
