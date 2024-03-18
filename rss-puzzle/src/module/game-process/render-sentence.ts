@@ -40,6 +40,13 @@ export const renderCurrentSentence = (
     const audioURL: string = `https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/${currentSound}`;
     const sound: HTMLAudioElement = new Audio(audioURL);
     sound.play();
+
+    sound.addEventListener('playing', () => {
+      soundBtnWrapper.classList.add('playing');
+    });
+    sound.addEventListener('pause', () => {
+      soundBtnWrapper.classList.remove('playing');
+    });
   });
 
   const showTranslateIcon: HTMLDivElement = document.createElement('div');

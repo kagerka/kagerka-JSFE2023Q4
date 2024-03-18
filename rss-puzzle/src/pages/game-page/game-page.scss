@@ -280,3 +280,8 @@
 .sound-btn-wrapper:active {
   opacity: 0.5;
 }
+
+.sound-btn-wrapper.playing {
+  background-color: $red-light;
+  border: 1px solid $red-light;
+}
