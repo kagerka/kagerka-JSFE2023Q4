@@ -12,30 +12,38 @@ export const validateForm = (
 
   let isValidName: RegExpMatchArray | null = [''];
   let isValidSurname: RegExpMatchArray | null = [''];
+
   if (inputName.value) {
     isValidName = inputName.value.match(regexpName);
   }
   if (inputSurname.value) {
     isValidSurname = inputSurname.value.match(regexpSurname);
   }
-  if (isValidName) {
+
+  if (isValidName?.toString() === inputName.value.toString() && inputName.value.length >= 3) {
     inputName.classList.remove('validate-error');
-  }
-  if (isValidSurname) {
-    inputSurname.classList.remove('validate-error');
-  }
-  if (!isValidName || !isValidSurname) {
+  } else {
+    inputName.classList.add('validate-error');
+    loginButton.disabled = true;
     validateError.textContent = errorMessage;
     validateError.classList.add('active');
-    if (!isValidName) {
-      inputName.classList.add('validate-error');
-    }
-    if (!isValidSurname) {
-      inputSurname.classList.add('validate-error');
-    }
-    loginButton.disabled = true;
   }
-  if (isValidName && isValidSurname) {
+
+  if (isValidSurname?.toString() === inputSurname.value.toString() && inputSurname.value.length >= 4) {
+    inputSurname.classList.remove('validate-error');
+  } else {
+    inputSurname.classList.add('validate-error');
+    loginButton.disabled = true;
+    validateError.textContent = errorMessage;
+    validateError.classList.add('active');
+  }
+
+  if (
+    isValidName?.toString() === inputName.value.toString() &&
+    isValidSurname?.toString() === inputSurname.value.toString() &&
+    inputName.value.length >= 3 &&
+    inputSurname.value.length >= 4
+  ) {
     loginButton.disabled = false;
     inputName.classList.remove('validate-error');
     inputSurname.classList.remove('validate-error');
