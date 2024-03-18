@@ -7,7 +7,6 @@ export const renderCurrentSentence = (
   answerField: HTMLElement,
   wordsField: HTMLElement,
   gameData: GameData,
-  continueBtn: HTMLButtonElement,
   checkBtn: HTMLButtonElement,
 ) => {
   const checkReloadData = () => {
@@ -47,5 +46,5 @@ export const renderCurrentSentence = (
   });
 
   moveWordCards(wordsField, currentSentenceWrapper);
-  checkAnswers(answerField, currentSentenceWrapper, sentences, gameData, wordsField, continueBtn, checkBtn);
+  checkAnswers(answerField, currentSentenceWrapper, sentences, gameData, wordsField, checkBtn);
 };

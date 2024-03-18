@@ -87,6 +87,7 @@
 }
 .game-button-wrapper {
   display: flex;
+  justify-content: center;
   gap: 20px;
 }
 .continue-btn,
@@ -94,6 +95,7 @@
   width: 120px;
   padding: 10px 16px;
   font-size: 16px;
+  transition: all 0.5s ease;
 }
 .continue-btn:hover,
 .continue-btn:active,
@@ -110,6 +112,26 @@
   opacity: 0.5;
   border: 2px solid $green;
   background-color: $green;
+  color: $white;
+  cursor: default;
+}
+.check-btn.continue {
+  background-color: $blue;
+  border: 2px solid $blue;
+}
+
+.check-btn.continue:hover,
+.check-btn.continue:active {
+  border: 2px solid $blue-dark;
+  background-color: $blue-dark;
+  color: $white;
+}
+
+.check-btn.continue:disabled,
+.check-btn.continue:disabled:hover {
+  opacity: 0.5;
+  border: 2px solid $blue;
+  background-color: $blue;
   color: $white;
   cursor: default;
 }

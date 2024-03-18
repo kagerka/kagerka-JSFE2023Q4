@@ -7,7 +7,6 @@ export const checkAnswers = (
   sentences: [Words],
   gameData: GameData,
   wordsField: HTMLElement,
-  continueBtn: HTMLButtonElement,
   checkBtn: HTMLButtonElement,
 ) => {
   const checking = () => {
@@ -46,19 +45,21 @@ export const checkAnswers = (
             currentSentenceWrapper.classList.add('inactive');
             currentSentenceWrapper.removeAttribute('id');
           }
-          checkBtn.disabled = true;
-          continueBtn.disabled = false;
+          checkBtn.textContent = 'Continue';
+          checkBtn.classList.add('continue');
 
           const renderSentence = () => {
             if (gameData.sentenceNumber === 1) answerField.textContent = '';
 
             answerField.removeEventListener('DOMSubtreeModified', checking);
-            continueBtn.removeEventListener('click', renderSentence);
-            renderCurrentSentence(answerField, wordsField, gameData, continueBtn, checkBtn);
-            continueBtn.disabled = true;
+            checkBtn.removeEventListener('click', renderSentence);
+            renderCurrentSentence(answerField, wordsField, gameData, checkBtn);
+            checkBtn.disabled = true;
+            checkBtn.classList.remove('continue');
+            checkBtn.textContent = 'Check';
           };
 
-          continueBtn.addEventListener('click', renderSentence);
+          checkBtn.addEventListener('click', renderSentence);
         }
 
         // Выделение цветом правильные и неправильные ответы.

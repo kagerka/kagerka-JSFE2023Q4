@@ -3,13 +3,6 @@ import { gameProcess } from '../../module/game-process/game-process';
 import { Button } from '../../module/button/button';
 import { ButtonData } from '../../module/types/types';
 
-const continueBtnData: ButtonData = {
-  buttonName: 'Continue',
-  type: 'submit',
-  className: 'continue-btn',
-  id: 'continueButton',
-};
-
 const checkBtnData: ButtonData = {
   buttonName: 'Check',
   type: 'submit',
@@ -32,13 +25,9 @@ export const GamePage = (pageWrapper: HTMLElement) => {
   buttonWrapper.classList.add('game-button-wrapper');
   pageWrapper.append(buttonWrapper);
 
-  const continueBtn = Button(continueBtnData);
-  continueBtn.disabled = true;
-  buttonWrapper.append(continueBtn);
-
   const checkBtn = Button(checkBtnData);
   checkBtn.disabled = true;
   buttonWrapper.append(checkBtn);
 
-  gameProcess(answerField, wordsField, continueBtn, checkBtn);
+  gameProcess(answerField, wordsField, checkBtn);
 };
