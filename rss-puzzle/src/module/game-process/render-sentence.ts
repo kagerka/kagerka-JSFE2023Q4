@@ -25,6 +25,23 @@ export const renderCurrentSentence = (
   const currentTranslate: string = sentences[gameData.sentenceNumber - 1].textExampleTranslate;
 
   hintField.textContent = '';
+
+  const soundBtnWrapper: HTMLDivElement = document.createElement('div');
+  soundBtnWrapper.classList.add('sound-btn-wrapper');
+  hintField.append(soundBtnWrapper);
+
+  const soundBtn: HTMLDivElement = document.createElement('div');
+  soundBtn.classList.add('material-symbols-outlined');
+  soundBtn.textContent = 'volume_up';
+  soundBtnWrapper.append(soundBtn);
+
+  soundBtn.addEventListener('click', () => {
+    const currentSound: string = sentences[gameData.sentenceNumber - 1].audioExample;
+    const audioURL: string = `https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/${currentSound}`;
+    const sound: HTMLAudioElement = new Audio(audioURL);
+    sound.play();
+  });
+
   const showTranslateIcon: HTMLDivElement = document.createElement('div');
   showTranslateIcon.classList.add('translate-icon');
   showTranslateIcon.textContent = '?';
