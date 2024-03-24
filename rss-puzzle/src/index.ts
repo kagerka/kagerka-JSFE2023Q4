@@ -12,9 +12,9 @@ document.body.append(header);
 const pageWrapper: HTMLDivElement = PageWrapper();
 document.body.append(pageWrapper);
 
-const auth: string | null = checkIsLogin();
+const auth: boolean = checkIsLogin();
 const isGame: string | null = checkIsGame();
-if (auth === 'true') {
+if (auth) {
   if (isGame === 'true') {
     GamePage(pageWrapper);
   } else {

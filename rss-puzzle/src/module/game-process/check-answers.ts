@@ -1,8 +1,12 @@
+import { STORAGE } from '../storage/storage';
 import { GameData, Words } from '../types/types';
+import { changeGameLevel } from './change-game-level';
 import { renderCurrentSentence } from './render-sentence';
 
 export const checkAnswers = (
   hintField: HTMLElement,
+  hintWrapper: HTMLElement,
+  hintTranslateWrapper: HTMLElement,
   answerField: HTMLElement,
   currentSentenceWrapper: HTMLElement | null,
   sentences: [Words],
@@ -22,23 +26,13 @@ export const checkAnswers = (
       checkBtn.disabled = false;
       const checkAnswer = () => {
         const rightAnswer = sentences[gameData.sentenceNumber - 1].textExample;
-        currentSentenceWrapper = document.getElementById('current-sentence');
+        currentSentenceWrapper = STORAGE.currentSentenceWrapper;
         const answerWords: HTMLElement[] = Array.from(
           currentSentenceWrapper ? currentSentenceWrapper.querySelectorAll('.word-wrapper') : [],
         );
         const answer: string = answerWords.map((el: HTMLElement) => el.textContent).join(' ');
         if (answer === rightAnswer) {
-          if (gameData.sentenceNumber < 10) {
-            gameData.sentenceNumber += 1;
-          } else if (gameData.round < gameData.roundsCount) {
-            gameData.round += 1;
-            gameData.sentenceNumber = 1;
-          } else {
-            gameData.level += 1;
-            gameData.round = 1;
-            gameData.sentenceNumber = 1;
-          }
-          localStorage.setItem('gameData', JSON.stringify(gameData));
+          changeGameLevel(gameData);
           if (currentSentenceWrapper) {
             currentSentenceWrapper.classList.add('inactive');
             currentSentenceWrapper.removeAttribute('id');
@@ -50,10 +44,12 @@ export const checkAnswers = (
             answerField.removeEventListener('DOMSubtreeModified', checking);
             checkBtn.removeEventListener('click', renderSentence);
             renderCurrentSentence(
+              gameData,
               hintField,
+              hintWrapper,
+              hintTranslateWrapper,
               answerField,
               wordsField,
-              gameData,
               checkBtn,
               autoCompleteBtn,
               translateBtnWrapper,

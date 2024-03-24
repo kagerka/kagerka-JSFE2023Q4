@@ -1,10 +1,5 @@
-export const checkIsLogin = (): string | null => {
-  if (localStorage.getItem('Name') && localStorage.getItem('Surname')) {
-    localStorage.setItem('isLogin', 'true');
-  } else {
-    localStorage.setItem('isLogin', 'false');
-  }
-  return localStorage.getItem('isLogin');
+export const checkIsLogin = (): boolean => {
+  return localStorage.getItem('userData') ? true : false;
 };
 
 export const checkIsGame = (): string | null => {
@@ -12,8 +7,8 @@ export const checkIsGame = (): string | null => {
 };
 
 export const disableBtn = (button: HTMLButtonElement) => {
-  const auth: string | null = checkIsLogin();
-  if (auth === 'false') {
+  const auth: boolean = checkIsLogin();
+  if (!auth) {
     button.disabled = true;
   } else {
     button.disabled = false;

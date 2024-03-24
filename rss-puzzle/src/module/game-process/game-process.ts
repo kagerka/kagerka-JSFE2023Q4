@@ -4,6 +4,8 @@ import data from '../../assets/data/words/wordCollectionLevel1.json';
 
 export const gameProcess = (
   hintField: HTMLElement,
+  hintWrapper: HTMLElement,
+  hintTranslateWrapper: HTMLElement,
   answerField: HTMLElement,
   wordsField: HTMLElement,
   checkBtn: HTMLButtonElement,
@@ -18,5 +20,15 @@ export const gameProcess = (
     localStorage.setItem('gameData', JSON.stringify(gameData));
   }
 
-  renderCurrentSentence(hintField, answerField, wordsField, gameData, checkBtn, autoCompleteBtn, translateBtnWrapper);
+  renderCurrentSentence(
+    gameData,
+    hintField,
+    hintWrapper,
+    hintTranslateWrapper,
+    answerField,
+    wordsField,
+    checkBtn,
+    autoCompleteBtn,
+    translateBtnWrapper,
+  );
 };

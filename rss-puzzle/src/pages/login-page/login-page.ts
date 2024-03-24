@@ -56,7 +56,6 @@ export const LoginPage = (pageWrapper: HTMLElement) => {
   form.addEventListener('input', () => validateForm(inputName, inputSurname, loginButton, validateError));
 
   loginButton.addEventListener('click', () => {
-    localStorage.setItem('Name', inputName.value);
-    localStorage.setItem('Surname', inputSurname.value);
+    localStorage.setItem('userData', JSON.stringify({ name: inputName.value, surname: inputSurname.value }));
   });
 };

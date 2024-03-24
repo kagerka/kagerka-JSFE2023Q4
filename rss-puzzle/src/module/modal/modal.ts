@@ -36,9 +36,8 @@ export const Modal = ({ text, yesBtnData, noBtnData }: ModalProps): HTMLDivEleme
   confirmBtn.addEventListener('click', () => {
     modalWrapper.classList.remove('visible');
     modalWrapper.classList.add('hidden');
-    localStorage.removeItem('Name');
-    localStorage.removeItem('Surname');
-    localStorage.setItem('isLogin', 'false');
+    localStorage.removeItem('userData');
+    localStorage.removeItem('gameData');
     const logoutButton = document.getElementById('logoutButton') as HTMLButtonElement;
     if (logoutButton) disableBtn(logoutButton);
     const pageWrapper: HTMLElement | null = document.getElementById('page-wrapper');

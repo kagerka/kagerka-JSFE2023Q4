@@ -1,6 +1,9 @@
 const errorMessage =
   'First letter should be capitalized. Use only latin letters and dash sign (-). Minimum name length is 3 characters, surname is 4 characters.';
 
+const MIN_NAME_LENGTH = 3;
+const MIN_SURNAME_LENGTH = 4;
+
 export const validateForm = (
   inputName: HTMLInputElement,
   inputSurname: HTMLInputElement,
@@ -17,7 +20,7 @@ export const validateForm = (
   if (inputSurname.value) {
     isValidSurname = inputSurname.value.match(regexpSurname);
   }
-  if (isValidName?.toString() === inputName.value.toString() && inputName.value.length >= 3) {
+  if (isValidName?.toString() === inputName.value.toString() && inputName.value.length >= MIN_NAME_LENGTH) {
     inputName.classList.remove('validate-error');
   } else {
     inputName.classList.add('validate-error');
@@ -25,7 +28,7 @@ export const validateForm = (
     validateError.textContent = errorMessage;
     validateError.classList.add('active');
   }
-  if (isValidSurname?.toString() === inputSurname.value.toString() && inputSurname.value.length >= 4) {
+  if (isValidSurname?.toString() === inputSurname.value.toString() && inputSurname.value.length >= MIN_SURNAME_LENGTH) {
     inputSurname.classList.remove('validate-error');
   } else {
     inputSurname.classList.add('validate-error');
@@ -36,8 +39,8 @@ export const validateForm = (
   if (
     isValidName?.toString() === inputName.value.toString() &&
     isValidSurname?.toString() === inputSurname.value.toString() &&
-    inputName.value.length >= 3 &&
-    inputSurname.value.length >= 4
+    inputName.value.length >= MIN_NAME_LENGTH &&
+    inputSurname.value.length >= MIN_SURNAME_LENGTH
   ) {
     loginButton.disabled = false;
     inputName.classList.remove('validate-error');

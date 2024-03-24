@@ -10,21 +10,20 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.5s;
+
+  &:hover,
+  &:active {
+    border: 2px solid $green-dark;
+    background-color: $green-dark;
+    color: $white;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
 }
 
-.btn:hover,
-.btn:active {
-  border: 2px solid $green-dark;
-  background-color: $green-dark;
-  color: $white;
-}
-
-.btn:active {
-  opacity: 0.5;
-}
-
-.login-btn,
-.logout-btn {
+.login-btn {
   width: 180px;
   padding: 16px 20px;
   border: 2px solid $green;
@@ -35,29 +34,49 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.5s;
+
+  &:hover,
+  &:active {
+    border: 2px solid $green-dark;
+    background-color: $green-dark;
+    color: $white;
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    opacity: 0.5;
+    border: 2px solid $green;
+    background-color: $green;
+    color: $white;
+    cursor: default;
+  }
 }
 
 .logout-btn {
   width: 120px;
   padding: 10px 16px;
-  font-size: 16px;
-}
-
-.login-btn:hover,
-.login-btn:active,
-.logout-btn:hover,
-.logout-btn:active {
-  border: 2px solid $green-dark;
-  background-color: $green-dark;
-  color: $white;
-}
-.login-btn:disabled,
-.login-btn:disabled:hover,
-.logout-btn:disabled,
-.logout-btn:disabled:hover {
-  opacity: 0.5;
   border: 2px solid $green;
-  background-color: $green;
+  border-radius: 10px;
+  background: $green;
   color: $white;
-  cursor: default;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &:hover,
+  &:active {
+    border: 2px solid $green-dark;
+    background-color: $green-dark;
+    color: $white;
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    opacity: 0.5;
+    border: 2px solid $green;
+    background-color: $green;
+    color: $white;
+    cursor: default;
+  }
 }

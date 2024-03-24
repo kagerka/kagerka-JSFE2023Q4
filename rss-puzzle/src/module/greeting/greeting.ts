@@ -1,5 +1,8 @@
 import './greeting.scss';
-
+interface UserData {
+  name: string;
+  surname: string;
+}
 export class Greeting {
   public greetingWrapper: HTMLElement = document.createElement('div');
 
@@ -9,9 +12,11 @@ export class Greeting {
 
   greeting = '';
 
+  userData: UserData = JSON.parse(localStorage.getItem('userData') || '{}');
+
   constructor() {
-    this.userName = localStorage.getItem('Name');
-    this.userSurname = localStorage.getItem('Surname');
+    this.userName = this.userData.name;
+    this.userSurname = this.userData.surname;
   }
 
   showGreeting() {

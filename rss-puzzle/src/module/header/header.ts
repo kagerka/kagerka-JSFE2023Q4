@@ -4,6 +4,7 @@ import { Button } from '../button/button';
 import { disableBtn } from '../auth/auth';
 import { Modal } from '../modal/modal';
 import { ButtonData, ModalData } from '../types/types';
+import { STORAGE } from '../storage/storage';
 
 const logoutButtonData: ButtonData = {
   buttonName: 'Logout',
@@ -48,6 +49,7 @@ export const Header = (): HTMLDivElement => {
 
   const logoutButton: HTMLButtonElement = Button(logoutButtonData);
   header.append(logoutButton);
+  STORAGE.logoutButton = logoutButton;
   disableBtn(logoutButton);
 
   logoutButton.addEventListener('click', () => {

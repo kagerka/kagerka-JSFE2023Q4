@@ -1,5 +1,7 @@
+import { STORAGE } from '../storage/storage';
+
 export const autoComplete = (answerField: HTMLElement, wordsField: HTMLElement, currentSentence: string) => {
-  const currentSentenceWrapper: HTMLElement | null = document.getElementById('current-sentence');
+  const currentSentenceWrapper = STORAGE.currentSentenceWrapper;
   const words: string[] = currentSentence.split(' ');
   if (currentSentenceWrapper) {
     for (let i = 0; i < words.length; i++) {

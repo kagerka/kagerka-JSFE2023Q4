@@ -42,3 +42,8 @@ export type InputData = {
   name: string;
   required: string;
 };
+
+export type StorageTypes = {
+  currentSentenceWrapper: HTMLElement;
+  logoutButton: HTMLButtonElement;
+};
