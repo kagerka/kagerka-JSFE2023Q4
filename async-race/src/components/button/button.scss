@@ -1,0 +1,32 @@
+@import '../../styles/variables.scss';
+
+.btn {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 4px 2px;
+  padding: 6px 20px;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.garage-btn,
+.winners-btn {
+  min-width: 140px;
+  color: $green-dark;
+  background-color: $green-light;
+  border: 2px solid $green;
+
+  &:hover {
+    color: $white;
+    background-color: $green;
+  }
+
+  &.active {
+    color: $white;
+    background-color: $green;
+  }
+}
