@@ -18,6 +18,9 @@ module.exports = {
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|svg|webp)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: 'assets/img/[name][ext]',
+        },
       },
       {
         test: /\.(c|sa|sc)ss$/i,
@@ -27,6 +30,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      img: path.join(__dirname, 'src', 'assets', 'img'),
+    },
   },
   output: {
     filename: '[name].[contenthash].js',
@@ -43,7 +49,12 @@ module.exports = {
       filename: '[name].[contenthash].css',
     }),
     new CopyPlugin({
-      patterns: [{ from: 'src/assets/img', to: 'img' }],
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/assets/img'),
+          to: path.resolve(__dirname, 'dist/img'),
+        },
+      ],
     }),
     new ESLintPlugin({
       extensions: ['ts'],
