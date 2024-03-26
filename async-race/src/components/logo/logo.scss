@@ -1,0 +1,15 @@
+.logo-wrapper {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: -1;
+}
+.logo-img {
+  height: 290px;
+}
+
+@media screen and (max-width: 900px) {
+  .logo-wrapper {
+    display: none;
+  }
+}
