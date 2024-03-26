@@ -10,7 +10,9 @@ export class Header extends BaseComponent {
   constructor() {
     super('div', ['header-nav']);
     this.garageBtn = new Button('Garage', ['garage-btn', 'active']).render(this.element);
+    this.garageBtn.id = 'garageBtn';
     this.winnersBtn = new Button('Winners', ['winners-btn']).render(this.element);
+    this.winnersBtn.id = 'winnersBtn';
     this.init();
   }
 

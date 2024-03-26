@@ -10,23 +10,29 @@
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  color: $green-dark;
+  background-color: $green-light;
+  border: 2px solid $green;
   transition-duration: 0.4s;
 }
 
 .garage-btn,
 .winners-btn {
   min-width: 140px;
-  color: $green-dark;
+  color: $green-medium;
   background-color: $green-light;
-  border: 2px solid $green;
+  border: 2px solid $green-medium;
 
   &:hover {
     color: $white;
-    background-color: $green;
+    background-color: $green-medium;
+    border: 2px solid $green-medium;
   }
 
   &.active {
     color: $white;
     background-color: $green;
+    border: 2px solid $green;
+    cursor: default;
   }
 }
