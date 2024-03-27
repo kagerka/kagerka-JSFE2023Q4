@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+
+.race-buttons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.race-btn,
+.reset-btn,
+.generate-cars-btn {
+  background-color: $white;
+  color: $green-medium;
+  border: 2px solid $green-medium;
+  flex: 1;
+  max-width: 143px;
+
+  &:hover,
+  &:hover {
+    background-color: $green-medium;
+    color: $white;
+  }
+}
+
+.generate-cars-btn {
+  color: $orange-light;
+  border: 2px solid $orange-light;
+  flex: 2;
+  max-width: 160px;
+
+  &:hover,
+  &:hover {
+    background-color: $orange-light;
+    color: $white;
+  }
+}

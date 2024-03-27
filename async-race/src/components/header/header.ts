@@ -1,6 +1,24 @@
+import { BaseComponentType, ButtonType } from '../../data/types';
 import { BaseComponent } from '../base-component';
 import { Button } from '../button/button';
 import './header.scss';
+
+const headerTag: BaseComponentType = {
+  tag: 'div',
+  styles: ['header-nav'],
+};
+
+const garageButton: ButtonType = {
+  name: 'Garage',
+  styles: ['garage-btn', 'active'],
+  id: 'garageBtn',
+};
+
+const winnersButton: ButtonType = {
+  name: 'Winners',
+  styles: ['winners-btn'],
+  id: 'winnersBtn',
+};
 
 export class Header extends BaseComponent {
   garageBtn: HTMLElement;
@@ -8,11 +26,11 @@ export class Header extends BaseComponent {
   winnersBtn: HTMLElement;
 
   constructor() {
-    super('div', ['header-nav']);
-    this.garageBtn = new Button('Garage', ['garage-btn', 'active']).render(this.element);
-    this.garageBtn.id = 'garageBtn';
-    this.winnersBtn = new Button('Winners', ['winners-btn']).render(this.element);
-    this.winnersBtn.id = 'winnersBtn';
+    super(headerTag);
+    this.garageBtn = new Button(garageButton).render(this.element);
+    if (garageButton.id) this.garageBtn.id = garageButton.id;
+    this.winnersBtn = new Button(winnersButton).render(this.element);
+    if (winnersButton.id) this.winnersBtn.id = winnersButton.id;
     this.init();
   }
 

@@ -1,11 +1,18 @@
+import { BaseComponentType, ButtonType } from '../../data/types';
 import { BaseComponent } from '../base-component';
 import './button.scss';
 
+const buttonTag: BaseComponentType = {
+  tag: 'button',
+  styles: ['btn'],
+};
+
 export class Button extends BaseComponent {
-  constructor(buttonName: string, styles: string[]) {
-    super('button', ['btn']);
-    this.element.textContent = buttonName;
-    this.element.classList.add(...styles);
+  constructor(buttonOptions: ButtonType) {
+    super(buttonTag);
+    this.element.textContent = buttonOptions.name;
+    this.element.classList.add(...buttonOptions.styles);
+    if (buttonOptions.id) this.element.id = buttonOptions.id;
   }
 
   render(parent: HTMLElement): HTMLElement {

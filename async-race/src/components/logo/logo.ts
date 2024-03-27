@@ -1,10 +1,16 @@
 import { BaseComponent } from '../base-component';
 import './logo.scss';
 import logotype from '../../assets/img/logo.svg';
+import { BaseComponentType } from '../../data/types';
+
+const logoTag: BaseComponentType = {
+  tag: 'div',
+  styles: ['logo-wrapper'],
+};
 
 export class Logo extends BaseComponent {
   constructor() {
-    super('div', ['logo-wrapper']);
+    super(logoTag);
     const logo: HTMLImageElement = new Image();
     logo.src = logotype;
     logo.alt = 'logo';
