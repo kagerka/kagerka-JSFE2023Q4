@@ -4,3 +4,18 @@
   display: flex;
   gap: 10px;
 }
+.prev-btn.disabled,
+.next-btn.disabled {
+  color: $gray-light;
+  border: 2px solid $gray-light;
+  background-color: $white;
+  pointer-events: none;
+
+  &:hover {
+    color: $gray-light;
+    border: 2px solid $gray-light;
+    background-color: $white;
+    cursor: default;
+    pointer-events: none;
+  }
+}

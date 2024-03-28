@@ -15,8 +15,8 @@ export class Button extends BaseComponent {
     if (buttonOptions.id) this.element.id = buttonOptions.id;
   }
 
-  render(parent: HTMLElement): HTMLElement {
+  render(parent: HTMLElement): HTMLButtonElement {
     parent.append(this.element);
-    return this.element;
+    return this.element as HTMLButtonElement;
   }
 }

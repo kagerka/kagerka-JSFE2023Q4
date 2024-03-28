@@ -39,3 +39,7 @@ export type ButtonType = {
   styles: string[];
   id?: string;
 };
+
+export type RaceDataType = {
+  pageNumber: number;
+};

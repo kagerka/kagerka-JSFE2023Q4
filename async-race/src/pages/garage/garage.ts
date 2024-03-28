@@ -5,6 +5,7 @@ import { PageInfo } from '../../components/page-info/page-info';
 import { PaginationButtons } from '../../components/pagination-buttons/pagination-buttons';
 import { RaceButtons } from '../../components/race-buttons/race-buttons';
 import { RaceField } from '../../components/race-field/race-field';
+import { raceData } from '../../data/race-data';
 import { BaseComponentType } from '../../data/types';
 import './garage.scss';
 
@@ -17,15 +18,31 @@ export class GaragePage extends BaseComponent {
   constructor() {
     super(garagePageTag);
     new CarOptions().render(this.element);
-    new RaceButtons().render(this.element);
+
+    if (!localStorage.getItem('asyncRaceData')) {
+      localStorage.setItem('asyncRaceData', JSON.stringify(raceData));
+    }
   }
 
   async render(parent: HTMLElement): Promise<HTMLElement> {
+    new RaceButtons().render(this.element);
     const cars = await getCars();
-    await new PageInfo('Garage', cars.carsNumber).render(this.element);
+
+    const localStorageData = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
+    const pageInfoWrapper = document.createElement('div');
+    pageInfoWrapper.classList.add('page-info-wrapper');
+    this.element.append(pageInfoWrapper);
+    new PageInfo('Garage', cars.carsNumber, localStorageData.pageNumber).render(pageInfoWrapper);
+
+    const raceFieldWrapper = document.createElement('div');
+    raceFieldWrapper.classList.add('race-field');
+    this.element.append(raceFieldWrapper);
+    await new RaceField().render(raceFieldWrapper);
+
+    new PaginationButtons(pageInfoWrapper, raceFieldWrapper).render(this.element);
+
     parent.append(this.element);
-    await new RaceField().render(this.element);
-    await new PaginationButtons().render(this.element);
+
     return this.element;
   }
 }

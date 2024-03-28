@@ -14,13 +14,14 @@ export class RaceField extends BaseComponent {
     super(raceFieldTag);
   }
 
-  async render(parent: HTMLElement): Promise<HTMLElement> {
-    const carsInfo: GarageType = await getCars();
+  async render(parent?: HTMLElement): Promise<HTMLElement> {
+    const number = 1;
+    const carsInfo: GarageType = await getCars(number);
     carsInfo.cars.forEach((el) => {
       new RaceLine(el.name, el.color, el.id).render(this.element);
     });
 
-    parent.append(this.element);
+    if (parent) parent.append(this.element);
     return this.element;
   }
 }

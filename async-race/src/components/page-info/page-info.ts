@@ -14,14 +14,14 @@ export class PageInfo extends BaseComponent {
 
   pageNumber: HTMLElement;
 
-  constructor(pageName: string, number: number) {
+  constructor(pageName: string, carsNumber: number, pageNumber: number) {
     super(pageInfoTag);
-    this.pageName = new PageName(`${pageName} (${number})`).render(this.element);
-    this.pageNumber = new PageNumber('Page #1').render(this.element);
+    this.pageName = new PageName(`${pageName} (${carsNumber})`).render(this.element);
+    this.pageNumber = new PageNumber(`Page #${pageNumber}`).render(this.element);
   }
 
-  render(parent: HTMLElement): HTMLElement {
-    parent.append(this.element);
+  render(parent?: HTMLElement): HTMLElement {
+    if (parent) parent.append(this.element);
     return this.element;
   }
 }
