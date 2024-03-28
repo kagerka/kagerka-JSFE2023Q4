@@ -1,3 +1,4 @@
+import { checkId } from '../../../data/ids';
 import { BaseComponentType, ButtonType, InputOptionType } from '../../../data/types';
 import { BaseComponent } from '../../base-component';
 import { Button } from '../../button/button';
@@ -7,18 +8,18 @@ import './update-car-form.scss';
 const updateCarFormTag: BaseComponentType = {
   tag: 'form',
   styles: ['update-car-form'],
-  id: 'update-car-form',
+  id: checkId('update-car-form'),
 };
 
 const updateCarName: InputOptionType = {
-  id: 'update-car-name',
+  id: checkId('update-car-name'),
   type: 'text',
   placeholder: 'Enter new car name here for update',
   styles: ['update-car-name'],
 };
 
 const updateCarColor: InputOptionType = {
-  id: 'update-car-color',
+  id: checkId('update-car-color'),
   type: 'color',
   value: '#e3e3e3',
   styles: ['update-car-color'],
@@ -27,7 +28,7 @@ const updateCarColor: InputOptionType = {
 const updateCarBtn: ButtonType = {
   name: 'Update',
   styles: ['update-car-btn'],
-  id: 'update-car-btn',
+  id: checkId('update-car-btn'),
 };
 
 export class UpdateCarForm extends BaseComponent {

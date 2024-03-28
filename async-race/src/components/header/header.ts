@@ -1,3 +1,4 @@
+import { checkId } from '../../data/ids';
 import { BaseComponentType, ButtonType } from '../../data/types';
 import { BaseComponent } from '../base-component';
 import { Button } from '../button/button';
@@ -11,13 +12,13 @@ const headerTag: BaseComponentType = {
 const garageButton: ButtonType = {
   name: 'Garage',
   styles: ['garage-btn', 'active'],
-  id: 'garageBtn',
+  id: checkId('garage-btn'),
 };
 
 const winnersButton: ButtonType = {
   name: 'Winners',
   styles: ['winners-btn'],
-  id: 'winnersBtn',
+  id: checkId('winners-btn'),
 };
 
 export class Header extends BaseComponent {

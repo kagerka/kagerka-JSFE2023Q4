@@ -1,3 +1,4 @@
+import { checkId } from '../../data/ids';
 import { BaseComponentType, ButtonType } from '../../data/types';
 import { BaseComponent } from '../base-component';
 import { Button } from '../button/button';
@@ -11,19 +12,19 @@ const RaceButtonsTag: BaseComponentType = {
 const raceButton: ButtonType = {
   name: 'Race',
   styles: ['race-btn'],
-  id: 'race-btn',
+  id: checkId('race-btn'),
 };
 
 const resetButton: ButtonType = {
   name: 'Reset',
   styles: ['reset-btn'],
-  id: 'reset-btn',
+  id: checkId('reset-btn'),
 };
 
 const generateCarsButton: ButtonType = {
   name: 'Generate cars',
   styles: ['generate-cars-btn'],
-  id: 'generate-cars-btn',
+  id: checkId('generate-cars-btn'),
 };
 export class RaceButtons extends BaseComponent {
   constructor() {

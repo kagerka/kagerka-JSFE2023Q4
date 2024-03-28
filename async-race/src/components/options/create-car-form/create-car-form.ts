@@ -1,3 +1,4 @@
+import { checkId } from '../../../data/ids';
 import { BaseComponentType, ButtonType, InputOptionType } from '../../../data/types';
 import { BaseComponent } from '../../base-component';
 import { Button } from '../../button/button';
@@ -7,18 +8,18 @@ import './create-car-form.scss';
 const createCarFormTag: BaseComponentType = {
   tag: 'form',
   styles: ['create-car-form'],
-  id: 'create-car-form',
+  id: checkId('create-car-form'),
 };
 
 const createCarName: InputOptionType = {
-  id: 'create-car-name',
+  id: checkId('create-car-name'),
   type: 'text',
   placeholder: 'Enter car name here',
   styles: ['create-car-name'],
 };
 
 const createCarColor: InputOptionType = {
-  id: 'create-car-color',
+  id: checkId('create-car-color'),
   type: 'color',
   value: '#e3e3e3',
   styles: ['create-car-color'],
@@ -27,7 +28,7 @@ const createCarColor: InputOptionType = {
 const createCarBtn: ButtonType = {
   name: 'Create',
   styles: ['create-car-btn'],
-  id: 'create-car-btn',
+  id: checkId('create-car-btn'),
 };
 
 export class CreateCarForm extends BaseComponent {
