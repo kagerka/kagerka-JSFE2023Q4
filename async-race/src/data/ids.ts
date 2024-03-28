@@ -7,7 +7,5 @@ export const checkId = (id: string): string => {
   } else {
     IDs.push(id);
   }
-  // eslint-disable-next-line no-console
-  console.log(IDs);
   return id;
 };
