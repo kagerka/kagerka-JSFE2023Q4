@@ -2,7 +2,9 @@ import { getCars } from '../../api/get-cars';
 import { BaseComponent } from '../../components/base-component';
 import { CarOptions } from '../../components/options/options';
 import { PageInfo } from '../../components/page-info/page-info';
+import { PaginationButtons } from '../../components/pagination-buttons/pagination-buttons';
 import { RaceButtons } from '../../components/race-buttons/race-buttons';
+import { RaceField } from '../../components/race-field/race-field';
 import { BaseComponentType } from '../../data/types';
 import './garage.scss';
 
@@ -20,8 +22,10 @@ export class GaragePage extends BaseComponent {
 
   async render(parent: HTMLElement): Promise<HTMLElement> {
     const cars = await getCars();
-    new PageInfo('Garage', cars.carsNumber).render(this.element);
+    await new PageInfo('Garage', cars.carsNumber).render(this.element);
     parent.append(this.element);
+    await new RaceField().render(this.element);
+    await new PaginationButtons().render(this.element);
     return this.element;
   }
 }
