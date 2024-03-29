@@ -17,8 +17,8 @@ export class OptionInput extends BaseComponent {
     if (inputOptions.value) this.element.setAttribute('value', inputOptions.value);
   }
 
-  render(parent: HTMLElement): HTMLElement {
+  render(parent: HTMLElement): HTMLInputElement {
     parent.append(this.element);
-    return this.element;
+    return this.element as HTMLInputElement;
   }
 }

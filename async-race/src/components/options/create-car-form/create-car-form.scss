@@ -41,10 +41,16 @@
   background-color: $white;
   cursor: pointer;
   transition-duration: 0.4s;
-
+  
   &:hover {
     color: $white;
     background-color: $blue;
+  }
+
+  &:active {
+    color: $white;
+    background-color: $blue-dark;
+    border: 2px solid $blue-dark;
   }
 
   &.disabled {

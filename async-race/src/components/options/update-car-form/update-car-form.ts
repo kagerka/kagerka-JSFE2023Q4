@@ -1,3 +1,4 @@
+import { DEFAULT_CAR_COLOR } from '../../../data/constants';
 import { checkId } from '../../../data/ids';
 import { BaseComponentType, ButtonType, InputOptionType } from '../../../data/types';
 import { BaseComponent } from '../../base-component';
@@ -21,7 +22,7 @@ const updateCarName: InputOptionType = {
 const updateCarColor: InputOptionType = {
   id: checkId('update-car-color'),
   type: 'color',
-  value: '#e3e3e3',
+  value: DEFAULT_CAR_COLOR,
   styles: ['update-car-color'],
 };
 

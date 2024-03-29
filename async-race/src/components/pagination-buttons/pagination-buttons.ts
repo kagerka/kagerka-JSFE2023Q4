@@ -1,5 +1,5 @@
 import { getCars } from '../../api/get-cars';
-import { updateRaceContent } from '../../api/update-content';
+import { updateRaceContent } from '../../api/update-race-content';
 import { CARS_PER_PAGE, FIRST_PAGE } from '../../data/constants';
 import { checkId } from '../../data/ids';
 import { raceData } from '../../data/race-data';
@@ -55,18 +55,19 @@ export class PaginationButtons extends BaseComponent {
         raceData.pageNumber -= 1;
         localStorage.setItem('asyncRaceData', JSON.stringify(raceData));
         if (this.raceFieldWrapper && this.pageInfoWrapper && JSON.parse(localStorage.asyncRaceData).pageNumber) {
-          updateRaceContent(
+          await updateRaceContent(
             this.raceFieldWrapper,
             this.pageInfoWrapper,
             JSON.parse(localStorage.asyncRaceData).pageNumber,
           );
         }
       }
+
       if (JSON.parse(localStorage.asyncRaceData).pageNumber === FIRST_PAGE) {
         this.prevBtn.classList.add('disabled');
       }
     });
-    this.nextBtn.addEventListener('click', () => {
+    this.nextBtn.addEventListener('click', async () => {
       const pageNumber = JSON.parse(localStorage.asyncRaceData).pageNumber;
       this.prevBtn.classList.remove('disabled');
       if (JSON.parse(localStorage.asyncRaceData).pageNumber < carsInfo.carsNumber / CARS_PER_PAGE) {
@@ -74,7 +75,7 @@ export class PaginationButtons extends BaseComponent {
         raceData.pageNumber += 1;
         localStorage.setItem('asyncRaceData', JSON.stringify(raceData));
         if (this.raceFieldWrapper && this.pageInfoWrapper && JSON.parse(localStorage.asyncRaceData).pageNumber) {
-          updateRaceContent(
+          await updateRaceContent(
             this.raceFieldWrapper,
             this.pageInfoWrapper,
             JSON.parse(localStorage.asyncRaceData).pageNumber,
@@ -91,7 +92,7 @@ export class PaginationButtons extends BaseComponent {
     const carsInfo: GarageType = await getCars();
     const LS = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
     if (LS.pageNumber === FIRST_PAGE) this.prevBtn.classList.add('disabled');
-    if (LS.pageNumber === carsInfo.carsNumber / CARS_PER_PAGE) this.nextBtn.classList.add('disabled');
+    if (LS.pageNumber > Math.floor(carsInfo.carsNumber / CARS_PER_PAGE)) this.nextBtn.classList.add('disabled');
     this.init(carsInfo);
     parent.append(this.element);
     return { prev: this.prevBtn, next: this.nextBtn };

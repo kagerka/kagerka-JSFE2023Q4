@@ -15,8 +15,9 @@ export class RaceField extends BaseComponent {
   }
 
   async render(parent?: HTMLElement): Promise<HTMLElement> {
-    const number = 1;
-    const carsInfo: GarageType = await getCars(number);
+    const localStorageData = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
+    const pageNumber = localStorageData.pageNumber;
+    const carsInfo: GarageType = await getCars(pageNumber);
     carsInfo.cars.forEach((el) => {
       new RaceLine(el.name, el.color, el.id).render(this.element);
     });

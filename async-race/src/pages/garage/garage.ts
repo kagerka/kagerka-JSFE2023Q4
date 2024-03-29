@@ -1,4 +1,5 @@
 import { getCars } from '../../api/get-cars';
+import { updateRaceContent } from '../../api/update-race-content';
 import { BaseComponent } from '../../components/base-component';
 import { CarOptions } from '../../components/options/options';
 import { PageInfo } from '../../components/page-info/page-info';
@@ -17,14 +18,19 @@ const garagePageTag: BaseComponentType = {
 export class GaragePage extends BaseComponent {
   constructor() {
     super(garagePageTag);
-    new CarOptions().render(this.element);
+    
 
     if (!localStorage.getItem('asyncRaceData')) {
       localStorage.setItem('asyncRaceData', JSON.stringify(raceData));
     }
   }
 
+  init(): void {
+
+  }
+
   async render(parent: HTMLElement): Promise<HTMLElement> {
+    new CarOptions().render(this.element);
     new RaceButtons().render(this.element);
     const cars = await getCars();
 
@@ -42,7 +48,17 @@ export class GaragePage extends BaseComponent {
     new PaginationButtons(pageInfoWrapper, raceFieldWrapper).render(this.element);
 
     parent.append(this.element);
-
+    
+    document.addEventListener('click', async (e: Event) => {
+      const target = e.target as HTMLButtonElement;
+      if (target.id === 'remove-btn') {
+        await updateRaceContent(raceFieldWrapper, pageInfoWrapper, localStorageData.pageNumber);
+      }
+      if (target.id === 'create-car-btn') {
+        await updateRaceContent(raceFieldWrapper, pageInfoWrapper, localStorageData.pageNumber);
+      }
+    
+    });
     return this.element;
   }
 }

@@ -1,10 +1,11 @@
+import { deleteCar } from '../../../api/delete-car';
+import flagImage from '../../../assets/img/flag.svg';
 import { checkId } from '../../../data/ids';
 import { BaseComponentType, ButtonType } from '../../../data/types';
 import { BaseComponent } from '../../base-component';
 import { Button } from '../../button/button';
 import { Car } from '../../car/car';
 import './race-line.scss';
-import flagImage from '../../../assets/img/flag.svg';
 
 const raceLineTag: BaseComponentType = {
   tag: 'div',
@@ -60,7 +61,7 @@ export class RaceLine extends BaseComponent {
     carRaceBtnWrapper.append(carEngineWrapper);
 
     new Button(selectButton).render(carSelectWrapper);
-    new Button(removeButton).render(carSelectWrapper);
+    const removeBtn = new Button(removeButton).render(carSelectWrapper);
     new Button(aButton).render(carEngineWrapper);
     new Button(bButton).render(carEngineWrapper);
 
@@ -69,6 +70,14 @@ export class RaceLine extends BaseComponent {
     flag.alt = 'flag';
     flag.classList.add('flag-img');
     this.element.append(flag);
+
+    this.init(removeBtn);
+  }
+
+  init(removeBtn: HTMLButtonElement): void {
+    removeBtn.addEventListener('click', async () => {
+      await deleteCar(this.id);
+    });
   }
 
   render(parent: HTMLElement): HTMLElement {

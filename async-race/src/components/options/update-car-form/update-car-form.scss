@@ -47,6 +47,12 @@
     background-color: $blue;
   }
 
+  &:active {
+    color: $white;
+    background-color: $blue-dark;
+    border: 2px solid $blue-dark;
+  }
+  
   &.disabled {
     color: $gray-light;
     border: 2px solid $gray-light;

@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+import { createCar } from '../../../api/create-car';
+import { generateRandomCar } from '../../../api/generate-random-car';
+import { DEFAULT_CAR_COLOR } from '../../../data/constants';
 import { checkId } from '../../../data/ids';
 import { BaseComponentType, ButtonType, InputOptionType } from '../../../data/types';
 import { BaseComponent } from '../../base-component';
@@ -21,7 +25,7 @@ const createCarName: InputOptionType = {
 const createCarColor: InputOptionType = {
   id: checkId('create-car-color'),
   type: 'color',
-  value: '#e3e3e3',
+  value: DEFAULT_CAR_COLOR,
   styles: ['create-car-color'],
 };
 
@@ -34,9 +38,26 @@ const createCarBtn: ButtonType = {
 export class CreateCarForm extends BaseComponent {
   constructor() {
     super(createCarFormTag);
-    new OptionInput(createCarName).render(this.element);
-    new OptionInput(createCarColor).render(this.element);
-    new Button(createCarBtn).render(this.element);
+    const nameInput = new OptionInput(createCarName).render(this.element);
+    const colorInput = new OptionInput(createCarColor).render(this.element);
+    const createButton = new Button(createCarBtn).render(this.element);
+    this.init(createButton, nameInput, colorInput);
+  }
+
+  init(createButton: HTMLButtonElement, nameInput: HTMLInputElement, colorInput: HTMLInputElement): void {
+    createButton.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const randomCar = generateRandomCar();
+      if (nameInput.value === '' && colorInput.value === DEFAULT_CAR_COLOR) {
+        await createCar(`${randomCar.randomCarBrand} ${randomCar.randomCarModel}`, randomCar.randomColor);
+      } else if (nameInput.value === '' && colorInput.value !== DEFAULT_CAR_COLOR) {
+        await createCar(`${randomCar.randomCarBrand} ${randomCar.randomCarModel}`, colorInput.value);
+      } else if (nameInput.value !== '' && colorInput.value === DEFAULT_CAR_COLOR) {
+        await createCar(nameInput.value, randomCar.randomColor);
+      } else {
+        await createCar(nameInput.value, colorInput.value);
+      }
+    });
   }
 
   render(parent: HTMLElement): HTMLElement {

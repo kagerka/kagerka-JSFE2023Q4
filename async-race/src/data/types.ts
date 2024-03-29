@@ -43,3 +43,9 @@ export type ButtonType = {
 export type RaceDataType = {
   pageNumber: number;
 };
+
+export type RandomCarType = {
+  randomCarBrand: string;
+  randomCarModel: string;
+  randomColor: string;
+};
