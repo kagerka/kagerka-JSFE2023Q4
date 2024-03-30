@@ -49,3 +49,8 @@ export type RandomCarType = {
   randomCarModel: string;
   randomColor: string;
 };
+
+export type CarUpdateType = {
+  name: string;
+  color: string;
+};

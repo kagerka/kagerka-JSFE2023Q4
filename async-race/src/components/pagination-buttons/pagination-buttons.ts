@@ -39,10 +39,13 @@ export class PaginationButtons extends BaseComponent {
 
   raceFieldWrapper?: HTMLElement;
 
-  constructor(pageInfoWrapper?: HTMLElement, raceFieldWrapper?: HTMLElement) {
+  paginationBtnWrapper?: HTMLElement;
+
+  constructor(pageInfoWrapper?: HTMLElement, raceFieldWrapper?: HTMLElement, paginationBtnWrapper?: HTMLElement) {
     super(paginationButtonsTag);
     if (pageInfoWrapper) this.pageInfoWrapper = pageInfoWrapper;
     if (raceFieldWrapper) this.raceFieldWrapper = raceFieldWrapper;
+    if (paginationBtnWrapper) this.paginationBtnWrapper = paginationBtnWrapper;
     this.prevBtn = new Button(prevButton).render(this.element);
     this.nextBtn = new Button(nextButton).render(this.element);
   }
@@ -92,7 +95,7 @@ export class PaginationButtons extends BaseComponent {
     const carsInfo: GarageType = await getCars();
     const LS = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
     if (LS.pageNumber === FIRST_PAGE) this.prevBtn.classList.add('disabled');
-    if (LS.pageNumber > Math.floor(carsInfo.carsNumber / CARS_PER_PAGE)) this.nextBtn.classList.add('disabled');
+    if (LS.pageNumber >= Math.ceil(carsInfo.carsNumber / CARS_PER_PAGE)) this.nextBtn.classList.add('disabled');
     this.init(carsInfo);
     parent.append(this.element);
     return { prev: this.prevBtn, next: this.nextBtn };

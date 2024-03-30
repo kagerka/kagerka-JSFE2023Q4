@@ -1,4 +1,5 @@
 import { deleteCar } from '../../../api/delete-car';
+import { getCurrentCar } from '../../../api/get-current-car';
 import flagImage from '../../../assets/img/flag.svg';
 import { checkId } from '../../../data/ids';
 import { BaseComponentType, ButtonType } from '../../../data/types';
@@ -12,11 +13,11 @@ const raceLineTag: BaseComponentType = {
   styles: ['race-line'],
 };
 
-const selectButton: ButtonType = {
-  name: 'Select',
-  styles: ['select-btn'],
-  id: checkId('select-btn'),
-};
+// const selectButton: ButtonType = {
+//   name: 'Select',
+//   styles: ['select-btn'],
+//   id: checkId('select-btn'),
+// };
 
 const removeButton: ButtonType = {
   name: 'Remove',
@@ -32,7 +33,7 @@ const aButton: ButtonType = {
 
 const bButton: ButtonType = {
   name: 'B',
-  styles: ['b-btn'],
+  styles: ['b-btn', 'disabled'],
   id: checkId('b-btn'),
 };
 
@@ -51,32 +52,35 @@ export class RaceLine extends BaseComponent {
     const carRaceBtnWrapper = document.createElement('div');
     carRaceBtnWrapper.classList.add('car-race-btn-wrapper');
     this.element.append(carRaceBtnWrapper);
-
     const carSelectWrapper = document.createElement('div');
     carSelectWrapper.classList.add('car-select-wrapper');
     carRaceBtnWrapper.append(carSelectWrapper);
-
     const carEngineWrapper = document.createElement('div');
     carEngineWrapper.classList.add('car-engine-wrapper');
     carRaceBtnWrapper.append(carEngineWrapper);
-
-    new Button(selectButton).render(carSelectWrapper);
+    const selectBtn = new Button({
+      name: 'Select',
+      styles: ['select-btn'],
+      id: `select-btn-${id}`,
+    }).render(carSelectWrapper);
     const removeBtn = new Button(removeButton).render(carSelectWrapper);
     new Button(aButton).render(carEngineWrapper);
     new Button(bButton).render(carEngineWrapper);
-
     const flag: HTMLImageElement = new Image();
     flag.src = flagImage;
     flag.alt = 'flag';
     flag.classList.add('flag-img');
     this.element.append(flag);
-
-    this.init(removeBtn);
+    this.init(removeBtn, selectBtn);
   }
 
-  init(removeBtn: HTMLButtonElement): void {
+  init(removeBtn: HTMLButtonElement, selectBtn: HTMLButtonElement): void {
     removeBtn.addEventListener('click', async () => {
       await deleteCar(this.id);
+    });
+    selectBtn.addEventListener('click', async (e) => {
+      const target = e.target as HTMLElement;
+      if (target.id === `select-btn-${this.id}`) await getCurrentCar(this.id);
     });
   }
 

@@ -1,3 +1,4 @@
+import { updateCar } from '../../../api/update-car';
 import { DEFAULT_CAR_COLOR } from '../../../data/constants';
 import { checkId } from '../../../data/ids';
 import { BaseComponentType, ButtonType, InputOptionType } from '../../../data/types';
@@ -28,16 +29,40 @@ const updateCarColor: InputOptionType = {
 
 const updateCarBtn: ButtonType = {
   name: 'Update',
-  styles: ['update-car-btn'],
+  styles: ['update-car-btn', 'disabled'],
   id: checkId('update-car-btn'),
 };
 
 export class UpdateCarForm extends BaseComponent {
   constructor() {
     super(updateCarFormTag);
-    new OptionInput(updateCarName).render(this.element);
-    new OptionInput(updateCarColor).render(this.element);
-    new Button(updateCarBtn).render(this.element);
+    const nameInput = new OptionInput(updateCarName).render(this.element);
+    const colorInput = new OptionInput(updateCarColor).render(this.element);
+    const updateBtn = new Button(updateCarBtn).render(this.element);
+    this.init(nameInput, colorInput, updateBtn);
+  }
+
+  init(nameInput: HTMLInputElement, colorInput: HTMLInputElement, updateBtn: HTMLButtonElement): void {
+    document.addEventListener('click', (e) => {
+      const timeForLsUpdate = 100;
+      setTimeout(() => {
+        if ((e.target as HTMLElement).id.includes('select-btn')) {
+          const getCurrentCar = JSON.parse(localStorage.getItem('currentCarData') || '{}');
+          nameInput.value = getCurrentCar.name;
+          colorInput.value = getCurrentCar.color;
+          updateBtn.classList.remove('disabled');
+        }
+      }, timeForLsUpdate);
+    });
+
+    updateBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const getCurrentCar = JSON.parse(localStorage.getItem('currentCarData') || '{}');
+      await updateCar(getCurrentCar.id, { name: nameInput.value, color: colorInput.value });
+      updateBtn.classList.add('disabled');
+      nameInput.value = '';  
+      colorInput.value = DEFAULT_CAR_COLOR;  
+    });
   }
 
   render(parent: HTMLElement): HTMLElement {

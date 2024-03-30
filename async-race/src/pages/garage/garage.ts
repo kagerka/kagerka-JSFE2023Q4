@@ -18,16 +18,13 @@ const garagePageTag: BaseComponentType = {
 export class GaragePage extends BaseComponent {
   constructor() {
     super(garagePageTag);
-    
 
     if (!localStorage.getItem('asyncRaceData')) {
       localStorage.setItem('asyncRaceData', JSON.stringify(raceData));
     }
   }
 
-  init(): void {
-
-  }
+  init(): void {}
 
   async render(parent: HTMLElement): Promise<HTMLElement> {
     new CarOptions().render(this.element);
@@ -35,29 +32,35 @@ export class GaragePage extends BaseComponent {
     const cars = await getCars();
 
     const localStorageData = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
-    const pageInfoWrapper = document.createElement('div');
-    pageInfoWrapper.classList.add('page-info-wrapper');
-    this.element.append(pageInfoWrapper);
-    new PageInfo('Garage', cars.carsNumber, localStorageData.pageNumber).render(pageInfoWrapper);
+    const pageInfoWrap = document.createElement('div');
+    pageInfoWrap.classList.add('page-info-wrapper');
+    this.element.append(pageInfoWrap);
+    new PageInfo('Garage', cars.carsNumber, localStorageData.pageNumber).render(pageInfoWrap);
 
-    const raceFieldWrapper = document.createElement('div');
-    raceFieldWrapper.classList.add('race-field');
-    this.element.append(raceFieldWrapper);
-    await new RaceField().render(raceFieldWrapper);
+    const raceFieldWrap = document.createElement('div');
+    raceFieldWrap.classList.add('race-field');
+    this.element.append(raceFieldWrap);
+    await new RaceField().render(raceFieldWrap);
 
-    new PaginationButtons(pageInfoWrapper, raceFieldWrapper).render(this.element);
+    const paginationWrap = document.createElement('div');
+    paginationWrap.classList.add('pagination-btn-wrapper');
+    this.element.append(paginationWrap);
+
+    new PaginationButtons(pageInfoWrap, raceFieldWrap).render(paginationWrap);
 
     parent.append(this.element);
-    
+
     document.addEventListener('click', async (e: Event) => {
       const target = e.target as HTMLButtonElement;
-      if (target.id === 'remove-btn') {
-        await updateRaceContent(raceFieldWrapper, pageInfoWrapper, localStorageData.pageNumber);
+      if (
+        target.id === 'remove-btn' ||
+        target.id === 'create-car-btn' ||
+        target.id === 'update-car-btn' ||
+        target.id === 'generate-cars-btn'
+      ) {
+        await updateRaceContent(raceFieldWrap, pageInfoWrap, localStorageData.pageNumber, paginationWrap);
+        localStorage.removeItem('currentCarData');
       }
-      if (target.id === 'create-car-btn') {
-        await updateRaceContent(raceFieldWrapper, pageInfoWrapper, localStorageData.pageNumber);
-      }
-    
     });
     return this.element;
   }

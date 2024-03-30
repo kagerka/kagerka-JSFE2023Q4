@@ -1,3 +1,5 @@
+import { createCar } from '../../api/create-car';
+import { generateRandomCar } from '../../api/generate-random-car';
 import { checkId } from '../../data/ids';
 import { BaseComponentType, ButtonType } from '../../data/types';
 import { BaseComponent } from '../base-component';
@@ -31,7 +33,22 @@ export class RaceButtons extends BaseComponent {
     super(RaceButtonsTag);
     new Button(raceButton).render(this.element);
     new Button(resetButton).render(this.element);
-    new Button(generateCarsButton).render(this.element);
+    const generateCars = new Button(generateCarsButton).render(this.element);
+    this.init(generateCars);
+  }
+
+  init(generateCars: HTMLButtonElement): void {
+    generateCars.addEventListener('click', (e) => {
+      e.preventDefault();
+      const ADD_CARS_PER_CLICK = 100;
+      for (let i = 0; i < ADD_CARS_PER_CLICK; i++) {
+        const generateCarsData = generateRandomCar();
+        createCar(
+          `${generateCarsData.randomCarBrand} ${generateCarsData.randomCarModel}`,
+          generateCarsData.randomColor,
+        );
+      }
+    });
   }
 
   render(parent: HTMLElement): HTMLElement {
