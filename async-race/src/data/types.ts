@@ -24,6 +24,12 @@ export type WinnersInfoType = {
   id: number;
   wins: number;
   time: number;
+  car: CarInfoType;
+};
+
+export type WinnerUpdateType = {
+  wins: number;
+  time: number;
 };
 
 export type InputOptionType = {
