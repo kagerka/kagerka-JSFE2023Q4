@@ -11,23 +11,28 @@ const mainContentTag: BaseComponentType = {
 };
 
 export class MainContent extends BaseComponent {
+  garage: Promise<HTMLElement>;
+
+  winners: Promise<HTMLElement>;
+
   constructor() {
     super(mainContentTag);
-    new GaragePage().render(this.element);
+    this.garage = new GaragePage().render(this.element);
+    this.winners = new WinnersPage().render(this.element);
     this.init();
   }
 
   init(): void {
     const header = new Header();
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', async (e) => {
       if (e.target instanceof Element) {
         if (e.target.id === header.garageBtn.id) {
-          this.element.textContent = '';
-          new GaragePage().render(this.element);
+          (await this.garage).classList.toggle('active');
+          (await this.winners).classList.toggle('active');
         }
         if (e.target.id === header.winnersBtn.id) {
-          this.element.textContent = '';
-          new WinnersPage().render(this.element);
+          (await this.winners).classList.toggle('active');
+          (await this.garage).classList.toggle('active');
         }
       }
     });

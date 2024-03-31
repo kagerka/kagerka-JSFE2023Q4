@@ -1,8 +1,8 @@
 import { BaseComponentType } from '../../data/types';
 import { BaseComponent } from '../base-component';
+import './page-info.scss';
 import { PageName } from './page-name/page-name';
 import { PageNumber } from './page-number/page-number';
-import './page-info.scss';
 
 const pageInfoTag: BaseComponentType = {
   tag: 'div',

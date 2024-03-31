@@ -9,5 +9,4 @@ export const updateCar = async (id: number, data: CarUpdateType): Promise<void> 
     },
     body: JSON.stringify(data),
   });
-  
 };

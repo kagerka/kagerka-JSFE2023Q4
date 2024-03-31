@@ -60,8 +60,8 @@ export class UpdateCarForm extends BaseComponent {
       const getCurrentCar = JSON.parse(localStorage.getItem('currentCarData') || '{}');
       await updateCar(getCurrentCar.id, { name: nameInput.value, color: colorInput.value });
       updateBtn.classList.add('disabled');
-      nameInput.value = '';  
-      colorInput.value = DEFAULT_CAR_COLOR;  
+      nameInput.value = '';
+      colorInput.value = DEFAULT_CAR_COLOR;
     });
   }
 

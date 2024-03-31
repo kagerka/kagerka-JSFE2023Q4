@@ -54,3 +54,32 @@ export type CarUpdateType = {
   name: string;
   color: string;
 };
+
+export type StartEngineType = {
+  velocity: number;
+  distance: number;
+};
+
+export type DriveModeType = {
+  success: boolean;
+};
+
+export type CoordinatesType = {
+  x: number;
+  y: number;
+};
+
+export type DriveResultType = {
+  success: boolean;
+  id: number;
+  time: number;
+};
+
+export type RaceButtonsType = {
+  raceCars: HTMLButtonElement;
+  resetCars: HTMLButtonElement;
+};
+
+export type AnimationStateType = {
+  id: number;
+};

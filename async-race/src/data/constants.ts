@@ -12,5 +12,14 @@ export const HEX = 16;
 
 export const DEFAULT_CAR_COLOR = '#e3e3e3';
 
+export const SUCCESS_RESPONSE_CODE = 200;
 
+export const MILLISEC_IN_SEC = 1000;
 
+export const NUMS_AFTER_DEC_POINT = 2;
+
+export const CHAR_INDEX = 8;
+
+export const DISTANCE_AFTER_FLAG = 100;
+
+export const ADD_CARS_PER_CLICK = 100;

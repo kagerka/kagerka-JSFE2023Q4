@@ -12,7 +12,7 @@ import './garage.scss';
 
 const garagePageTag: BaseComponentType = {
   tag: 'div',
-  styles: ['garage-page'],
+  styles: ['garage-page', 'active'],
 };
 
 export class GaragePage extends BaseComponent {

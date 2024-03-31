@@ -1,3 +1,4 @@
+import { startDriving, stopDriving } from '../../../api/car-animation';
 import { deleteCar } from '../../../api/delete-car';
 import { getCurrentCar } from '../../../api/get-current-car';
 import flagImage from '../../../assets/img/flag.svg';
@@ -13,28 +14,10 @@ const raceLineTag: BaseComponentType = {
   styles: ['race-line'],
 };
 
-// const selectButton: ButtonType = {
-//   name: 'Select',
-//   styles: ['select-btn'],
-//   id: checkId('select-btn'),
-// };
-
 const removeButton: ButtonType = {
   name: 'Remove',
   styles: ['remove-btn'],
   id: checkId('remove-btn'),
-};
-
-const aButton: ButtonType = {
-  name: 'A',
-  styles: ['a-btn'],
-  id: checkId('a-btn'),
-};
-
-const bButton: ButtonType = {
-  name: 'B',
-  styles: ['b-btn', 'disabled'],
-  id: checkId('b-btn'),
 };
 
 export class RaceLine extends BaseComponent {
@@ -64,17 +47,34 @@ export class RaceLine extends BaseComponent {
       id: `select-btn-${id}`,
     }).render(carSelectWrapper);
     const removeBtn = new Button(removeButton).render(carSelectWrapper);
-    new Button(aButton).render(carEngineWrapper);
-    new Button(bButton).render(carEngineWrapper);
+    const startBtn = new Button({
+      name: 'A',
+      styles: ['a-btn'],
+      id: `a-btn-${id}`,
+    }).render(carEngineWrapper);
+    const stopBtn = new Button({
+      name: 'B',
+      styles: ['b-btn', 'disabled'],
+      id: `b-btn-${id}`,
+    }).render(carEngineWrapper);
     const flag: HTMLImageElement = new Image();
     flag.src = flagImage;
     flag.alt = 'flag';
     flag.classList.add('flag-img');
+    flag.id = `img-flag-${id}`;
     this.element.append(flag);
-    this.init(removeBtn, selectBtn);
+    const car = new Car(this.color, this.id).render(this.element);
+    this.init(removeBtn, selectBtn, startBtn, stopBtn, car, flag);
   }
 
-  init(removeBtn: HTMLButtonElement, selectBtn: HTMLButtonElement): void {
+  init(
+    removeBtn: HTMLButtonElement,
+    selectBtn: HTMLButtonElement,
+    startBtn: HTMLButtonElement,
+    stopBtn: HTMLButtonElement,
+    car: HTMLElement,
+    flag: HTMLImageElement,
+  ): void {
     removeBtn.addEventListener('click', async () => {
       await deleteCar(this.id);
     });
@@ -82,10 +82,15 @@ export class RaceLine extends BaseComponent {
       const target = e.target as HTMLElement;
       if (target.id === `select-btn-${this.id}`) await getCurrentCar(this.id);
     });
+    startBtn.addEventListener('click', async () => {
+      await startDriving(this.id, startBtn, stopBtn, car, flag);
+    });
+    stopBtn.addEventListener('click', async () => {
+      await stopDriving(this.id, startBtn, stopBtn, car);
+    });
   }
 
   render(parent: HTMLElement): HTMLElement {
-    new Car(this.color, this.id).render(this.element);
     const carName = document.createElement('div');
     carName.textContent = this.name;
     carName.classList.add('car-name');
