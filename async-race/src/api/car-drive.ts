@@ -2,6 +2,7 @@ import { BASE_URL, SUCCESS_RESPONSE_CODE } from '../data/constants';
 import { DriveModeType, StartEngineType } from '../data/types';
 
 export const startEngine = async (id: number): Promise<StartEngineType> => {
+
   const response = await fetch(`${BASE_URL}/engine?id=${id}&status=started`, {
     method: 'PATCH',
   });
@@ -10,10 +11,12 @@ export const startEngine = async (id: number): Promise<StartEngineType> => {
 };
 
 export const stopEngine = async (id: number): Promise<void> => {
+  
   const response = await fetch(`${BASE_URL}/engine?id=${id}&status=stopped`, {
     method: 'PATCH',
   });
   const responseData = await response.json();
+  
   return responseData;
 };
 

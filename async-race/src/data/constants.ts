@@ -23,3 +23,5 @@ export const CHAR_INDEX = 8;
 export const DISTANCE_AFTER_FLAG = 100;
 
 export const ADD_CARS_PER_CLICK = 100;
+
+export const DISPLAY_MODAL_TIME = 2000;

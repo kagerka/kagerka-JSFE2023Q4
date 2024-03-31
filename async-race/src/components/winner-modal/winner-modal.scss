@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+.window-modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $orange-light;
+  font-size: 30px;
+  font-weight: bold;
+  transition-duration: 0.4s;
+  background-color: $white50;
+}
+
+.modal-text-wrapper {
+  border: 5px solid $blue;
+  padding: 40px 20px;
+  background-color: $white;
+  border: 2px solid $blue;
+  border-image: linear-gradient(25deg, $orange-light, $blue) 1;
+}

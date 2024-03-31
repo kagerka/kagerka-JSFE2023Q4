@@ -1,3 +1,4 @@
+import { WinnerModal } from '../components/winner-modal/winner-modal';
 import { CHAR_INDEX, DISTANCE_AFTER_FLAG, MILLISEC_IN_SEC, NUMS_AFTER_DEC_POINT } from '../data/constants';
 import { AnimationStateType, CoordinatesType, DriveResultType } from '../data/types';
 import { driveMode, startEngine, stopEngine } from './car-drive';
@@ -99,6 +100,7 @@ export const stopDriving = async (
 };
 
 export const raceAll = async (raceBtn: HTMLButtonElement, resetBtn: HTMLButtonElement): Promise<void> => {
+  localStorage.setItem('isRaceStopped', 'false');
   const localStorageData = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
   const pageNumber = localStorageData.pageNumber;
   const carsOnPage = await getCars(pageNumber);
@@ -109,24 +111,25 @@ export const raceAll = async (raceBtn: HTMLButtonElement, resetBtn: HTMLButtonEl
     const flag: HTMLElement | null = document.getElementById(`img-flag-${id}`);
     const startButton = document.getElementById(`a-btn-${id}`) as HTMLButtonElement;
     const stopButton = document.getElementById(`b-btn-${id}`) as HTMLButtonElement;
-    if (car && flag && startButton && stopButton) {
+    if (car && flag && raceBtn && resetBtn) {
       const raceResult = await startDriving(id, startButton, stopButton, car, flag);
       if (raceResult.time && !isWinner) {
-        const time = Number(raceResult.time / MILLISEC_IN_SEC).toFixed(NUMS_AFTER_DEC_POINT);
-        const winner = { car: car.id, time: time };
-        if (raceResult.success) {
+        const time: number = Number((raceResult.time / MILLISEC_IN_SEC).toFixed(NUMS_AFTER_DEC_POINT));
+        const winner = { name: el.name, car: car.id, time: time };
+        const isRaceStopped = localStorage.getItem('isRaceStopped');
+        if (raceResult.success === true && !isWinner && time && isRaceStopped === 'false') {
           localStorage.setItem('raceWinnersData', JSON.stringify(winner));
           isWinner = true;
+          new WinnerModal(el.name, time).render(document.body);
         }
       }
     }
   });
-  if (raceBtn && resetBtn) {
-    raceBtn.classList.toggle('disabled', true);
-  }
+  raceBtn.classList.toggle('disabled', true);
 };
 
 export const resetAll = async (raceBtn?: HTMLButtonElement, resetBtn?: HTMLButtonElement): Promise<void> => {
+  localStorage.setItem('isRaceStopped', 'true');
   const localStorageData = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
   const pageNumber = localStorageData.pageNumber;
   const carsOnPage = await getCars(pageNumber);

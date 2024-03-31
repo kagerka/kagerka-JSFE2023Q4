@@ -1,6 +1,7 @@
 import { getWinners } from '../../api/get-winners';
 import { BaseComponent } from '../../components/base-component';
 import { PageInfo } from '../../components/page-info/page-info';
+import { raceData } from '../../data/race-data';
 import { BaseComponentType } from '../../data/types';
 import './winners.scss';
 
@@ -16,7 +17,7 @@ export class WinnersPage extends BaseComponent {
 
   async render(parent: HTMLElement): Promise<HTMLElement> {
     const winners = await getWinners();
-    new PageInfo('Winners', winners.winnersNumber).render(this.element);
+    new PageInfo('Winners', winners.winnersNumber, raceData.pageNumber).render(this.element);
     parent.append(this.element);
     return this.element;
   }

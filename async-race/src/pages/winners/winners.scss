@@ -1,0 +1,7 @@
+.winners-page {
+  display: none;
+
+  &.active {
+    display: flex;
+  }
+}
