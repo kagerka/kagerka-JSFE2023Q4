@@ -10,11 +10,12 @@ export const updateRaceContent = async (
   pageNum: number,
   paginationBtnWrapper?: HTMLElement,
 ): Promise<void> => {
-  const carsInfo = await getCars(pageNum);
+  const asyncRaceData = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
+  const carsInfo = await getCars(asyncRaceData.pageNumber);
   const carsNumber = carsInfo.carsNumber;
   if (raceFieldWrapper) {
     raceFieldWrapper.innerHTML = '';
-    (await getCars(pageNum)).cars.forEach((item: CarInfoType) =>
+    (await getCars(asyncRaceData.pageNumber)).cars.forEach((item: CarInfoType) =>
       new RaceLine(item.name, item.color, item.id).render(raceFieldWrapper),
     );
   }
