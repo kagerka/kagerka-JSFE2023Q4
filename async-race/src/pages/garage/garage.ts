@@ -58,7 +58,12 @@ export class GaragePage extends BaseComponent {
         target.id === 'update-car-btn' ||
         target.id === 'generate-cars-btn'
       ) {
-        await updateRaceContent(raceFieldWrap, pageInfoWrap, localStorageData.pageNumber, paginationWrap);
+        await updateRaceContent(
+          raceFieldWrap,
+          pageInfoWrap,
+          JSON.parse(localStorage.getItem('asyncRaceData') || '{}').pageNumber,
+          paginationWrap,
+        );
         localStorage.removeItem('currentCarData');
       }
     });

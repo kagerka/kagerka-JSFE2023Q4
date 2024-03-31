@@ -50,9 +50,12 @@ export class PaginationButtons extends BaseComponent {
     this.nextBtn = new Button(nextButton).render(this.element);
   }
 
-  init(carsInfo: GarageType): void {
+  // eslint-disable-next-line max-lines-per-function
+  init(): void {
     this.prevBtn.addEventListener('click', async () => {
+      const cars = await getCars();
       this.nextBtn.classList.remove('disabled');
+      // eslint-disable-next-line no-magic-numbers
       if (JSON.parse(localStorage.asyncRaceData).pageNumber > FIRST_PAGE) {
         raceData.pageNumber = JSON.parse(localStorage.asyncRaceData).pageNumber;
         raceData.pageNumber -= 1;
@@ -64,6 +67,11 @@ export class PaginationButtons extends BaseComponent {
             JSON.parse(localStorage.asyncRaceData).pageNumber,
           );
         }
+        if (
+          cars.carsNumber === CARS_PER_PAGE ||
+          cars.carsNumber / CARS_PER_PAGE === JSON.parse(localStorage.asyncRaceData).pageNumber
+        )
+          this.nextBtn.classList.add('disabled');
       }
 
       if (JSON.parse(localStorage.asyncRaceData).pageNumber === FIRST_PAGE) {
@@ -71,9 +79,9 @@ export class PaginationButtons extends BaseComponent {
       }
     });
     this.nextBtn.addEventListener('click', async () => {
-      const pageNumber = JSON.parse(localStorage.asyncRaceData).pageNumber;
       this.prevBtn.classList.remove('disabled');
-      if (JSON.parse(localStorage.asyncRaceData).pageNumber < carsInfo.carsNumber / CARS_PER_PAGE) {
+      const cars = await getCars();
+      if (JSON.parse(localStorage.asyncRaceData).pageNumber < cars.carsNumber / CARS_PER_PAGE) {
         raceData.pageNumber = JSON.parse(localStorage.asyncRaceData).pageNumber;
         raceData.pageNumber += 1;
         localStorage.setItem('asyncRaceData', JSON.stringify(raceData));
@@ -85,7 +93,10 @@ export class PaginationButtons extends BaseComponent {
           );
         }
       }
-      if (pageNumber === Math.floor(carsInfo.carsNumber / CARS_PER_PAGE)) {
+      if (
+        cars.carsNumber === CARS_PER_PAGE ||
+        cars.carsNumber / CARS_PER_PAGE === JSON.parse(localStorage.asyncRaceData).pageNumber
+      ) {
         this.nextBtn.classList.add('disabled');
       }
     });
@@ -96,7 +107,7 @@ export class PaginationButtons extends BaseComponent {
     const LS = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
     if (LS.pageNumber === FIRST_PAGE) this.prevBtn.classList.add('disabled');
     if (LS.pageNumber >= Math.ceil(carsInfo.carsNumber / CARS_PER_PAGE)) this.nextBtn.classList.add('disabled');
-    this.init(carsInfo);
+    this.init();
     parent.append(this.element);
     return { prev: this.prevBtn, next: this.nextBtn };
   }
