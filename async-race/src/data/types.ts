@@ -27,11 +27,22 @@ export type WinnersInfoType = {
   car: CarInfoType;
 };
 
-export type WinnerUpdateType = {
+export type WinnersCreateType = {
+  id: number;
   wins: number;
   time: number;
 };
 
+export type WinnersUpdateType = {
+  wins: number;
+  time: number;
+};
+export type WinnersSortType = {
+  sort: 'time' | 'wins',
+  order: 'ASC' | 'DESC',
+  arrowTime: '▼' | '▲' | '',
+  arrowWin: '▼' | '▲' | ''
+};
 export type InputOptionType = {
   id: string;
   type: string;
@@ -46,7 +57,11 @@ export type ButtonType = {
   id?: string;
 };
 
-export type RaceDataType = {
+export type PageNumDataType = {
+  pageNumber: number;
+};
+
+export type WinnersPageNumDataType = {
   pageNumber: number;
 };
 

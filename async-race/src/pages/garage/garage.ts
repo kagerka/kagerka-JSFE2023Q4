@@ -3,7 +3,7 @@ import { updateRaceContent } from '../../api/update-race-content';
 import { BaseComponent } from '../../components/base-component';
 import { CarOptions } from '../../components/options/options';
 import { PageInfo } from '../../components/page-info/page-info';
-import { PaginationButtons } from '../../components/pagination-buttons/pagination-buttons';
+import { PaginationRaceButtons } from '../../components/pagination-buttons/pagination-race-buttons';
 import { RaceButtons } from '../../components/race-buttons/race-buttons';
 import { RaceField } from '../../components/race-field/race-field';
 import { raceData } from '../../data/race-data';
@@ -23,8 +23,6 @@ export class GaragePage extends BaseComponent {
       localStorage.setItem('asyncRaceData', JSON.stringify(raceData));
     }
   }
-
-  init(): void {}
 
   async render(parent: HTMLElement): Promise<HTMLElement> {
     new CarOptions().render(this.element);
@@ -46,7 +44,7 @@ export class GaragePage extends BaseComponent {
     paginationWrap.classList.add('pagination-btn-wrapper');
     this.element.append(paginationWrap);
 
-    new PaginationButtons(pageInfoWrap, raceFieldWrap).render(paginationWrap);
+    new PaginationRaceButtons(pageInfoWrap, raceFieldWrap).render(paginationWrap);
 
     parent.append(this.element);
 

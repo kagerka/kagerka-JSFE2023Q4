@@ -30,7 +30,7 @@ type PaginationButtonsType = {
   next: HTMLButtonElement;
 };
 
-export class PaginationButtons extends BaseComponent {
+export class PaginationRaceButtons extends BaseComponent {
   public prevBtn: HTMLButtonElement;
 
   public nextBtn: HTMLButtonElement;
@@ -50,12 +50,10 @@ export class PaginationButtons extends BaseComponent {
     this.nextBtn = new Button(nextButton).render(this.element);
   }
 
-  // eslint-disable-next-line max-lines-per-function
-  init(): void {
+  prevBtnInit(): void {
     this.prevBtn.addEventListener('click', async () => {
       const cars = await getCars();
       this.nextBtn.classList.remove('disabled');
-      // eslint-disable-next-line no-magic-numbers
       if (JSON.parse(localStorage.asyncRaceData).pageNumber > FIRST_PAGE) {
         raceData.pageNumber = JSON.parse(localStorage.asyncRaceData).pageNumber;
         raceData.pageNumber -= 1;
@@ -78,6 +76,9 @@ export class PaginationButtons extends BaseComponent {
         this.prevBtn.classList.add('disabled');
       }
     });
+  }
+
+  nextBtnInit(): void {
     this.nextBtn.addEventListener('click', async () => {
       this.prevBtn.classList.remove('disabled');
       const cars = await getCars();
@@ -95,7 +96,7 @@ export class PaginationButtons extends BaseComponent {
       }
       if (
         cars.carsNumber === CARS_PER_PAGE ||
-        cars.carsNumber / CARS_PER_PAGE === JSON.parse(localStorage.asyncRaceData).pageNumber
+        Math.ceil(cars.carsNumber / CARS_PER_PAGE) === JSON.parse(localStorage.asyncRaceData).pageNumber
       ) {
         this.nextBtn.classList.add('disabled');
       }
@@ -107,7 +108,8 @@ export class PaginationButtons extends BaseComponent {
     const LS = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
     if (LS.pageNumber === FIRST_PAGE) this.prevBtn.classList.add('disabled');
     if (LS.pageNumber >= Math.ceil(carsInfo.carsNumber / CARS_PER_PAGE)) this.nextBtn.classList.add('disabled');
-    this.init();
+    this.prevBtnInit();
+    this.nextBtnInit();
     parent.append(this.element);
     return { prev: this.prevBtn, next: this.nextBtn };
   }

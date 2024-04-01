@@ -1,5 +1,5 @@
 import { PageInfo } from '../components/page-info/page-info';
-import { PaginationButtons } from '../components/pagination-buttons/pagination-buttons';
+import { PaginationRaceButtons } from '../components/pagination-buttons/pagination-race-buttons';
 import { RaceLine } from '../components/race-field/race-line/race-line';
 import { CarInfoType } from '../data/types';
 import { getCars } from './get-cars';
@@ -26,6 +26,6 @@ export const updateRaceContent = async (
 
   if (paginationBtnWrapper) {
     paginationBtnWrapper.innerHTML = '';
-    new PaginationButtons(pageInfoWrapper, raceFieldWrapper).render(paginationBtnWrapper);
+    new PaginationRaceButtons(pageInfoWrapper, raceFieldWrapper).render(paginationBtnWrapper);
   }
 };

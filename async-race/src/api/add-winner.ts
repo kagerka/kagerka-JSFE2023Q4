@@ -1,7 +1,7 @@
 import { BASE_URL } from '../data/constants';
-import { WinnersInfoType } from '../data/types';
+import { WinnersCreateType } from '../data/types';
 
-export const addWinner = async (body: WinnersInfoType): Promise<void> => {
+export const addWinner = async (body: WinnersCreateType): Promise<void> => {
   await fetch(`${BASE_URL}/winners`, {
     method: 'POST',
     body: JSON.stringify(body),

@@ -1,5 +1,6 @@
 import { startDriving, stopDriving } from '../../../api/car-animation';
 import { deleteCar } from '../../../api/delete-car';
+import { deleteWinner } from '../../../api/delete-winner';
 import { getCurrentCar } from '../../../api/get-current-car';
 import flagImage from '../../../assets/img/flag.svg';
 import { checkId } from '../../../data/ids';
@@ -77,6 +78,7 @@ export class RaceLine extends BaseComponent {
   ): void {
     removeBtn.addEventListener('click', async () => {
       await deleteCar(this.id);
+      await deleteWinner(this.id);
     });
     selectBtn.addEventListener('click', async (e) => {
       const target = e.target as HTMLElement;

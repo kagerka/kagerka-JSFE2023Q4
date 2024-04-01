@@ -1,11 +1,11 @@
-import { BaseComponent } from '../base-component';
-import './logo.scss';
 import logotype from '../../assets/img/logo.svg';
 import { BaseComponentType } from '../../data/types';
+import { BaseComponent } from '../base-component';
+import './logo.scss';
 
 const logoTag: BaseComponentType = {
   tag: 'div',
-  styles: ['logo-wrapper'],
+  styles: ['logo-wrapper', 'active'],
 };
 
 export class Logo extends BaseComponent {

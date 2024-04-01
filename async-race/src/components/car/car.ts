@@ -8,7 +8,7 @@ const carTag: BaseComponentType = {
 };
 
 export class Car extends BaseComponent {
-  constructor(color: string, id: number) {
+  constructor(color: string, id?: number) {
     super(carTag);
     this.element.setAttribute('id', `car-img-${id}`);
     this.element.innerHTML = `

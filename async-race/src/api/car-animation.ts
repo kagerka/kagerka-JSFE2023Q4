@@ -1,6 +1,6 @@
 import { WinnerModal } from '../components/winner-modal/winner-modal';
 import { CHAR_INDEX, DISTANCE_AFTER_FLAG, MILLISEC_IN_SEC, NUMS_AFTER_DEC_POINT } from '../data/constants';
-import { AnimationStateType, CoordinatesType, DriveResultType } from '../data/types';
+import { AnimationStateType, CoordinatesType, DriveResultType, WinnersPageNumDataType } from '../data/types';
 import { addWinner } from './add-winner';
 import { driveMode, startEngine, stopEngine } from './car-drive';
 import { getCars } from './get-cars';
@@ -102,6 +102,23 @@ export const stopDriving = async (
   window.cancelAnimationFrame(animationState.animationId);
 };
 
+const updateWinnerInfo = async (id: number, time: number): Promise<void> => {
+  const winnersPageData: WinnersPageNumDataType = JSON.parse(localStorage.getItem('winnersPageData') || '{}');
+  const winnersData = await getWinners(winnersPageData.pageNumber);
+  const isWinnerExist = winnersData.winners.find((item) => item.id === id);
+  
+  
+  if (isWinnerExist === undefined) {
+    await addWinner({ id: id, wins: 1, time: time });
+  } else {
+    const ONE_WIN = 1;
+    await updateWinner(id, {
+      wins: isWinnerExist.wins + ONE_WIN,
+      time: isWinnerExist.time > time ? time : isWinnerExist.time,
+    });
+  }
+};
+
 export const raceAll = async (raceBtn: HTMLButtonElement, resetBtn: HTMLButtonElement): Promise<void> => {
   localStorage.setItem('isRaceStopped', 'false');
   const localStorageData = JSON.parse(localStorage.getItem('asyncRaceData') || '{}');
@@ -124,16 +141,7 @@ export const raceAll = async (raceBtn: HTMLButtonElement, resetBtn: HTMLButtonEl
           localStorage.setItem('raceWinnersData', JSON.stringify(winner));
           isWinner = true;
           new WinnerModal(el.name, time).render(document.body);
-          const winnersData = await getWinners();
-          const isWinnerExist = winnersData.winners.find((item) => item.id === id);
-          if (isWinnerExist === undefined) {
-            await addWinner({ id: id, wins: 1, time: time, car: { name: el.name, color: el.color, id: el.id } });
-          } else {
-            await updateWinner(id, {
-              wins: isWinnerExist.wins ++,
-              time: isWinnerExist.time > time ? time : isWinnerExist.time,
-            });
-          }
+          updateWinnerInfo(id, time);
         }
       }
     }
