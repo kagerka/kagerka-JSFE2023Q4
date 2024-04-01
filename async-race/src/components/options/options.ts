@@ -1,8 +1,8 @@
 import { BaseComponentType } from '../../data/types';
 import { BaseComponent } from '../base-component';
 import { CreateCarForm } from './create-car-form/create-car-form';
-import { UpdateCarForm } from './update-car-form/update-car-form';
 import './options.scss';
+import { UpdateCarForm } from './update-car-form/update-car-form';
 
 const carOptionsTag: BaseComponentType = {
   tag: 'div',

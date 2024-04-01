@@ -54,7 +54,6 @@ export class UpdateCarForm extends BaseComponent {
         }
       }, timeForLsUpdate);
     });
-
     updateBtn.addEventListener('click', async (e) => {
       e.preventDefault();
       const getCurrentCar = JSON.parse(localStorage.getItem('currentCarData') || '{}');

@@ -28,6 +28,7 @@ const generateCarsButton: ButtonType = {
   styles: ['generate-cars-btn'],
   id: checkId('generate-cars-btn'),
 };
+
 export class RaceButtons extends BaseComponent {
   public raceCars: HTMLButtonElement;
 
@@ -49,14 +50,12 @@ export class RaceButtons extends BaseComponent {
       e.preventDefault();
       generateHundredCars();
     });
-
     this.raceCars.addEventListener('click', async (e) => {
       e.preventDefault();
       await raceAll(this.raceCars, this.resetCars);
       this.raceCars.classList.add('disabled');
       this.resetCars.classList.remove('disabled');
     });
-
     this.resetCars.addEventListener('click', async (e) => {
       e.preventDefault();
       await resetAll(this.raceCars, this.resetCars);

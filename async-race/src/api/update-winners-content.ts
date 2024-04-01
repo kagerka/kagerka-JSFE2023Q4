@@ -23,7 +23,6 @@ export const updateWinnersContent = async (
         let rowNum = 1;
         winners.winners.forEach(async (el) => {
           const car = await getCurrentCar(el.id);
-
           new WinnersRow(
             pageNumber > FIRST_PAGE ? rowNum + (pageNumber - FIRST_PAGE) * WINNERS_PER_PAGE : rowNum,
             car,
@@ -42,7 +41,6 @@ export const updateWinnersContent = async (
     pageInfoWrapper.innerHTML = '';
     new PageInfo('Winners', winners.winnersNumber, winnersData.pageNumber).render(pageInfoWrapper);
   }
-
   if (paginationBtnWrapper) {
     paginationBtnWrapper.innerHTML = '';
     if (pageInfoWrapper) new PaginationWinnersButtons(pageInfoWrapper).render(paginationBtnWrapper);

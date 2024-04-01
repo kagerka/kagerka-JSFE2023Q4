@@ -10,7 +10,7 @@ const winnerModalTag: BaseComponentType = {
 
 export class WinnerModal extends BaseComponent {
   textWrapper: HTMLElement;
-  
+
   constructor(carName: string, winTime: number) {
     super(winnerModalTag);
     this.textWrapper = document.createElement('div');

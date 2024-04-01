@@ -15,7 +15,7 @@ export class WinnersPage extends BaseComponent {
   pageInfoWrapper: HTMLElement;
 
   paginationBtnWrapper: HTMLElement;
-  
+
   constructor() {
     super(winnersPageTag);
     this.pageInfoWrapper = document.createElement('div');
@@ -24,12 +24,10 @@ export class WinnersPage extends BaseComponent {
     this.paginationBtnWrapper = document.createElement('div');
     this.paginationBtnWrapper.id = 'pagination-winners-wrapper';
   }
-  
+
   async render(parent: HTMLElement): Promise<HTMLElement> {
     const winnersData = JSON.parse(localStorage.getItem('winnersPageData') || '{}');
     const winners = await getWinners(winnersData.pageNumber);
-    
-    
     new PageInfo('Winners', winners.winnersNumber, winnersData.pageNumber).render(this.pageInfoWrapper);
     await new WinnersTable().render(this.element);
     this.element.append(this.paginationBtnWrapper);

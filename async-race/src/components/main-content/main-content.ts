@@ -36,7 +36,6 @@ export class MainContent extends BaseComponent {
           (await this.winners).classList.toggle('active');
           (await this.garage).classList.toggle('active');
           logo.classList.remove('active');
-
           const winnersContent = document.getElementById('winners-tbody');
           const pageInfoWrapper = document.getElementById('winners-info-wrapper');
           const paginationBtnWrapper = document.getElementById('pagination-winners-wrapper');

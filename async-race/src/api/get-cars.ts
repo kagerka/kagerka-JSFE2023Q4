@@ -7,6 +7,5 @@ export const getCars = async (pageNumber?: number): Promise<GarageType> => {
     : await fetch(`${BASE_URL}/garage`);
   const cars: CarInfoType[] = await response.json();
   const carsNumber = pageNumber ? Number(response.headers.get('X-Total-Count')) : cars.length;
-
   return { cars: cars, carsNumber: carsNumber };
 };

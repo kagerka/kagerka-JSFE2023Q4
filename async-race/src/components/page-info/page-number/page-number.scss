@@ -1,6 +1,8 @@
+@import '../../../styles/variables.scss';
+
 .page-number {
   text-transform: uppercase;
-  color: #999999;
-  border-left: 10px solid #999999;
+  color: $gray-light;
+  border-left: 10px solid $gray-light;
   padding-left: 10px;
 }

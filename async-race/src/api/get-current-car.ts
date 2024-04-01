@@ -8,6 +8,5 @@ export const getCurrentCar = async (id: number): Promise<CarInfoType> => {
     'currentCarData',
     await JSON.stringify({ name: currentCar.name, color: currentCar.color, id: currentCar.id }),
   );
-
   return currentCar;
 };

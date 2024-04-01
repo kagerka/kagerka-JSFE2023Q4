@@ -54,38 +54,78 @@ export class WinnersTable extends BaseComponent {
     }
   }
 
+  thWinsInit(target: HTMLElement, winnersSortData: WinnersSortType): void {
+    if (target.id === 'th-wins') {
+      if (winnersSortData.order === 'ASC') {
+        winnersSortData.order = 'DESC';
+        winnersSortData.arrowTime = '';
+        winnersSortData.arrowWin = '▼';
+        localStorage.setItem(
+          'winnersSortData',
+          JSON.stringify({
+            sort: 'wins',
+            order: winnersSortData.order,
+            arrowTime: winnersSortData.arrowTime,
+            arrowWin: winnersSortData.arrowWin,
+          }),
+        );
+      } else {
+        winnersSortData.order = 'ASC';
+        winnersSortData.arrowTime = '';
+        winnersSortData.arrowWin = '▲';
+        localStorage.setItem(
+          'winnersSortData',
+          JSON.stringify({
+            sort: 'wins',
+            order: winnersSortData.order,
+            arrowTime: winnersSortData.arrowTime,
+            arrowWin: winnersSortData.arrowWin,
+          }),
+        );
+      }
+    }
+  }
+
+  thTimeInit(target: HTMLElement, winnersSortData: WinnersSortType): void {
+    if (target.id === 'th-time') {
+      if (winnersSortData.order === 'ASC') {
+        winnersSortData.order = 'DESC';
+        winnersSortData.arrowTime = '▼';
+        winnersSortData.arrowWin = '';
+        localStorage.setItem(
+          'winnersSortData',
+          JSON.stringify({
+            sort: 'time',
+            order: winnersSortData.order,
+            arrowTime: winnersSortData.arrowTime,
+            arrowWin: winnersSortData.arrowWin,
+          }),
+        );
+      } else {
+        winnersSortData.order = 'ASC';
+        winnersSortData.arrowTime = '▲';
+        winnersSortData.arrowWin = '';
+        localStorage.setItem(
+          'winnersSortData',
+          JSON.stringify({
+            sort: 'time',
+            order: winnersSortData.order,
+            arrowTime: winnersSortData.arrowTime,
+            arrowWin: winnersSortData.arrowWin,
+          }),
+        );
+      }
+    }
+  }
+
   init(): void {
     const winnersSortData: WinnersSortType = JSON.parse(localStorage.getItem('winnersSortData') || '{}');
     this.thWins.textContent = `Wins ${winnersSortData.arrowWin}`;
     this.thTime.textContent = `Best time ${winnersSortData.arrowTime}`;
     this.thead.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
-      if (target.id === 'th-wins') {
-        if (winnersSortData.order === 'ASC') {
-          winnersSortData.order = 'DESC'; winnersSortData.arrowTime = ''; winnersSortData.arrowWin = '▼';
-          localStorage.setItem( 'winnersSortData', JSON.stringify({
-            sort: 'wins', order: winnersSortData.order, arrowTime: winnersSortData.arrowTime,
-            arrowWin: winnersSortData.arrowWin }) );
-        } else {
-          winnersSortData.order = 'ASC'; winnersSortData.arrowTime = ''; winnersSortData.arrowWin = '▲';
-          localStorage.setItem( 'winnersSortData', JSON.stringify({
-            sort: 'wins', order: winnersSortData.order, arrowTime: winnersSortData.arrowTime,
-            arrowWin: winnersSortData.arrowWin }) );         
-        }
-      }
-      if (target.id === 'th-time') {
-        if (winnersSortData.order === 'ASC') {
-          winnersSortData.order = 'DESC'; winnersSortData.arrowTime = '▼'; winnersSortData.arrowWin = '';
-          localStorage.setItem( 'winnersSortData', JSON.stringify({
-            sort: 'time', order: winnersSortData.order, arrowTime: winnersSortData.arrowTime,
-            arrowWin: winnersSortData.arrowWin }) );
-        } else {
-          winnersSortData.order = 'ASC'; winnersSortData.arrowTime = '▲'; winnersSortData.arrowWin = '';
-          localStorage.setItem( 'winnersSortData', JSON.stringify({
-            sort: 'time', order: winnersSortData.order, arrowTime: winnersSortData.arrowTime,
-            arrowWin: winnersSortData.arrowWin }) );
-        }
-      }
+      this.thWinsInit(target, winnersSortData);
+      this.thTimeInit(target, winnersSortData);
       updateWinnersThead(this.thWins, this.thTime);
       const winnersContent = document.getElementById('winners-tbody');
       const winnersPageData: WinnersPageNumDataType = JSON.parse(localStorage.getItem('winnersPageData') || '{}');

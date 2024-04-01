@@ -71,7 +71,6 @@ export class PaginationRaceButtons extends BaseComponent {
         )
           this.nextBtn.classList.add('disabled');
       }
-
       if (JSON.parse(localStorage.asyncRaceData).pageNumber === FIRST_PAGE) {
         this.prevBtn.classList.add('disabled');
       }

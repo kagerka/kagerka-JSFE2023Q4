@@ -11,6 +11,5 @@ export const createCar = async (name: string, color: string): Promise<GarageType
   });
   const cars: CarInfoType[] = await response.json();
   const carsNumber = Number(response.headers.get('X-Total-Count'));
-
   return { cars: cars, carsNumber: carsNumber };
 };

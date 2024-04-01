@@ -11,7 +11,6 @@ const generateRandomCar = (): RandomCarType => {
   const randomCarModelNumber = Math.floor(Math.random() * carModelsLength);
   const randomCarModel = Object.values(carModels)[randomCarBrandsNumber][randomCarModelNumber];
   const randomColor = `#${Math.floor(Math.random() * HEX_COLORS_COUNT).toString(HEX)}`;
-
   return {
     randomCarBrand,
     randomCarModel,

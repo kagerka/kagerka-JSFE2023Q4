@@ -23,7 +23,6 @@ export const updateRaceContent = async (
     pageInfoWrapper.innerHTML = '';
     new PageInfo('Garage', carsNumber, pageNum).render(pageInfoWrapper);
   }
-
   if (paginationBtnWrapper) {
     paginationBtnWrapper.innerHTML = '';
     new PaginationRaceButtons(pageInfoWrapper, raceFieldWrapper).render(paginationBtnWrapper);

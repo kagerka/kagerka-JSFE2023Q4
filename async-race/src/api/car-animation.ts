@@ -45,7 +45,6 @@ export const animation = (car: HTMLElement, distance: number, animationTime: num
     }
   };
   state.id = window.requestAnimationFrame(step);
-
   return state;
 };
 
@@ -106,8 +105,6 @@ const updateWinnerInfo = async (id: number, time: number): Promise<void> => {
   const winnersPageData: WinnersPageNumDataType = JSON.parse(localStorage.getItem('winnersPageData') || '{}');
   const winnersData = await getWinners(winnersPageData.pageNumber);
   const isWinnerExist = winnersData.winners.find((item) => item.id === id);
-  
-  
   if (isWinnerExist === undefined) {
     await addWinner({ id: id, wins: 1, time: time });
   } else {

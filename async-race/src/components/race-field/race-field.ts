@@ -21,7 +21,6 @@ export class RaceField extends BaseComponent {
     carsInfo.cars.forEach((el) => {
       new RaceLine(el.name, el.color, el.id).render(this.element);
     });
-
     if (parent) parent.append(this.element);
     return this.element;
   }

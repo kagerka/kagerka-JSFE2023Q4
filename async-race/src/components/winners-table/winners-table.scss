@@ -3,9 +3,12 @@
 table {
   border-collapse: collapse;
 }
+
 th {
   border-right: 4px solid $white;
 }
-.th-wins, .th-time {
+
+.th-wins,
+.th-time {
   cursor: pointer;
 }

@@ -37,12 +37,14 @@ export type WinnersUpdateType = {
   wins: number;
   time: number;
 };
+
 export type WinnersSortType = {
-  sort: 'time' | 'wins',
-  order: 'ASC' | 'DESC',
-  arrowTime: '▼' | '▲' | '',
-  arrowWin: '▼' | '▲' | ''
+  sort: 'time' | 'wins';
+  order: 'ASC' | 'DESC';
+  arrowTime: '▼' | '▲' | '';
+  arrowWin: '▼' | '▲' | '';
 };
+
 export type InputOptionType = {
   id: string;
   type: string;

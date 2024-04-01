@@ -1,6 +1,8 @@
+@import '../../../styles/variables.scss';
+
 .page-name {
   text-transform: uppercase;
-  color: #007da7;
-  border-left: 10px solid #007da7;
+  color: $blue;
+  border-left: 10px solid $blue;
   padding-left: 10px;
 }
