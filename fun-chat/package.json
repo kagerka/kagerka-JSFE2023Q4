@@ -41,7 +41,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": ["npm run format", "npm run lint:fix"]
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.(ts|tsx)": ["ci:format", "npm run lint", "git add"]
   }
 }
