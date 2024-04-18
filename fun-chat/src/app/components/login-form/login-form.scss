@@ -1,0 +1,64 @@
+@import '../../../styles/variables.scss';
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 300px;
+  padding: 20px;
+  border: 1px solid $gray;
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid $gray;
+  color: $gray;
+  font-size: 14px;
+}
+.legend {
+  text-align: center;
+  padding: 0 2px;
+}
+.input {
+  height: 30px;
+  border: 1px solid $gray;
+  padding: 0 10px;
+  font-size: 14px;
+  color: $black;
+
+  &:focus {
+    border: 1px solid $black;
+    outline: none;
+  }
+
+  &::placeholder {
+    font-size: 14px;
+    color: $gray;
+  }
+  &.incorrect {
+    border-color: $red;
+  }
+}
+
+.message-name {
+  display: none;
+  font-size: 14px;
+  color: $red;
+  &.incorrect {
+    display: block;
+  }
+}
+
+.message-password {
+  display: none;
+  font-size: 14px;
+  color: $red;
+  &.incorrect {
+    display: block;
+  }
+}
