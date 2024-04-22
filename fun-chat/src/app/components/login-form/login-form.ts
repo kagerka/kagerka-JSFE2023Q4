@@ -1,4 +1,5 @@
 import { moveToPage } from '../../api/router/moveToPage';
+import { createUser } from '../../api/webSocket';
 import { BaseComponentType, ButtonType } from '../../data/types';
 import { BaseComponent } from '../base-component';
 import { Button } from '../button/button';
@@ -71,6 +72,11 @@ export class LoginForm extends BaseComponent {
     loginButton.addEventListener('click', (e) => {
       e.preventDefault();
       if (validateForm(this.inputName, this.inputPassword, this.messageName, this.messagePassword)) {
+        sessionStorage.setItem(
+          'currentUserLogin',
+          JSON.stringify({ login: this.inputName.value, password: this.inputPassword.value }),
+        );
+        createUser(this.inputName.value, this.inputPassword.value);
         moveToPage('chat');
       }
     });
