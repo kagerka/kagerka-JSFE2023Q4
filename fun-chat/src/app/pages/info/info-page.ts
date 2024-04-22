@@ -1,3 +1,4 @@
+import { moveToPage } from '../../api/router/moveToPage';
 import { BaseComponent } from '../../components/base-component';
 import { Button } from '../../components/button/button';
 import { BaseComponentType, ButtonType } from '../../data/types';
@@ -40,6 +41,11 @@ export class InfoPage extends BaseComponent {
   init(): void {
     this.goBackBtn.addEventListener('click', () => {
       window.history.back();
+      if (sessionStorage.getItem('currentUserLogin')) {
+        moveToPage('chat');
+      } else {
+        moveToPage('login');
+      }
     });
   }
 
