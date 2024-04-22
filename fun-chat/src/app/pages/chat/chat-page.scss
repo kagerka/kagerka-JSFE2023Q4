@@ -98,6 +98,10 @@
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: green;
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  flex-direction: column;
 }
 
 .answer-field {

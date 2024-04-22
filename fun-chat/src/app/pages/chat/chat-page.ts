@@ -1,7 +1,9 @@
+import { getDate } from '../../api/getDate';
 import { moveToPage } from '../../api/router/moveToPage';
 import { getAllUsers, logout, sendMsg } from '../../api/webSocket';
 import { BaseComponent } from '../../components/base-component';
 import { Button } from '../../components/button/button';
+import { ChatMsg } from '../../components/chat-msg/chat-msg';
 import { UserItem } from '../../components/user/user';
 import { BaseComponentType, ButtonType, UserInfoType } from '../../data/types';
 import './chat-page.scss';
@@ -135,9 +137,13 @@ export class ChatPage extends BaseComponent {
       e.preventDefault();
       const selectedUser = sessionStorage.getItem('selectedUserName');
       if (selectedUser) sendMsg(selectedUser, this.answerInput.value);
-      this.chatField.append(this.answerInput.value);
+      this.loadHistory('you', getDate(), this.answerInput.value);
       this.answerInput.value = '';
     });
+  }
+
+  loadHistory(sender = 'you', date = getDate(), message = '', status = 'delivered'): void {
+    new ChatMsg(sender, date, message, status).render(this.chatField);
   }
 
   selectUser(): void {
