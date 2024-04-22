@@ -3,8 +3,12 @@ import { InfoPage } from '../../pages/info/info-page';
 import { LoginPage } from '../../pages/login/login-page';
 
 export const loadContent = (page: string): void => {
-  if (page === '/') {
-    new ChatPage().render(document.body);
+  if (page === '/' || page === '') {
+    if (sessionStorage.getItem('currentUserLogin')) {
+      new ChatPage().render(document.body);
+    } else {
+      new LoginPage().render(document.body);
+    }
   }
   if (page === 'info') {
     new InfoPage().render(document.body);
