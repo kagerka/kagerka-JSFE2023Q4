@@ -58,3 +58,11 @@ export type MessagePayloadType = {
     };
   };
 };
+
+export type MsgHistoryType = {
+  id: string;
+  type: string;
+  payload: {
+    messages: [];
+  };
+};

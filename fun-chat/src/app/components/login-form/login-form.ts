@@ -1,5 +1,5 @@
 import { moveToPage } from '../../api/router/moveToPage';
-import { createUser } from '../../api/webSocket';
+import { createUser, getAllUsers } from '../../api/webSocket';
 import { BaseComponentType, ButtonType } from '../../data/types';
 import { BaseComponent } from '../base-component';
 import { Button } from '../button/button';
@@ -65,6 +65,7 @@ export class LoginForm extends BaseComponent {
     this.element.append(this.fieldset);
     this.fieldset.append(this.legend, this.inputName, this.messageName, this.inputPassword, this.messagePassword);
     this.init();
+    getAllUsers();
   }
 
   init(): void {
