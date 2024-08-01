@@ -1,0 +1,24 @@
+@import '../../../styles/variables.scss';
+
+.user-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.status {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 10px;
+
+  &.online {
+    background-color: $green;
+  }
+
+  &.offline {
+    background-color: $red;
+  }
+}

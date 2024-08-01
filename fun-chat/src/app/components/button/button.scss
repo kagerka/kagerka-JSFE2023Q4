@@ -1,0 +1,36 @@
+@import '../../../styles/variables.scss';
+
+.btn {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 20px;
+  min-width: 140px;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: $black;
+  background-color: $gray-light50;
+  border: 1px solid $gray;
+  transition-duration: 0.4s;
+  outline: none;
+
+  &:hover {
+    color: $white;
+    background-color: $green-medium;
+    border: 1px solid $green-medium;
+  }
+
+  &:focus {
+    border: 1px solid $green-dark;
+    outline: none;
+  }
+
+  &.active {
+    color: $white;
+    background-color: $green;
+    border: 1px solid $green;
+    cursor: default;
+  }
+}
