@@ -1,0 +1,82 @@
+@import '../../styles/variables.scss';
+
+.btn {
+  padding: 16px 20px;
+  border: 2px solid $green;
+  border-radius: 10px;
+  background: $green;
+  color: $white;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &:hover,
+  &:active {
+    border: 2px solid $green-dark;
+    background-color: $green-dark;
+    color: $white;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.login-btn {
+  width: 180px;
+  padding: 16px 20px;
+  border: 2px solid $green;
+  border-radius: 10px;
+  background: $green;
+  color: $white;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &:hover,
+  &:active {
+    border: 2px solid $green-dark;
+    background-color: $green-dark;
+    color: $white;
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    opacity: 0.5;
+    border: 2px solid $green;
+    background-color: $green;
+    color: $white;
+    cursor: default;
+  }
+}
+
+.logout-btn {
+  width: 120px;
+  padding: 10px 16px;
+  border: 2px solid $green;
+  border-radius: 10px;
+  background: $green;
+  color: $white;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &:hover,
+  &:active {
+    border: 2px solid $green-dark;
+    background-color: $green-dark;
+    color: $white;
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    opacity: 0.5;
+    border: 2px solid $green;
+    background-color: $green;
+    color: $white;
+    cursor: default;
+  }
+}

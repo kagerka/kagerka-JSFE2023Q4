@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+
+.page-wrapper {
+  min-width: 700px;
+  max-width: 900px;
+  padding: 60px;
+  border: 2px solid $white;
+  border-radius: 10px;
+  background-color: $white50;
+  margin-top: 40px;
+}

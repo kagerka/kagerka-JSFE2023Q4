@@ -1,0 +1,33 @@
+@import '../../../styles/variables.scss';
+
+.sound-btn-wrapper {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  background-color: $blue;
+  border: 1px solid $blue;
+  transition: all 1s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  font-weight: bold;
+  font-size: 30px;
+
+  &:hover,
+  &:active {
+    background-color: $blue-dark;
+    border: 1px solid $blue-dark;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  &.playing {
+    background-color: $red-light;
+    border: 1px solid $red-light;
+  }
+}

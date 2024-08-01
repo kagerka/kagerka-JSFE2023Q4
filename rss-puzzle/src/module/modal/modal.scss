@@ -1,0 +1,46 @@
+.modal-wrapper.visible {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-wrapper.hidden {
+  display: none;
+}
+
+.modal {
+  max-width: 450px;
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  padding: 40px;
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.modal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.btn-wrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.modal-btn {
+  width: 100px;
+  padding: 10px;
+}
