@@ -1,0 +1,276 @@
+.body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #ccbbd6;
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  background-color: #ccbbd6;
+  max-width: 1440px;
+  padding: 40px;
+  display: flex;
+}
+
+.picture-field {
+  padding: 40px;
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  color: #202020;
+  width: 100%;
+}
+
+.header::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #202020;
+  margin-bottom: 20px;
+}
+
+.keyboard-field {
+  padding: 40px;
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.answer-word {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.answer-letter {
+  width: 60px;
+  height: 60px;
+  background: #f3d9fc;
+  color: #7c3f8f;
+  border: 2px solid #7c3f8f;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.hint {
+  max-width: 100%;
+  height: 100%;
+  justify-content: center;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  border: 2px solid #7c3f8f;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.hint-title {
+  color: #7c3f8f;
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.hint-question {
+  text-align: center;
+}
+
+.guesses {
+  max-width: 100%;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  border: 2px solid #7c3f8f;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.incorrect-count {
+  color: rgb(179, 28, 28);
+  font-weight: bold;
+}
+
+.keyboard {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.letter {
+  width: 60px;
+  height: 60px;
+  color: #f3d9fc;
+  background: #7c3f8f;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  transition: 0.5s;
+  margin: 0em;
+  padding-block: 0px;
+  padding-inline: 0px;
+  border-width: 0px;
+  border-style: none;
+  border-image: none;
+}
+
+.letter:hover {
+  background-color: #632e74;
+  color: white;
+}
+
+.letter.active {
+  background: #a584af;
+  pointer-events: none;
+}
+
+.invisible {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #00000080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-wrapper.hidden {
+  display: none;
+}
+
+.modal {
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  padding: 40px;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.modal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.modal-heading {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.modal-word {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.play-again-btn {
+  color: #f3d9fc;
+  background: #7c3f8f;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  transition: 0.5s;
+  margin: 0em;
+  padding-block: 0px;
+  padding-inline: 0px;
+  padding: 20px;
+  border-width: 0px;
+  border-style: none;
+  border-image: none;
+}
+
+.play-again-btn:hover {
+  background-color: #632e74;
+  color: white;
+}
+
+@media screen and (min-width: 360px) and (max-width: 659px) {
+  .wrapper {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .picture-field {
+    padding: 40px;
+  }
+
+  .keyboard-field {
+    padding: 10px;
+    gap: 20px;
+  }
+
+  #svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 660px) and (max-width: 1169px) {
+  .wrapper {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 1170px) and (max-width: 1439px) {
+  .wrapper {
+    flex-direction: row;
+  }
+
+  .keyboard-field {
+    max-width: 100%;
+  }
+
+  .answer-word {
+    max-width: 100%;
+  }
+
+  .answer-letter {
+    width: 100%;
+    max-width: 60px;
+  }
+}
