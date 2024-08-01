@@ -1,0 +1,70 @@
+@import '../../../styles/variables.scss';
+
+.create-car-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.create-car-name {
+  width: 290px;
+  height: 30px;
+  border: 2px solid $gray;
+  padding: 0 10px;
+  font-size: 16px;
+
+  &:focus {
+    outline-color: $orange;
+    background-color: $beige;
+  }
+}
+
+.create-car-color {
+  width: 44px;
+  min-width: 20px;
+  height: 30px;
+  padding: 1px 2px;
+  background: $white;
+  border: 2px solid $gray;
+  cursor: pointer;
+}
+
+.create-car-btn {
+  padding: 6px 20px;
+  min-width: 107px;
+  font-size: 12px;
+  color: $blue;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid $blue;
+  background-color: $white;
+  cursor: pointer;
+  transition-duration: 0.4s;
+
+  &:hover {
+    color: $white;
+    background-color: $blue;
+  }
+
+  &:active {
+    color: $white;
+    background-color: $blue-dark;
+    border: 2px solid $blue-dark;
+  }
+
+  &.disabled {
+    color: $gray-light;
+    border: 2px solid $gray-light;
+    background-color: $white;
+    pointer-events: none;
+
+    &:hover {
+      color: $gray-light;
+      border: 2px solid $gray-light;
+      background-color: $white;
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.garage-page {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+
+  &.active {
+    display: flex;
+  }
+}
